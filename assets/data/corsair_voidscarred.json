@@ -1,0 +1,26 @@
+{
+    "name": "Corsair Voidscarred",
+    "operatives": [
+        {
+            "name": "Felarch",
+            "stats": [6, 2, 1, 3, 4, 9],
+            "weapons": [],
+            "abilities": [
+                {
+                    "name": "Aeldari Agility"
+                },
+                {
+                    "name": "Coordinated Strike",
+                    "description": "Each time this operative is activated, you can select one ready friendly CORSAIR VOIDSCARRED operative Visible to and within ((3)) of this operative. After this operative's activation ends, you can activate that ready friendly operative."
+                }
+            ],
+            "actions": [
+                {
+                    "name": "Take Aim (1AP)",
+                    "description": "Until the end of this operative's activation, the shuriken rifle this operative is equipped with gains the Balanced special rule. This operative cannot perform this action if it is within ((3)) of an enemy operative."
+                }
+            ],
+            "limit": 1
+        }
+    ]
+}
