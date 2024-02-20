@@ -9,72 +9,87 @@
     <script type="application/javascript" src="script/main.js"></script>
 </head>
 <body>
-    <div class="kill-team-phases">
-        <div><h2>1. DETERMINE MISSION</h2></div>
-        <div><h2>2. READ MISSION BRIEFING</h2></div>
-        <div><h2>3. DETERMINE KILLZONE</h2></div>
-        <div><h2>4. SET UP OBJECTIVE MARKER</h2></div>
-        <div><h2>5. SET UP KILLZONE</h2></div>
-        <div>
-            <h2>6. SELECT DROP ZONE</h2>
-            <p>Who wins initiative decides to be Attacker or Defender, Defender choose the drop zone.</p>
+    <div class="kill-team">
+        <div class="kill-team-phases">
+            <div><h2>1. DETERMINE MISSION</h2></div>
+            <div><h2>2. READ MISSION BRIEFING</h2></div>
+            <div><h2>3. DETERMINE KILLZONE</h2></div>
+            <div><h2>4. SET UP OBJECTIVE MARKER</h2></div>
+            <div><h2>5. SET UP KILLZONE</h2></div>
+            <div>
+                <h2>6. SELECT DROP ZONE</h2>
+                <p>Who wins initiative decides to be Attacker or Defender, Defender choose the drop zone.</p>
+            </div>
+
+            <div>
+                <h2>7. SELECT KILL TEAM</h2>
+                <p>If the killteam includes a LEADER add 2 CP.</p>
+                <p>(Battle Honours + Strategic Assets) for every two points of difference = add 1 CP or add two point of equipment</p>
+            </div>
+
+            <div>
+                <h2>8. SELECT TAC OPS</h2>
+                <p>select/shuffle Tac Ops here</p>
+            </div>
+
+            <div><h2>9. SELECT EQUIPMENT</h2></div>
+            <div><h2>10. SET UP BARRICADES</h2></div>
+            <div>
+                <h2>11. SET UP OPERATIVES</h2>
+                <p>Defender sets up all their operatives, then the Attacker do.</p>
+            </div>
+
+            <div>
+                <h2>12. SCOUTING</h2>
+                <p>Fortify: Set up one additional Barricade within 6 of drop zone.</p>
+                <p>Infiltrate: Can change the order of one operative upon it's activation.</p>
+                <p>Recon: Perform a free Dash action with one operative wholly within drop zone.</p>
+            </div>
+
+            <div>
+                <h2>13. BEGIN BATTLE</h2>
+                <p>Fortify > Infiltrate > Recon > Fortify, greater (or the Attacker) decides Initiative.</p>
+            </div>
+
+            <div><h2>14. END BATTLE</h2></div>
+            <div><h2>15. DETERMINE VICTORY</h2></div>
+            <div>
+                <h2>16. UPDATE DATASLATES</h2>
+                <p>Take Casualty tests.</p>
+                <p>Update Experience.</p>
+                <p>Take Recovery tests.</p>
+                <p>Complete operations.</p>
+            </div>
         </div>
 
-        <div>
-            <h2>7. SELECT KILL TEAM</h2>
-            <p>If the killteam includes a LEADER add 2 CP.</p>
-            <p>(Battle Honours + Strategic Assets) for every two points of difference = add 1 CP or add two point of equipment</p>
+        <select id="KillTeamSelect">
+            <option value=""></option>
+            <optgroup label="Aeldari">
+                <option value="corsair_voidscarred">CORSAIR VOIDSCARRED</option>
+                <option value="craftworld">CRAFTWORLD</option>
+                <option value="void-dancer_troupe">VOID-DANCER TROUPE</option>
+            </optgroup>
+            <optgroup label="Tyranids">
+                <option value="fleet_hive">FLEET HIVE</option>
+            </optgroup>
+            <optgroup label="Chaos">
+                <option value="legionary">LEGIONARY</option>
+            </optgroup>
+        </select>
+
+        <div class="kill-team-command-points">
+            <div class="list">
+                <div class="point"><img src="assets/faction/generic.png"></div>
+                <div class="point"><img src="assets/faction/generic.png"></div>
+                <div class="point"><img src="assets/faction/generic.png"></div>
+            </div>
+            <div class="actions">
+                <div class="button">+</div>
+                <div class="button">-</div>
+            </div>
         </div>
 
-        <div>
-            <h2>8. SELECT TAC OPS</h2>
-            <p>select/shuffle Tac Ops here</p>
-        </div>
-
-        <div><h2>9. SELECT EQUIPMENT</h2></div>
-        <div><h2>10. SET UP BARRICADES</h2></div>
-        <div>
-            <h2>11. SET UP OPERATIVES</h2>
-            <p>Defender sets up all their operatives, then the Attacker do.</p>
-        </div>
-
-        <div>
-            <h2>12. SCOUTING</h2>
-            <p>Fortify: Set up one additional Barricade within 6 of drop zone.</p>
-            <p>Infiltrate: Can change the order of one operative upon it's activation.</p>
-            <p>Recon: Perform a free Dash action with one operative wholly within drop zone.</p>
-        </div>
-
-        <div>
-            <h2>13. BEGIN BATTLE</h2>
-            <p>Fortify > Infiltrate > Recon > Fortify, greater (or the Attacker) decides Initiative.</p>
-        </div>
-
-        <div><h2>14. END BATTLE</h2></div>
-        <div><h2>15. DETERMINE VICTORY</h2></div>
-        <div>
-            <h2>16. UPDATE DATASLATES</h2>
-            <p>Take Casualty tests.</p>
-            <p>Update Experience.</p>
-            <p>Take Recovery tests.</p>
-            <p>Complete operations.</p>
-        </div>
+        <div id="Content"></div>
     </div>
-
-    <select id="KillTeamSelect">
-        <option value=""></option>
-        <optgroup label="Aeldari">
-            <option value="corsair_voidscarred">CORSAIR VOIDSCARRED</option>
-            <option value="craftworld">CRAFTWORLD</option>
-            <option value="void-dancer_troupe">VOID-DANCER TROUPE</option>
-        </optgroup>
-        <optgroup label="Tyranids">
-            <option value="fleet_hive">FLEET HIVE</option>
-        </optgroup>
-        <optgroup label="Chaos">
-            <option value="legionary">LEGIONARY</option>
-        </optgroup>
-    </select>
-    <div id="Content"></div>
 </body>
 </html>

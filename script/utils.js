@@ -6,7 +6,7 @@ class Id {
     constructor(string, context = null) {
         Object.defineProperty(this, "equals", { enumerable: false });
         try {
-            if (string === null || typeof string !== 'string') throw `invalid null parameter passed`;
+            if (!string || typeof string !== 'string') throw `invalid null parameter passed`;
             string = string.replace(/^\s+|\s+$/ig, "");
             string = string.replace(/[^0-9a-z-_]+/ig, "_");
             string = string.toLowerCase();
@@ -20,7 +20,6 @@ class Id {
             return this;
         } catch(e) {
             console.error(e);
-            alert(e);
             return undefined;
         }
     }

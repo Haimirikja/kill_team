@@ -25,6 +25,13 @@ table{width:100%;border-collapse:collapse;}
 
 img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 
+.kill-team {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
 .kill-team-phases{text-align:center;}
 .kill-team-phases h2{color:var(--orange);}
 
