@@ -415,12 +415,7 @@ const VOIDDANCER_TROUPE = {
             "operatives": [
                 {
                     "name": "LEAD PLAYER",
-                    "movement": 6,
-                    "actions": 3,
-                    "groupActivation": 1,
-                    "defence": 3,
-                    "save": 6,
-                    "wounds": 9,
+                    "stats": [6, 3, 1, 3, 6, 9],
                     "abilities": [
                         {
                             "name": "Holo-suit",
@@ -443,101 +438,116 @@ const VOIDDANCER_TROUPE = {
                         {
                             "type": "((R))",
                             "name": "Fusion pistol",
-                            "attacks": 4,
-                            "skill": 2,
-                            "damage": 5,
-                            "criticalDamage": 3,
-                            "range": 3,
-                            "ap": 2,
-                            "criticalEffects": [
-                                "MW3"
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damage": 5,
+                                    "criticalDamage": 3,
+                                    "range": 3,
+                                    "ap": 2,
+                                    "criticalEffects": ["MW3"]
+                                }
                             ]
                         },
                         {
                             "type": "((R))",
                             "name": "Neuro disruptor",
-                            "attacks": 4,
-                            "skill": 2,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "range": 6,
-                            "ap": 1,
-                            "criticalEffects": [
-                                "Stun"
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "range": 6,
+                                    "ap": 1,
+                                    "criticalEffects": ["Stun"]
+                                }
                             ]
                         },
                         {
                             "type": "((R))",
                             "name": "Shuriken pistol",
-                            "attacks": 4,
-                            "skill": 2,
-                            "damage": 3,
-                            "criticalDamage": 4,
-                            "range": 6,
-                            "criticalEffects": [
-                                "Rending"
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damage": 3,
+                                    "criticalDamage": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
                             ]
                         },
                         {
                             "type": "((M))",
                             "name": "Blade",
-                            "attacks": 5,
-                            "skill": 2,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "specialRules": [
-                                "Balanced"
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "specialRules": ["Balanced"]
+                                }
                             ]
                         },
                         {
                             "type": "((M))",
                             "name": "Caress",
-                            "attacks": 5,
-                            "skill": 2,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "criticalEffects": [
-                                "Rending"
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "criticalEffects": ["Rending"]
+                                }
                             ]
                         },
                         {
                             "type": "((M))",
                             "name": "Embrace",
-                            "attacks": 5,
-                            "skill": 2,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "specialRules": [
-                                "Brutal"
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "specialRules": ["Brutal"]
+                                }
                             ]
                         },
                         {
                             "type": "((M))",
                             "name": "Kiss",
-                            "attacks": 5,
-                            "skill": 2,
-                            "damage": 3,
-                            "criticalDamage": 7
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damage": 3,
+                                    "criticalDamage": 7
+                                }
+                            ]
                         },
                         {
                             "type": "((M))",
                             "name": "Power weapon",
-                            "attacks": 5,
-                            "skill": 2,
-                            "damage": 4,
-                            "criticalDamage": 6,
-                            "lethal": 5
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damage": 4,
+                                    "criticalDamage": 6,
+                                    "lethal": 5
+                                }
+                            ]
                         }
                     ]
                 },
                 {
                     "name": "DEATH JESTER",
-                    "movement": 6,
-                    "actions": 3,
-                    "groupActivation": 1,
-                    "defence": 3,
-                    "save": 6,
-                    "wounds": 9,
+                    "stats": [6, 3, 1, 3, 6, 9],
                     "abilities": [
                         {
                             "name": "Holo-suit",
@@ -556,40 +566,35 @@ const VOIDDANCER_TROUPE = {
                         {
                             "type": "((R))",
                             "name": "Shrieker cannon",
-                            "attacks": 5,
-                            "skill": 3,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "specialRules": [
-                                "Fusillade",
-                                "Heavy",
-                                "*Humbling Cruelty"
-                            ],
-                            "criticalEffects": [
-                                "Rending"
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "specialRules": ["Fusillade","Heavy","*Humbling Cruelty"],
+                                    "criticalEffects": ["Rending"]
+                                }
                             ]
                         },
                         {
                             "type": "((M))",
                             "name": "Shrieker blade",
-                            "attacks": 4,
-                            "skill": 3,
-                            "damage": 3,
-                            "criticalDamage": 4,
-                            "criticalEffects": [
-                                "Reap 2"
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damage": 3,
+                                    "criticalDamage": 4,
+                                    "criticalEffects": ["Reap 2"]
+                                }
                             ]
                         }
                     ]
                 },
                 {
                     "name": "PLAYER",
-                    "movement": 6,
-                    "actions": 3,
-                    "groupActivation": 1,
-                    "defence": 3,
-                    "save": 6,
-                    "wounds": 8,
+                    "stats": [6, 3, 1, 3, 6, 8],
                     "abilities": [
                         {
                             "name": "Holo-suit",
@@ -602,92 +607,103 @@ const VOIDDANCER_TROUPE = {
                         {
                             "type": "((R))",
                             "name": "Fusion pistol",
-                            "attacks": 4,
-                            "skill": 3,
-                            "damage": 5,
-                            "criticalDamage": 3,
-                            "range": 3,
-                            "ap": 2,
-                            "criticalEffects": [
-                                "MW3"
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damage": 5,
+                                    "criticalDamage": 3,
+                                    "range": 3,
+                                    "ap": 2,
+                                    "criticalEffects": ["MW3"]
+                                }
                             ]
                         },
                         {
                             "type": "((R))",
                             "name": "Neuro disruptor",
-                            "attacks": 4,
-                            "skill": 3,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "range": 6,
-                            "ap": 1,
-                            "criticalEffects": [
-                                "Stun"
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "range": 6,
+                                    "ap": 1,
+                                    "criticalEffects": ["Stun"]
+                                }
                             ]
                         },
                         {
                             "type": "((R))",
                             "name": "Shuriken pistol",
-                            "attacks": 4,
-                            "skill": 3,
-                            "damage": 3,
-                            "criticalDamage": 4,
-                            "range": 6,
-                            "criticalEffects": [
-                                "Rending"
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damage": 3,
+                                    "criticalDamage": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
                             ]
                         },
                         {
                             "type": "((M))",
                             "name": "Blade",
-                            "attacks": 5,
-                            "skill": 3,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "specialRules": [
-                                "Balanced"
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "specialRules": ["Balanced"]
+                                }
                             ]
                         },
                         {
                             "type": "((M))",
                             "name": "Caress",
-                            "attacks": 5,
-                            "skill": 3,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "criticalEffects": [
-                                "Rending"
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "criticalEffects": ["Rending"]
+                                }
                             ]
                         },
                         {
                             "type": "((M))",
                             "name": "Embrace",
-                            "attacks": 5,
-                            "skill": 3,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "specialRules": [
-                                "Brutal"
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "specialRules": ["Brutal"]
+                                }
                             ]
                         },
                         {
                             "type": "((M))",
                             "name": "Kiss",
-                            "attacks": 5,
-                            "skill": 3,
-                            "damage": 3,
-                            "criticalDamage": 7
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damage": 3,
+                                    "criticalDamage": 7
+                                }
+                            ]
                         }
                     ]
                 },
                 {
                     "name": "SHADOWSEER",
-                    "movement": 6,
-                    "actions": 3,
-                    "groupActivation": 1,
-                    "defence": 3,
-                    "save": 6,
-                    "wounds": 9,
+                    "stats": [6, 3, 1, 3, 6, 9],
                     "abilities": [
                         {
                             "name": "Holo-suit",
@@ -698,7 +714,8 @@ const VOIDDANCER_TROUPE = {
                     ],
                     "uniqueActions": [
                         {
-                            "name": "Manifest Psychic Power (1AP)",
+                            "name": "Manifest Psychic Power",
+                            "cost": 1,
                             "description": [
                                 "Psychic action.",
                                 "Resolve a VOID-DANCER TROUPE psychic power, as specified here.",
@@ -706,7 +723,8 @@ const VOIDDANCER_TROUPE = {
                             ]
                         },
                         {
-                            "name": "Hallucinogen Grenade (1AP)",
+                            "name": "Hallucinogen Grenade",
+                            "cost": 1,
                             "description": [
                                 "Select one point on the killzone within ((6)) of this operative.",
                                 "Roll one D6 for each operative within ((2)) of that point, subtracting 1 from the result if that operative is not Visible to this operative.",
@@ -719,37 +737,43 @@ const VOIDDANCER_TROUPE = {
                         {
                             "type": "((R))",
                             "name": "Neuro disruptor",
-                            "attacks": 4,
-                            "skill": 3,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "range": 6,
-                            "ap": 1,
-                            "criticalEffects": [
-                                "Stun"
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "range": 6,
+                                    "ap": 1,
+                                    "criticalEffects": ["Stun"]
+                                }
                             ]
                         },
                         {
                             "type": "((R))",
                             "name": "Shuriken pistol",
-                            "attacks": 4,
-                            "skill": 3,
-                            "damage": 3,
-                            "criticalDamage": 4,
-                            "range": 6,
-                            "criticalEffects": [
-                                "Rending"
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damage": 3,
+                                    "criticalDamage": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
                             ]
                         },
                         {
                             "type": "((M))",
                             "name": "Miststave",
-                            "attacks": 4,
-                            "skill": 3,
-                            "damage": 4,
-                            "criticalDamage": 5,
-                            "specialRules": [
-                                "Stun"
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damage": 4,
+                                    "criticalDamage": 5,
+                                    "specialRules": ["Stun"]
+                                }
                             ]
                         }
                     ]
