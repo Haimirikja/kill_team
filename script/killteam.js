@@ -129,8 +129,9 @@ class Operative {
         return this.toString() === operative.toString();
     }
 
-    toHTML = () => {
+    toHTML = (id) => {
         const operativeElement = document.createElement("div");
+        if (id instanceof Id) operativeElement.id = id.key;
         const operativeHeader = document.createElement("header");
         const operativeName = document.createElement("div");
         operativeName.innerText = this.name;
@@ -189,18 +190,14 @@ class Ability {
 
     toHTML = () => {
         const abilityElement = document.createElement("div");
-        abilityElement.classList.add("ability");
+        abilityElement.classList.add("kill-team-ability");
         const abilityName = document.createElement("b");
         abilityName.innerText = this.description.length ? `${this.name}: ` : this.name;
         abilityElement.appendChild(abilityName);
-        const abilityDescription = document.createElement("span");
         this.description.forEach((row, i) => {
-            if (i > 0) abilityDescription.appendChild(document.createElement("br"));
-            const rowElement = document.createElement("span");
-            rowElement.innerText = row;
-            abilityDescription.appendChild(rowElement);
+            if (i > 0) abilityElement.appendChild(document.createElement("br"));
+            abilityElement.appendChild(replaceMarkup(row));
         });
-        abilityElement.appendChild(abilityDescription);
         return abilityElement;
     }
 }
@@ -237,18 +234,14 @@ class Action {
 
     toHTML = () => {
         const actionElement = document.createElement("div");
-        actionElement.classList.add("action");
+        actionElement.classList.add("kill-team-action");
         const actionName = document.createElement("b");
         actionName.innerText = `${this.name} (${this.cost}AP)${this.description.length ? ": " : ""}`;
         actionElement.appendChild(actionName);
-        const actionDescription = document.createElement("span");
         this.description.forEach((row, i) => {
-            if (i > 0) actionDescription.appendChild(document.createElement("br"));
-            const rowElement = document.createElement("span");
-            rowElement.innerText = row;
-            actionDescription.appendChild(rowElement);
+            if (i > 0) actionElement.appendChild(document.createElement("br"));
+            actionElement.appendChild(replaceMarkup(row));
         });
-        actionElement.appendChild(actionDescription);
         return actionElement;
     }
 }
@@ -276,7 +269,7 @@ class Equipment {
             object.rare,
             object.value,
             object.limit,
-            object.dedicated,
+            object.dedicated ? new Id(object.dedicated) : null,
             object.description,
             {
                 ability: object.ability ? Ability.parse(object.ability) : null,
@@ -307,27 +300,24 @@ class Equipment {
 
     toHTML = (id) => {
         const itemElement = document.createElement("div");
+        itemElement.classList.add("kill-team-item");
         if (id instanceof Id) itemElement.id = id.key;
-        //if (dedicated) itemElement.setAttribute("for", new Id(dedicated).key);
         const itemHeader = document.createElement("header");
-        const itemName = document.createElement("h2");
+        const itemName = document.createElement("div");
+        itemName.classList.add("title");
         itemName.innerText = this.name;
         if (this.limit) {
             const limitElement = document.createElement("sup");
             limitElement.innerText = "+";
             itemName.appendChild(limitElement);
         }
-        const itemCost = document.createElement("span");
-        itemCost.innerText = `[${this.value.join("/")}EP]`;
-        itemName.appendChild(itemCost);
+        itemName.appendChild(document.createTextNode(` [${this.value.join("/")}EP]`))
         itemHeader.appendChild(itemName);
         itemElement.appendChild(itemHeader);
         if (this.description) {
             const descriptionElement = document.createElement("div");
             this.description.forEach(row => {
-                const rowElement = document.createElement("div");
-                rowElement.innerText = row;
-                descriptionElement.appendChild(rowElement);
+                descriptionElement.appendChild(replaceMarkup(row));
             });
             itemElement.appendChild(descriptionElement);
         }
@@ -360,7 +350,7 @@ class Weapon {
     toHTML = () => {
         const weaponElement = document.createElement("div");
         const table = document.createElement("table");
-        table.classList.add("weaponList");
+        table.classList.add("kill-team-weaponList");
         let tableRow;
         let tableHead;
         let tableHeadText;
@@ -486,7 +476,8 @@ class WeaponProfile {
         let tableCell;
         const tableRow = document.createElement("tr");
         tableCell = document.createElement("td");
-        tableCell.innerText = type && typeof type === 'string' ? type : "";
+        //tableCell.innerText = type && typeof type === 'string' ? type : "";
+        tableCell.appendChild(replaceMarkup(type));
         tableRow.appendChild(tableCell);
         tableCell = document.createElement("td");
         tableCell.innerText = name && typeof name === 'string' ? name : `- ${this.name}`;
@@ -509,7 +500,12 @@ class WeaponProfile {
             tableCell.innerText = `${this.damageNorm}/${this.damageCrit}`;
             tableRow.appendChild(tableCell);
             tableCell = document.createElement("td");
-            if (this.specialRulesFull) tableCell.innerText = this.specialRulesFull.join(", ");
+            if (this.specialRulesFull) {
+                this.specialRulesFull.forEach((x, i) => {
+                    if (i > 0) tableCell.appendChild(document.createTextNode(", "));
+                    tableCell.appendChild(replaceMarkup(x));
+                });
+            }
             else tableCell.innerText = "-";
             tableRow.appendChild(tableCell);
             tableCell = document.createElement("td");

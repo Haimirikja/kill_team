@@ -22,10 +22,15 @@ body {
     margin: 0;
 }
 
-.ability,.action,.weaponList{margin:1em 0;}
-.weaponList{width:100%;border-collapse:collapse;}
-.weaponList tr th{text-align:center;background:var(--gray);}
-.weaponList tr th:nth-child(2){text-align:left;}
-.weaponList tr td{text-align:center;}
-.weaponList tr:nth-child(odd) td{background:var(--light-gray);}
-.weaponList tr td:nth-child(2){text-align:left;}
+img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
+
+.kill-team-item{width:400px;}
+.kill-team-ability,.kill-team-action,.kill-team-weaponList{margin:1em 0;}
+.kill-team-weaponList{width:100%;border-collapse:collapse;}
+.kill-team-weaponList tr th,
+.kill-team-weaponList tr td{padding-right:3px;padding-left:3px;}
+.kill-team-weaponList tr th{text-align:center;background:var(--gray);}
+.kill-team-weaponList tr th:nth-child(2){text-align:left;}
+.kill-team-weaponList tr td{text-align:center;}
+.kill-team-weaponList tr:nth-child(odd) td{background:var(--light-gray);}
+.kill-team-weaponList tr td:nth-child(2){text-align:left;}

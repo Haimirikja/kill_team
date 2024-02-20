@@ -1,17 +1,5 @@
 
 
-function markupReplace(string) {
-    const markupList = {
-        '((R))': '<img src="assets/image/range.png" />',
-        '((M))': '<img src="assets/image/melee.png" />',
-        '((1))': '<img src="assets/image/dist1.png" />',
-        '((2))': '<img src="assets/image/dist2.png" />',
-        '((3))': '<img src="assets/image/dist3.png" />',
-        '((6))': '<img src="assets/image/dist6.png" />',
-    }
-
-}
-
 window.onload = () => {
     /*
     const kt = new KillTeam("Corsair Voidscarred", "Aeldari");
@@ -25,10 +13,14 @@ window.onload = () => {
     const target = document.getElementById("Content");
     VOIDDANCER_TROUPE.equipment.forEach(item => {
         // const id = new Id(name, "item");
-        target.appendChild(Equipment.parse(item).toHTML());
+        const eq = Equipment.parse(item);
+        //target.appendChild(equip.dedicated ? equip.toHTML(new Id(equip.dedicated)) : equip.toHTML());
+        target.appendChild(eq.toHTML(new Id(eq.name)));
     });
     VOIDDANCER_TROUPE.fireTeam[0].operatives.forEach(operative => {
         // const id = new Id(name, "item");
-        target.appendChild(Operative.parse(operative).toHTML());
+        const op = Operative.parse(operative);
+        target.appendChild(op.toHTML(new Id(op.name)));
     });
+
 }
