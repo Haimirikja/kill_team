@@ -264,27 +264,11 @@ class Weapon extends Equipment {
         let tableHead;
 
         tableRow = document.createElement("tr");
-        tableHead = document.createElement("th");
-        tableHead.innerText = "";
-        tableRow.appendChild(tableHead);
-        tableHead = document.createElement("th");
-        tableHead.innerText = "Name";
-        tableRow.appendChild(tableHead);
-        tableHead = document.createElement("th");
-        tableHead.innerText = "A";
-        tableRow.appendChild(tableHead);
-        tableHead = document.createElement("th");
-        tableHead.innerText = "BS/WS";
-        tableRow.appendChild(tableHead);
-        tableHead = document.createElement("th");
-        tableHead.innerText = "D";
-        tableRow.appendChild(tableHead);
-        tableHead = document.createElement("th");
-        tableHead.innerText = "Special Rules";
-        tableRow.appendChild(tableHead);
-        tableHead = document.createElement("th");
-        tableHead.innerText = "!";
-        tableRow.appendChild(tableHead);
+        ["", "Name", "A", "BS/WS", "D", "Special Rules", "!"].forEach(column => {
+            tableHead = document.createElement("th");
+            tableHead.innerText = column;
+            tableRow.appendChild(tableHead);
+        });
         table.appendChild(tableRow);
         if (this.profiles.length) {
             tableRow = this.profiles[0].toHTML(this.name, this.type, this.profiles.length > 1);
