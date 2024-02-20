@@ -195,7 +195,6 @@ class Operative {
         blockContent.classList.add("content");
         if (this.actions.length === 0) blockContent.innerText = "-";
         this.actions.forEach(action => {
-            console.log(action);
             blockContent.appendChild(action.toHTML());
         });
         blockElement.appendChild(blockContent);
