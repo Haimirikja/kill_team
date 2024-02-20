@@ -25,16 +25,16 @@ window.onload = () => {
     const target = document.getElementById("Content");
     VOIDDANCER_TROUPE.equipment.forEach(item => {
     //VOIDSCARRED_CORSAIR.equipment.forEach(item => {
-        const name = item.name;
-        const description = item.description;
-        const value = item.value;
-        const value2 = item.value2;
-        const limit = item.limit;
-        const dedicated = item.dedicated;
-        const ability = item.ability;
-        const action = item.action;
-        const weapon = item.weapon;
-        const id = new Id(name, "item");
-        target.appendChild(itemElement);
+        // const name = item.name;
+        // const description = item.description;
+        // const value = item.value;
+        // const value2 = item.value2;
+        // const limit = item.limit;
+        // const dedicated = item.dedicated;
+        // const ability = item.ability;
+        // const action = item.action;
+        // const weapon = item.weapon;
+        // const id = new Id(name, "item");
+        target.appendChild(Equipment.parse(item).toHTML());
     });
 }
