@@ -146,9 +146,9 @@ class Operative {
         });
         operativeStats.appendChild(tableRow);
         tableRow = document.createElement("tr");
-        this.stats.forEach(stat => {
+        this.stats.forEach((stat, i) => {
             tableCell = document.createElement("td");
-            tableCell.innerText = stat;
+            tableCell.innerText = i === 4 ? `${stat}+` : stat;
             tableRow.appendChild(tableCell);
         });
         operativeStats.appendChild(tableRow);
