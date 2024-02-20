@@ -6,6 +6,8 @@
     --gray: #b4bbb4;
     --light-gray: #dee2e1;
     --dark-gray: #515a5c;
+    --mid-gray: #676767;
+    --font: #dadada;
 }
 *,*::before,*::after{box-sizing:border-box;min-width:0;}
 html {
@@ -26,8 +28,8 @@ body {
 }
 .weaponList tr th {
     text-align: center;
-    background: var(--dark-gray);
-    color: var(--white);
+    background: var(--mid-gray);
+    color: var(--font);
 }
 .weaponList tr th:nth-child(2) {
     text-align: left;

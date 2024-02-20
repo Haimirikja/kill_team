@@ -1,26 +1,1117 @@
-{
-    "name": "Corsair Voidscarred",
-    "operatives": [
+const VOIDSCARRED_CORSAIR = {
+    "name": "CORSAIR VOIDSCARRED",
+    "faction": "AELDARI",
+    "compendium": [
         {
-            "name": "Felarch",
-            "stats": [6, 2, 1, 3, 4, 9],
-            "weapons": [],
-            "abilities": [
+            "name": "Balanced",
+            "description": [
+                "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, you can re-roll one of your attack dice."
+            ]
+        },
+        {
+            "name": "Unwieldy",
+            "description": [
+                "An operative can only make a shooting attack with this weapon if an extra AP is subtracted to perform a Shoot action.",
+                "It cannot make a shooting attack with this weapon by performing an Overwatch action."
+            ]
+        },
+        {
+            "name": "Heavy",
+            "description": [
+                "An operative cannot perform a Charge, Fall Back or Normal Move action in the same activation in which it performs a Shoot action with this ranged weapon."
+            ]
+        },
+        {
+            "name": "Blast X",
+            "description": [
+                "Each time a friendly operative performs a Shoot action and selects this weapon (or, in the case of profiles, this weapon's profile), after making the shooting attack against the target, make a shooting attack with this weapon (using the same profile) against each other operative Visible to and within X of the original target – each of them is a valid target and cannot be in Cover.",
+                "X is the distance after the weapon's Blast, e.g. Blast ((2)).",
+                "An operative cannot make a shooting attack with this weapon by performing an Overwatch action."
+            ]
+        },
+        {
+            "name": "Rending",
+            "description": [
+                "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, if you retain any critical hits you can retain one normal hit as a critical hit."
+            ]
+        },
+        {
+            "name": "Fusillade",
+            "description": [
+                "Each time a friendly operative performs a Shoot action and selects this weapon, after selecting a valid target, you can select any number of other valid targets within ((2)) of the original target.",
+                "Distribute your attack dice between the targets you have selected.",
+                "Make a shooting attack with this weapon (using the same profile) against each of the targets you have selected using the attack dice you have distributed to each of them."
+            ]
+        },
+        {
+            "name": "Silent",
+            "description": [
+                "While an operative has a Conceal order, it can perform Shoot actions if this is the ranged weapon (or weapon profile) that is selected for the shooting attack(s)."
+            ]
+        },
+        {
+            "name": "Relentless",
+            "description": [
+                "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, you can re-roll any or all of your attack dice."
+            ]
+        },
+        {
+            "name": "Stun",
+            "description": [
+                "Each time a friendly operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, if you retain any critical hits, subtract 1 from the target's APL.",
+                "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat:",
+                "- The first time you strike with a critical hit, select one of your opponent's normal hits from that combat to be discarded.",
+                "- The second time you strike with a critical hit, subtract 1 from the target's APL."
+            ]
+        }
+    ],
+    "equipment": [
+        {
+            "name": "DIURNAL MANTLE",
+            "rare": false,
+            "value": 2,
+            "value2": null,
+            "limit": false,
+            "dedicated": null,
+            "description": ["The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Diurnal Mantle",
+                "description": ["Each time a shooting attack is made against this operative, if the ranged weapon has the Torrent or Blast special rule, this operative is treated as having a Save characteristic of 3+ for that shooting attack."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "PLASMA GRANADE",
+            "rare": false,
+            "value": 3,
+            "value2": null,
+            "limit": false,
+            "dedicated": null,
+            "description": ["The operative is equipped with the following ranged weapon for the battle:"],
+            "ability": null,
+            "weapon": {
+                "name": "Plasma Granade",
+                "type": "((R))",
+                "profiles":[
+                    {
+                        "attacks": 4,
+                        "skill": 3,
+                        "damageNorm": 3,
+                        "damageCrit": 4,
+                        "range": 6,
+                        "blast": 2,
+                        "ap": null,
+                        "lethal": null,
+                        "specialRules": ["Limited", "Indirect"],
+                        "criticalEffects": []
+                    }
+                ]
+            },
+            "action": null
+        },
+        {
+            "name": "CORSAIR BLADE",
+            "rare": false,
+            "value": 1,
+            "value2": null,
+            "limit": false,
+            "dedicated": null,
+            "description": ["The operative is equipped with the following melee weapon for the battle:"],
+            "ability": null,
+            "weapon": {
+                "name": "Corsair Blade",
+                "type": "((M))",
+                "profiles": [
+                    {
+                        "attacks": 3,
+                        "skill": 3,
+                        "damageNorm": 3,
+                        "damageCrit": 4,
+                        "range": null,
+                        "blast": null,
+                        "ap": null,
+                        "lethal": null,
+                        "specialRules": [],
+                        "criticalEffects": []
+                    }
+                ]
+            },
+            "action": null
+        },
+        {
+            "name": "OCULAR SCANNER",
+            "rare": false,
+            "value": 2,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["The operative can perform the following action during the battle:"],
+            "ability": null,
+            "weapon": null,
+            "action": {
+                "name": "OCULAR SCANNER",
+                "cost": 1,
+                "description": ["Until the end of this operative's activation, the ranged weapons it is equipped with gain the No Cover special rule."]
+            }
+        },
+        {
+            "name": "RUNES OF PROTECTION",
+            "rare": false,
+            "value": 2,
+            "value2": null,
+            "limit": false,
+            "dedicated": null,
+            "description": ["The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Runes of Protection",
+                "description": ["Each time a shooting attack is made against this operative, in the Roll Defence Dice step of that shooting attack, if that shooting attack was made as a result of the Manifest Psychic Power action, you can re-roll any or all of your defence dice."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "MISTFIELD",
+            "rare": false,
+            "value": 3,
+            "value2": null,
+            "limit": true,
+            "dedicated": "felarch",
+            "description": ["VOIDSCARRED FELARCH operative only. The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Mistfield",
+                "description": ["While a friendly CORSAIR VOIDSCARRED operative is within ((2)) of this operative, that operative has a 5+ invulnerable save."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "LODESTAR HELM",
+            "rare": false,
+            "value": 2,
+            "value2": null,
+            "limit": true,
+            "dedicated": "way_seeker",
+            "description": ["VOIDSCARRED WAY SEEKER operative only. The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Lodestar Helm",
+                "description": ["The second time this operative performs the Manifest Psychic Power action in each of its activations, it does not suffer any mortal wounds as a result of rolling a 1-2 (note this does not allow you to select a psychic power to be resolved)."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "PATHFINDER CLOAK",
+            "rare": false,
+            "value": 2,
+            "value2": null,
+            "limit": true,
+            "dedicated": "fate_dealer",
+            "description": ["VOIDSCARRED FATE DEALER operative only. The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Pathfinder Cloak",
+                "description": ["While this operative has a Conceal order, it is always treated as having a Conceal order, regardless of any other rules (e.g. Vantage Point)."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "LONG-SIGHT HELM",
+            "rare": true,
+            "value": 3,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["Ranged weapons the operative is equipped with gain the Ceaseless special rule for the battle."],
+            "ability": null,
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "FLIP BELT",
+            "rare": true,
+            "value": 2,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["The operative gains the FLY keyword for the battle."],
+            "ability": null,
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "SPIRIT STONE",
+            "rare": true,
+            "value": 4,
+            "value2": null,
+            "limit": true,
+            "dedicated": "soul_weaver",
+            "description": ["VOIDSCARRED SOUL WEAVER operative only. The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Spirit Stone",
+                "description": ["This operative can perform the Soul Channel action twice during its activation."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "PSYCHOREACTIVE ARMOUR",
+            "rare": true,
+            "value": 3,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["Change the operative's Save characteristic to 3+ for the battle."],
+            "ability": null,
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "RELIC POWER WEAPON",
+            "rare": true,
+            "value": 2,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["Operative equipped with a power weapon only. The power weapon this operative is equipped with gains the Balanced special rule for the battle."],
+            "ability": null,
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "RELIC WITCH STAFF",
+            "rare": true,
+            "value": 2,
+            "value2": null,
+            "limit": true,
+            "dedicated": "way_seeker",
+            "description": ["VOIDSCARRED WAY SEEKER operative only. The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Relic Witch Staff",
+                "description": ["The second time this operative performs the Manifest Psychic Power action in each of its activations, you can re-roll the D6 when determining the result of that action."]
+            },
+            "weapon": null,
+            "action": null
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Aeldari Raiders",
+            "description": [
+                "Each time this operative is activated, it can perform a free Dash action during that activation."
+            ]
+        }
+    ],
+    "strategicPloys": [
+        {
+            "name": "PLUNDERERS",
+            "cost": 1,
+            "description": [
+                "Select up to three friendly CORSAIR VOIDSCARRED operatives.",
+                "Each of those operatives can immediately perform a free Dash action.",
+                "When doing so, if the mission you are playing has any objective markers that are not being carried by operatives, each selected operative must end their Dash action closer to the nearest objective marker."
+            ]
+        },
+        {
+            "name": "RAPID STRIKE",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a friendly CORSAIR VOIDSCARRED operative fights in combat, in the Roll Attack Dice step of that combat, if you are the Attacker and the target is not ready, you can select one of your normal hits to be retained as a critical hit."
+            ]
+        },
+        {
+            "name": "OUTCASTS",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a friendly CORSAIR VOIDSCARRED operative fights in combat or makes a shooting attack, in the Roll Attack Dice step of that combat or shooting attack, if it is more than ((6)) from friendly operatives, if you retain any critical hits, you can select one of your failed hits to be retained as a successful normal hit."
+            ]
+        },
+        {
+            "name": "AELDARI AGILITY",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a friendly CORSAIR VOIDSCARRED operative is activated, it can use its Aeldari agility.",
+                "If it does so, it cannot perform Fight or Shoot actions during that activation, but each time it performs a Dash, Fall Back or Normal Move action during this activation, it can move an additional ((1)) for that action."
+            ]
+        }
+    ],
+    "tacticalPloys": [
+        {
+            "name": "OPPORTUNISTIC FIGHTERS",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy when an enemy operative performs a Fall Back action.",
+                "Before it moves, that enemy operative suffers D3 mortal wounds for each friendly CORSAIR VOIDSCARRED operative within Engagement Range of it."
+            ]
+        },
+        {
+            "name": "LIGHT FINGERS",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy during a friendly CORSAIR VOIDSCARRED operative's activation.",
+                "Until the end of that activation, that operative can perform for free either one mission action or the Pick Up action, even if it is within Engagement Range of an enemy operative."
+            ]
+        },
+        {
+            "name": "DEADLY AMBUSH",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy after an enemy operative finishes an action in which it moved.",
+                "Select one friendly CORSAIR VOIDSCARRED operative that is not within Engagement Range of an enemy operative.",
+                "That friendly operative can immediately perform a free Charge action, but can only move up to ((3)) and must finish that move within Engagement Range of that enemy operative (otherwise it cannot move)."
+            ]
+        },
+        {
+            "name": "ONE STEP AHEAD",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy at the end of the Initiative phase of the first Turning Point.",
+                "You can redeploy up to two friendly CORSAIR VOIDSCARRED.",
+                "They must be set up wholly within your deployment zone and you can change their order."
+            ]
+        }
+    ],
+    "fireTeam": [
+        {
+            "name": "CORSAIR VOIDSCARRED",
+            "psychicPowers": {
+                "list": [
+                    {
+                        "name": "LIGHTNING STRIKE",
+                        "description": [
+                            "Perform a free Shoot action using the following ranged weapon:"
+                        ],
+                        "weapons": [
+                            {
+                                "type": "((R))",
+                                "name": "Lightning strike",
+                                "attacks": 4,
+                                "skill": 3,
+                                "damageNorm": 4,
+                                "damageCrit": 5,
+                                "ap": 1
+                            }
+                        ]
+                    },
+                    {
+                        "name": "WARDING SHIELD",
+                        "description": [
+                            "Select one friendly CORSAIR VOIDSCARRED operative Visible to and within ((6)) of this operative",
+                            "Until the end of the Turning Point, that operative has a 3+ invulnerable save."
+                        ]
+                    },
+                    {
+                        "name": "FREEZING GRASP",
+                        "description": [
+                            "Select one enemy operative Visible to this operative",
+                            "Until the end of the Turning Point, subtract ((2)) from that enemy operative's Movement characteristic and it cannot perform the Dash action."
+                        ]
+                    },
+                    {
+                        "name": "WARP FOLD",
+                        "description": [
+                            "Select one other friendly CORSAIR VOIDSCARRED operative Visible to and within ((6)) of this operative.",
+                            "That friendly operative and this operative both drop any objective markers they are carrying.",
+                            "That friendly operative then swaps positions with this operative; remove both operatives from the killzone and set them back up in their new positions."
+                        ]
+                    }
+                ]
+            },
+            "operatives": [
                 {
-                    "name": "Aeldari Agility"
+                    "name": "VOIDSCARRED FELARCH",
+                    "stats": [6, 2, 1, 3, 4, 9],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        },
+                        {
+                            "name": "Coordinated Strike",
+                            "description": [
+                                "Each time this operative is activated, you can select one ready friendly CORSAIR VOIDSCARRED operative Visible to and within ((3)) of this operative.",
+                                "After this operative's activation ends, you can activate that ready friendly operative."
+                            ]
+                        }
+                    ],
+                    "uniqueActions": [
+                        {
+                            "name": "Take Aim",
+                            "cost": 1,
+                            "description": [
+                                "Until the end of this operative's activation, the shuriken rifle this operative is equipped with gains the Balanced special rule.",
+                                "This operative cannot perform this action if it is within ((3)) of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Neuro disruptor",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "range": 6,
+                                    "ap": 1,
+                                    "criticalEffects": ["Stun"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken rifle",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power weapon",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "lethal": 5
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "name": "Coordinated Strike",
-                    "description": "Each time this operative is activated, you can select one ready friendly CORSAIR VOIDSCARRED operative Visible to and within ((3)) of this operative. After this operative's activation ends, you can activate that ready friendly operative."
-                }
-            ],
-            "actions": [
+                    "name": "VOIDSCARRED GUNNER",
+                    "stats": [6, 2, 1, 3, 4, 8],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Blaster",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "ap": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shredder",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "blast": 2,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
                 {
-                    "name": "Take Aim (1AP)",
-                    "description": "Until the end of this operative's activation, the shuriken rifle this operative is equipped with gains the Balanced special rule. This operative cannot perform this action if it is within ((3)) of an enemy operative."
+                    "name": "VOIDSCARRED HEAVY GUNNER",
+                    "stats": [6, 2, 1, 3, 4, 8],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken cannon",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Fusillade","Heavy","Unwieldy"],
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Wraithcannon",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 6,
+                                    "damageCrit": 3,
+                                    "ap": 2,
+                                    "specialRules": ["Heavy","Unwieldy"],
+                                    "criticalEffects": ["MW4"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "VOIDSCARRED STARSTORM DUELLIST",
+                    "stats": [6, 2, 1, 3, 4, 8],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        },
+                        {
+                            "name": "Quick on the Trigger",
+                            "description": [
+                                "This operative can perform the Pistol Barrage and Shoot actions while within Engagement Range of an enemy operative.",
+                                "If it does, in the Select Valid Target step of that shooting attack(s), you can only select enemy operatives within this operative's Engagement Range as the target(s)."
+                            ]
+                        }
+                    ],
+                    "uniqueActions": [
+                        {
+                            "name": "Pistol Barrage",
+                            "cost": 1,
+                            "description": [
+                                "Make a shooting attack with the fusion pistol and make a shooting attack with the shuriken pistol this operative is equipped with (in any order).",
+                                "This action is treated as a Shoot action. This operative cannot perform this action if it has a Conceal order."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Fusion pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 3,
+                                    "range": 3,
+                                    "ap": 2,
+                                    "criticalEffects": ["MW3"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "VOIDSCARRED KURNITE HUNTER",
+                    "stats": [6, 2, 1, 3, 4, 8],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        }
+                    ],
+                    "uniqueActions": [
+                        {
+                            "name": "Faolchú",
+                            "cost": 1,
+                            "description": [
+                                "Select one enemy operative with a Conceal order that is Visible to this operative and roll one D6, adding 1 to the result for each of the following:",
+                                "- That enemy operative is within ((6)) of this operative.",
+                                "- That enemy operative is not ready.",
+                                "- That enemy operative is not within ((1)) of Heavy terrain.",
+                                "On a 6+, until the end of the Turning Point, friendly CORSAIR VOIDSCARRED operatives treat that enemy operative as if it has an Engage order.",
+                                "This operative cannot perform this action if it is within Engagement Range of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power weapon",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "lethal": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "VOIDSCARRED SHADE RUNNER",
+                    "stats": [6, 2, 1, 3, 4, 8],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        }
+                    ],
+                    "uniqueActions": [
+                        {
+                            "name": "Slicing Attack",
+                            "cost": 1,
+                            "description": [
+                                "Perform a free Normal Move action with this operative.",
+                                "Select one enemy operative this operative moved within Engagement Range of during that move.",
+                                "Roll one attack dice as if this operative is fighting in combat (that dice can be re-rolled as a result of the Relentless special rule).",
+                                "If the result is a successful hit, you can immediately strike that enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Throwing blades",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "specialRules": ["Silent"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Hekatarii blades",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 5,
+                                    "lethal": 5,
+                                    "specialRules": ["Relentless"]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "VOIDSCARRED KURNATHI",
+                    "stats": [6, 2, 1, 3, 4, 8],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        },
+                        {
+                            "name": "Bladed Stance",
+                            "description": [
+                                "Each time this operative fights in combat, in the Resolve Successful Hits step of that combat, you can resolve one successful hit before the Attacker.",
+                                "If you do so, that successful hit must be used to parry."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Dual power weapon",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "lethal": 5,
+                                    "specialRules": ["Relentless"]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "VOIDSCARRED FATE DEALER",
+                    "stats": [6, 2, 1, 3, 4, 8],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        },
+                        {
+                            "name": "Camo Cloak",
+                            "description": [
+                                "Each time a shooting attack is made against this operative, in the Roll Defence Dice step of that shooting attack, before rolling your defence dice, if it is in Cover, one additional dice can be retained as a successful normal save as a result of Cover."
+                            ]
+                        }
+                    ],
+                    "uniqueActions": [
+                        {
+                            "name": "Take Aim",
+                            "cost": 1,
+                            "description": [
+                                "Until the end of this operative's activation, the shuriken rifle this operative is equipped with gains the Balanced special rule.",
+                                "This operative cannot perform this action if it is within ((3)) of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Ranger long rifle",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 3,
+                                    "specialRules": ["Heavy","Silent"],
+                                    "criticalEffects": ["MW3"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "VOIDSCARRED WAY SEEKER",
+                    "stats": [6, 2, 1, 3, 4, 8],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        }
+                    ],
+                    "uniqueActions": [
+                        {
+                            "name": "Manifest Psychic Power",
+                            "cost": 1,
+                            "description": [
+                                "Psychic action.",
+                                "Resolve a CORSAIR VOIDSCARRED psychic power, as specified here.",
+                                "This operative can perform this action twice during its activation.",
+                                "This operative cannot perform this action while within Engagement Range of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Witch staff",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "VOIDSCARRED SOUL WEAVER",
+                    "stats": [6, 2, 1, 3, 4, 8],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        }
+                    ],
+                    "uniqueActions": [
+                        {
+                            "name": "Soul Channel",
+                            "cost": 1,
+                            "description": [
+                                "Psychic action.",
+                                "Select one friendly CORSAIR VOIDSCARRED operative Visible to and within ((6)) of this operative.",
+                                "Add 1 to that operative's APL.",
+                                "This operative cannot perform this action if it is within Engagement Range of an enemy operative."
+                            ]
+                        },
+                        {
+                            "name": "Soul Heal",
+                            "cost": 1,
+                            "description": [
+                                "Psychic action.",
+                                "Select one friendly CORSAIR VOIDSCARRED operative Visible to and within ((6)) of this operative.",
+                                "That operative regains D3 lost wounds.",
+                                "This operative can perform this action twice during its activation, but cannot perform this action if it is within Engagement Range of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power weapon",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "lethal": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "VOIDSCARRED WARRIOR",
+                    "stats": [6, 2, 1, 3, 4, 8],
+                    "abilities": [
+                        {
+                            "name": "Aeldari Raiders"
+                        }
+                    ],
+                    "uniqueActions": [
+                        {
+                            "name": "Take Aim",
+                            "cost": 1,
+                            "description": [
+                                "Until the end of this operative's activation, the shuriken rifle this operative is equipped with gains the Balanced special rule.",
+                                "This operative cannot perform this action if it is within ((3)) of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken rifle",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power weapon",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
                 }
-            ],
-            "limit": 1
+            ]
         }
     ]
 }

@@ -1,0 +1,760 @@
+const VOIDDANCER_TROUPE = {
+    "name": "VOID-DANCER TROUPE",
+    "faction": "AELDARI",
+    "compendium": [
+        {
+            "name": "Balanced",
+            "description": [
+                "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, you can re-roll one of your attack dice."
+            ]
+        },
+        {
+            "name": "Indirect",
+            "description": [
+                "Each time a friendly operative makes a shooting attack with this weapon, in the select valid target step of that shooting attack, enemy operatives are not in Cover."
+            ]
+        },
+        {
+            "name": "Limited",
+            "description": [
+                "This weapon can only be selected for use once per battle.",
+                "If the weapon has a special rule that would allow it to make more than one shooting attack for an action (e.g. Blast), make each of those attacks as normal."
+            ]
+        },
+        {
+            "name": "Heavy",
+            "description": [
+                "An operative cannot perform a Charge, Fall Back or Normal Move action in the same activation in which it performs a Shoot action with this ranged weapon."
+            ]
+        },
+        {
+            "name": "Blast X",
+            "description": [
+                "Each time a friendly operative performs a Shoot action and selects this weapon (or, in the case of profiles, this weapon's profile), after making the shooting attack against the target, make a shooting attack with this weapon (using the same profile) against each other operative Visible to and within X of the original target – each of them is a valid target and cannot be in Cover.",
+                "X is the distance after the weapon's Blast, e.g. Blast ((2)).",
+                "An operative cannot make a shooting attack with this weapon by performing an Overwatch action."
+            ]
+        },
+        {
+            "name": "Reap X",
+            "description": [
+                "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, if you strike with a critical hit, inflict X mortal wounds on each other enemy operative Visible to the friendly operative and within ((1)) of it or the target operative, x is the number after the weapon's Reap (e.g. Reap 1)."
+            ]
+        },
+        {
+            "name": "Rending",
+            "description": [
+                "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, if you retain any critical hits you can retain one normal hit as a critical hit."
+            ]
+        },
+        {
+            "name": "Brutal",
+            "description": [
+                "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, your opponent can only parry with critical hits."
+            ]
+        },
+        {
+            "name": "Fusillade",
+            "description": [
+                "Each time a friendly operative performs a Shoot action and selects this weapon, after selecting a valid target, you can select any number of other valid targets within ((2)) of the original target.",
+                "Distribute your attack dice between the targets you have selected.",
+                "Make a shooting attack with this weapon (using the same profile) against each of the targets you have selected using the attack dice you have distributed to each of them."
+            ]
+        },
+        {
+            "name": "Stun",
+            "description": [
+                "Each time a friendly operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, if you retain any critical hits, subtract 1 from the target's APL.",
+                "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat:",
+                "- The first time you strike with a critical hit, select one of your opponent's normal hits from that combat to be discarded.",
+                "- The second time you strike with a critical hit, subtract 1 from the target's APL."
+            ]
+        },
+        {
+            "name": "Torrent X",
+            "description": [
+                "Each time a friendly operative performs a Shoot action or Overwatch action and selects this weapon, after making the shooting attack against the target, it can make a shooting attack with this weapon against each other valid target within X of the original target and each other, X is the distance after the weapon's Torrent, e.g. Torrent ((2))."
+            ]
+        }
+    ],
+    "equipment": [
+        {
+            "name": "SHRIEKER TOXIN ROUNDS",
+            "rare": false,
+            "value": 3,
+            "value2": 4,
+            "limit": false,
+            "dedicated": null,
+            "description": ["Select one shuriken pistol or shrieker cannon the operative is equipped with. That weapon gains the MW1 critical hit rule for the battle. If you selected a shrieker cannon, this equipment costs 4EP; otherwise, it costs 3EP."],
+            "ability": null,
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "DEATH MASK",
+            "rare": false,
+            "value": 3,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["This operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Death Mask",
+                "description": ["If this operative is incapacitated, at the end of that activation, you gain 1CP."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "ACCELERATED MONOFILAMENT WIRE",
+            "rare": false,
+            "value": 3,
+            "value2": null,
+            "limit": false,
+            "dedicated": null,
+            "description": ["Select one embrace the operative is equipped with. That weapon gains the Reap 1 critical hit rule and Lethal 5+ special rule for the battle."],
+            "ability": null,
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "SUPERTENSILE MONOFILAMENT WIRE",
+            "rare": false,
+            "value": 3,
+            "value2": null,
+            "limit": false,
+            "dedicated": null,
+            "description": ["Select one kiss the operative is equipped with. Add 1 to that weapon's Normal Damage characteristic for the battle."],
+            "ability": null,
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "WRAITHBONE TALISMAN",
+            "rare": false,
+            "value": 3,
+            "value2": null,
+            "limit": false,
+            "dedicated": null,
+            "description": ["The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Wraithbone Talisman",
+                "description": ["Once per battle, when this operative is fighting in combat, making a shooting attack or a shooting attack is being made against it, you can use the Command Re-roll Tactical Ploy without spending any Command Points."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "PRISMATIC GRENADE",
+            "rare": false,
+            "value": 3,
+            "value2": null,
+            "limit": false,
+            "dedicated": null,
+            "description": ["The operative is equipped with the following ranged weapon for the battle:"],
+            "ability": null,
+            "weapon": {
+                "name": "Prismatic grenade",
+                "type": "((R))",
+                "profiles": [
+                    {
+                        "attacks": 4,
+                        "skill": 3,
+                        "damageNorm": 3,
+                        "damageCrit": 4,
+                        "range": 6,
+                        "blast": 2,
+                        "ap": null,
+                        "lethal": null,
+                        "specialRules": ["Limited", "Indirect"],
+                        "criticalEffects": ["Stun"]
+                    }
+                ]
+            },
+            "action": null
+        },
+        {
+            "name": "PURE PSYCHOCRYSTALS",
+            "rare": false,
+            "value": 3,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["Select one neuro disruptor the operative is equipped with. That weapon gains the Lethal 5+ special rule for the battle."],
+            "ability": null,
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "SUPPORT GRIP",
+            "rare": false,
+            "value": 1,
+            "value2": null,
+            "limit": true,
+            "dedicated": "death_jester",
+            "description": ["DEATH JESTER operative only. Remove the Heavy special rule from the shrieker cannon that operative is equipped with for the battle. That weapon gains the following special rule for the battle instead:"],
+            "ability": {
+                "name": "Cumbersome",
+                "description": ["An operative cannot move more than 3 in the same activation in which it performs a Shoot action with this ranged weapon."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "HIDDEN GUISE",
+            "rare": true,
+            "value": 1,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Hidden Guise",
+                "description": ["Once per battle, at the start of the Strategy phase, you can select this operative to have the pivotal role instead."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "CRYSTAL SHARD",
+            "rare": true,
+            "value": 3,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Crystal Shard",
+                "description": ["Once per battle, when a shooting attack is made against this operative, at the start of the Roll Defence Dice step of that shooting attack, you can use this ability. If you do so, until the end of the Turning Point, this operative has a 3+ invulnerable save."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "SHIMMERCLONE",
+            "rare": true,
+            "value": 3,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Shimmerclone",
+                "description": ["Once per battle, in the Resolve Successful Hits step of a combat or shooting attack, when damage would be inflicted on this operative from an attack dice, you can use this ability. If you do so, ignore the damage inflicted from that attack dice."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "FALCON'S FEATHER",
+            "rare": true,
+            "value": 3,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Falcon's Feather",
+                "description": ["At the start of each Firefight phase after the first, if this operative is not within Line of Sight of every enemy operative, it can perform a free Dash action."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "MOCKING PANOPLY",
+            "rare": true,
+            "value": 2,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Mocking Panoply",
+                "description": ["Each time this operative moves, you can roll one D6 for each enemy operative it moved within ((2)) of during that move. On a 5+, that enemy operative suffers D3 mortal wounds."]
+            },
+            "weapon": null,
+            "action": null
+        },
+        {
+            "name": "RAIMENT OF MIRRORS",
+            "rare": true,
+            "value": 2,
+            "value2": null,
+            "limit": true,
+            "dedicated": null,
+            "description": ["The operative gains the following ability for the battle:"],
+            "ability": {
+                "name": "Raiment of Mirrors",
+                "description": ["Each time this operative fights in combat, or a shooting attack is made against it by an enemy operative within ((6)) of it, in the Roll Attack Dice step of that combat or shooting attack, your opponent's attack dice results of 1-3 are failed hits."]
+            },
+            "weapon": null,
+            "action": null
+        }
+    ],
+    "abilities": [
+        {
+            "name": "SAEDATH",
+            "description": [
+                "When selecting your kill team for the battle, select an Allegory to be active for it during the battle (reveal it to your opponent when you reveal your kill team).",
+                "Then, at the start of the first Strategy phase, select one friendly VOID-DANCER TROUPE operative to have the pivotal role for the battle.",
+                "While a friendly operative has the pivotal role, it has the Accolade ability of the active Allegory.",
+                "Keep a Performance tally for your kill team for the battle.",
+                "Add 1 to the tally as follows:",
+                "- The first time each friendly VOID-DANCER TROUPE operative completes the Performance of an active Allegory during the battle.",
+                "- The first time a friendly pivotal role operative completes the Performance of an active Allegory during the battle (this is cumulative with the above).",
+                "Note that this means, for the purposes of your kill team's Performance tally during the battle, each friendly operative can only complete one Performance, and only one pivotal role can complete a Performance (even if you change the active Allegory or pivotal role during the battle.",
+                "For example, as a result of the LEAD PLAYER operative's Performance Lead ability).",
+                "When you add the fourth mark to your Performance tally:",
+                "- All friendly VOID-DANCER TROUPE operatives have the Accolade ability of the active Allegory until the end of the battle.",
+                "- You gain 1 Command Point."
+            ]
+        }
+    ],
+    "strategicPloys": [
+        {
+            "name": "BETWEEN COLOURS",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, friendly VOID-DANCER TROUPE operatives can perform Shoot actions during Normal Move actions (any remaining increments of movement can be used after performing the Shoot action).",
+                "You cannot select a shrieker cannon for those shooting attacks."
+            ]
+        },
+        {
+            "name": "DOMINO FIELD",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point or until it makes a shooting attack, each friendly VOID-DANCER TROUPE operative has a domino field.",
+                "For the purposes of determining Line of Sight, while a friendly operative with a domino field is within ((1)) of a terrain feature and more than ((6)) from the active operative, the active operative always treats that friendly operative as having a Conceal order, regardless of any other rules (e.g. Vantage Point).",
+                "The Balance Dataslate: This Strategic Ploy costs 1 additional Command point for each previous time you've used it during the battle (e.g. 1CP the first time you would use it, 2CP the second time, etc.)."
+            ]
+        },
+        {
+            "name": "PRISMATIC BLUR",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a friendly VOID-DANCER TROUPE operative performs an action in which it moves, it is a prismatic blur until the end of the Turning Point.",
+                "Each time a shooting attack is made against a friendly operative that is a prismatic blur, in the Roll Defence Dice step of that shooting attack, you can re-roll one of your defence dice."
+            ]
+        },
+        {
+            "name": "CEGORACH'S JEST",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a friendly VOID-DANCER TROUPE operative fights in combat, once in the Resolve Successful Hits step of that combat, when your opponent strikes with a normal hit, you can roll one D6.",
+                "If the result is equal to or less than the Weapon Skill characteristic of the enemy operative's selected melee weapon, treat that strike as a parry instead (the Brutal special rule has no effect for that parry)."
+            ]
+        }
+    ],
+    "tacticalPloys": [
+        {
+            "name": "MURDEROUS ENTRANCE",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy in the Resolve Successful Hits step of a combat, after a friendly VOID-DANCER TROUPE operative that performed a Charge action during this activation strikes with a critical hit.",
+                "You can immediately select one of your remaining attack dice and strike with it."
+            ]
+        },
+        {
+            "name": "THE CURTAIN FALLS",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy in the Resolve Successful Hits step of a combat, after an active friendly VOID-DANCER TROUPE operative strikes.",
+                "Immediately end that combat and that friendly operative can perform a Fall Back action for 1AP, even if it has performed an action during that activation that prevents it from performing a Fall Back action (e.g. a Charge action)."
+            ]
+        },
+        {
+            "name": "RUTHLESS DERISION",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy after rolling your attack dice for a shooting attack made by a friendly VOID-DANCER TROUPE operative in an activation in which it performed a Fall Back action.",
+                "You can re-roll any or all of your attack dice for that shooting attack."
+            ]
+        },
+        {
+            "name": "CAPRICIOUS ROLE",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy when a friendly VOID-DANCER TROUPE operative is activated.",
+                "Until the end of its activation, that operative can perform Dash and Charge actions while within Engagement Range of enemy operatives."
+            ]
+        }
+    ],
+    "fireTeam": [
+        {
+            "name": "VOID-DANCER TROUPE",
+            "psychicPowers": {
+                "list": [
+                    {
+                        "name": "VEIL OF TEARS",
+                        "description": [
+                            "Select one friendly VOID-DANCER TROUPE operative Visible to this operative.",
+                            "Until the end of the Turning Point:",
+                            "- For the purposes of determining Line of Sight, while that operative is more than ((6)) from the active operative, it is in Cover.",
+                            "- Enemy operatives cannot end a Charge action within Engagement Range of that operative unless they began that action within ((6)) of it, or they would also end that action within Engagement Range of another friendly operative from your kill team."
+                        ]
+                    },
+                    {
+                        "name": "FOG OF DREAMS",
+                        "description": [
+                            "Select one ready enemy operative Visible to this operative and roll one D6.",
+                            "Until the end of the Turning Point, that enemy operative is treated as having a Group Activation characteristic of 1, and cannot be activated or perform actions until it is the last enemy operative to be activated, or a number of enemy operatives have been activated equal to the result of the D6 (whichever comes first)."
+                        ]
+                    },
+                    {
+                        "name": "MIRROR OF MINDS",
+                        "description": [
+                            "Select one enemy operative within this operative's Line of Sight.",
+                            "Both players roll six D6.",
+                            "Pair your dice with your opponent's dice based on matching results.",
+                            "For each matching pair, that enemy operative suffers 1 mortal wound.",
+                            "For example, if you roll 6, 5, 5, 4, 2, 1 and your opponent rolls 6, 5, 4, 4, 3, 1 that enemy operative would suffer 4 mortal wounds."
+                        ]
+                    }
+                ]
+            },
+            "operatives": [
+                {
+                    "name": "LEAD PLAYER",
+                    "movement": 6,
+                    "actions": 3,
+                    "groupActivation": 1,
+                    "defence": 3,
+                    "save": 6,
+                    "wounds": 9,
+                    "abilities": [
+                        {
+                            "name": "Holo-suit",
+                            "description": [
+                                "This operative has a 4+ invulnerable save."
+                            ]
+                        },
+                        {
+                            "name": "Performance Lead",
+                            "description": [
+                                "Once per battle, in the Strategy phase, when it is your turn to use a Strategic Ploy or pass, you can use this ability instead.",
+                                "If you do so, select a different Allegory to be active for your kill team.",
+                                "You can also select a different operative for the pivotal role.",
+                                "The new pivotal role would therefore have the Accolade ability of the new active Allegory instead.",
+                                "Your Performance tally remains unchanged (therefore if the tally was four or more, all friendly VOID-DANCER TROUPE operatives have the Accolade ability of the new active Allegory instead)."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Fusion pistol",
+                            "attacks": 4,
+                            "skill": 2,
+                            "damage": 5,
+                            "criticalDamage": 3,
+                            "range": 3,
+                            "ap": 2,
+                            "criticalEffects": [
+                                "MW3"
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Neuro disruptor",
+                            "attacks": 4,
+                            "skill": 2,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "range": 6,
+                            "ap": 1,
+                            "criticalEffects": [
+                                "Stun"
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "attacks": 4,
+                            "skill": 2,
+                            "damage": 3,
+                            "criticalDamage": 4,
+                            "range": 6,
+                            "criticalEffects": [
+                                "Rending"
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Blade",
+                            "attacks": 5,
+                            "skill": 2,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "specialRules": [
+                                "Balanced"
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Caress",
+                            "attacks": 5,
+                            "skill": 2,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "criticalEffects": [
+                                "Rending"
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Embrace",
+                            "attacks": 5,
+                            "skill": 2,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "specialRules": [
+                                "Brutal"
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Kiss",
+                            "attacks": 5,
+                            "skill": 2,
+                            "damage": 3,
+                            "criticalDamage": 7
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power weapon",
+                            "attacks": 5,
+                            "skill": 2,
+                            "damage": 4,
+                            "criticalDamage": 6,
+                            "lethal": 5
+                        }
+                    ]
+                },
+                {
+                    "name": "DEATH JESTER",
+                    "movement": 6,
+                    "actions": 3,
+                    "groupActivation": 1,
+                    "defence": 3,
+                    "save": 6,
+                    "wounds": 9,
+                    "abilities": [
+                        {
+                            "name": "Holo-suit",
+                            "description": [
+                                "This operative has a 4+ invulnerable save."
+                            ]
+                        },
+                        {
+                            "name": "*Humbling Cruelty",
+                            "description": [
+                                "Each time a friendly operative makes a shooting attack with this weapon, in the Resolve Successful Hits step of that shooting attack, if the target loses any wounds, the target is injured until the end of the Turning Point."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Shrieker cannon",
+                            "attacks": 5,
+                            "skill": 3,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "specialRules": [
+                                "Fusillade",
+                                "Heavy",
+                                "*Humbling Cruelty"
+                            ],
+                            "criticalEffects": [
+                                "Rending"
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Shrieker blade",
+                            "attacks": 4,
+                            "skill": 3,
+                            "damage": 3,
+                            "criticalDamage": 4,
+                            "criticalEffects": [
+                                "Reap 2"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "PLAYER",
+                    "movement": 6,
+                    "actions": 3,
+                    "groupActivation": 1,
+                    "defence": 3,
+                    "save": 6,
+                    "wounds": 8,
+                    "abilities": [
+                        {
+                            "name": "Holo-suit",
+                            "description": [
+                                "This operative has a 4+ invulnerable save."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Fusion pistol",
+                            "attacks": 4,
+                            "skill": 3,
+                            "damage": 5,
+                            "criticalDamage": 3,
+                            "range": 3,
+                            "ap": 2,
+                            "criticalEffects": [
+                                "MW3"
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Neuro disruptor",
+                            "attacks": 4,
+                            "skill": 3,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "range": 6,
+                            "ap": 1,
+                            "criticalEffects": [
+                                "Stun"
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "attacks": 4,
+                            "skill": 3,
+                            "damage": 3,
+                            "criticalDamage": 4,
+                            "range": 6,
+                            "criticalEffects": [
+                                "Rending"
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Blade",
+                            "attacks": 5,
+                            "skill": 3,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "specialRules": [
+                                "Balanced"
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Caress",
+                            "attacks": 5,
+                            "skill": 3,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "criticalEffects": [
+                                "Rending"
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Embrace",
+                            "attacks": 5,
+                            "skill": 3,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "specialRules": [
+                                "Brutal"
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Kiss",
+                            "attacks": 5,
+                            "skill": 3,
+                            "damage": 3,
+                            "criticalDamage": 7
+                        }
+                    ]
+                },
+                {
+                    "name": "SHADOWSEER",
+                    "movement": 6,
+                    "actions": 3,
+                    "groupActivation": 1,
+                    "defence": 3,
+                    "save": 6,
+                    "wounds": 9,
+                    "abilities": [
+                        {
+                            "name": "Holo-suit",
+                            "description": [
+                                "This operative has a 4+ invulnerable save."
+                            ]
+                        }
+                    ],
+                    "uniqueActions": [
+                        {
+                            "name": "Manifest Psychic Power (1AP)",
+                            "description": [
+                                "Psychic action.",
+                                "Resolve a VOID-DANCER TROUPE psychic power, as specified here.",
+                                "This operative can perform this action twice during its activation, but cannot perform it while within Engagement Range of an enemy operative."
+                            ]
+                        },
+                        {
+                            "name": "Hallucinogen Grenade (1AP)",
+                            "description": [
+                                "Select one point on the killzone within ((6)) of this operative.",
+                                "Roll one D6 for each operative within ((2)) of that point, subtracting 1 from the result if that operative is not Visible to this operative.",
+                                "On a 4+, subtract 1 from that operative's APL; in addition, on a 6, that operative suffers 1 mortal wound.",
+                                "This operative can only perform this action once per battle, and cannot perform this action while within Engagement Range of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Neuro disruptor",
+                            "attacks": 4,
+                            "skill": 3,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "range": 6,
+                            "ap": 1,
+                            "criticalEffects": [
+                                "Stun"
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "attacks": 4,
+                            "skill": 3,
+                            "damage": 3,
+                            "criticalDamage": 4,
+                            "range": 6,
+                            "criticalEffects": [
+                                "Rending"
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Miststave",
+                            "attacks": 4,
+                            "skill": 3,
+                            "damage": 4,
+                            "criticalDamage": 5,
+                            "specialRules": [
+                                "Stun"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

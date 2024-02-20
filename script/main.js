@@ -54,60 +54,53 @@ window.onload = () => {
     kt.removeOperative(op);
     console.log(kt);
     */
-    console.log(EQUIPMENTS);
     const target = document.getElementById("Content");
-    EQUIPMENTS.forEach(kt => {
-        if (kt.killTeam === "void-dancer_troupe") {
-            const items = kt.items;
-            const rareItems = kt.rareItems;
-            items.forEach(item => {
-                const name = item.name;
-                const description = item.description;
-                const value = item.value;
-                const value2 = item.value2;
-                const limit = item.limit;
-                const dedicated = item.dedicated;
-                const ability = item.ability;
-                const action = item.action;
-                const weapon = item.weapon;
-                const id = new Id(name, "item");
-                const itemElement = document.createElement("div");
-                if (id.key) itemElement.id = id.key;
-                if (dedicated) itemElement.setAttribute("for", new Id(dedicated).key);
-                const itemHeader = document.createElement("header");
-                const itemName = document.createElement("h2");
-                itemName.innerText = name;
-                if (limit) {
-                    const limitElement = document.createElement("sup");
-                    limitElement.innerText = "+";
-                    itemName.appendChild(limitElement);
-                }
-                const itemCost = document.createElement("span");
-                itemCost.innerText = `[${value + (value2 !== null ? "/" + value2 : "")}EP]`;
-                itemName.appendChild(itemCost);
-                itemHeader.appendChild(itemName);
-                itemElement.appendChild(itemHeader);
-                if (description) {
-                    const descriptionElement = document.createElement("div");
-                    description.forEach(row => {
-                        const rowElement = document.createElement("div");
-                        rowElement.innerText = row;
-                        descriptionElement.appendChild(rowElement);
-                    });
-                    itemElement.appendChild(descriptionElement);
-                }
-                if (ability) {
-                    itemElement.appendChild(Ability.parse(ability).toHTML());
-                }
-                if (action) {
-                    itemElement.appendChild(Action.parse(action).toHTML());
-                }
-                if (weapon) {
-                    itemElement.appendChild(Weapon.parse(weapon).toHTML());
-                }
-                target.appendChild(itemElement);
-            });
+    VOIDDANCER_TROUPE.equipment.forEach(item => {
+    //VOIDSCARRED_CORSAIR.equipment.forEach(item => {
+        const name = item.name;
+        const description = item.description;
+        const value = item.value;
+        const value2 = item.value2;
+        const limit = item.limit;
+        const dedicated = item.dedicated;
+        const ability = item.ability;
+        const action = item.action;
+        const weapon = item.weapon;
+        const id = new Id(name, "item");
+        const itemElement = document.createElement("div");
+        if (id.key) itemElement.id = id.key;
+        if (dedicated) itemElement.setAttribute("for", new Id(dedicated).key);
+        const itemHeader = document.createElement("header");
+        const itemName = document.createElement("h2");
+        itemName.innerText = name;
+        if (limit) {
+            const limitElement = document.createElement("sup");
+            limitElement.innerText = "+";
+            itemName.appendChild(limitElement);
         }
+        const itemCost = document.createElement("span");
+        itemCost.innerText = `[${value + (value2 !== null ? "/" + value2 : "")}EP]`;
+        itemName.appendChild(itemCost);
+        itemHeader.appendChild(itemName);
+        itemElement.appendChild(itemHeader);
+        if (description) {
+            const descriptionElement = document.createElement("div");
+            description.forEach(row => {
+                const rowElement = document.createElement("div");
+                rowElement.innerText = row;
+                descriptionElement.appendChild(rowElement);
+            });
+            itemElement.appendChild(descriptionElement);
+        }
+        if (ability) {
+            itemElement.appendChild(Ability.parse(ability).toHTML());
+        }
+        if (action) {
+            itemElement.appendChild(Action.parse(action).toHTML());
+        }
+        if (weapon) {
+            itemElement.appendChild(Weapon.parse(weapon).toHTML());
+        }
+        target.appendChild(itemElement);
     });
-    
 }

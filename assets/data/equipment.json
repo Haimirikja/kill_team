@@ -1,4 +1,4 @@
-const EQUIPMENTS = [
+[
     {
         "killTeam": "corsair_voidscarred",
         "items": [
