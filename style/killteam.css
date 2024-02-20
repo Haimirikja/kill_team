@@ -22,23 +22,10 @@ body {
     margin: 0;
 }
 
-.weaponList {
-    width:100%;
-    border-collapse: collapse;
-}
-.weaponList tr th {
-    text-align: center;
-    background: var(--gray);
-}
-.weaponList tr th:nth-child(2) {
-    text-align: left;
-}
-.weaponList tr td {
-    text-align: center;
-}
-.weaponList tr:nth-child(odd) td {
-    background: var(--light-gray);
-}
-.weaponList tr td:nth-child(2) {
-    text-align: left;
-}
+.ability,.action,.weaponList{margin:1em 0;}
+.weaponList{width:100%;border-collapse:collapse;}
+.weaponList tr th{text-align:center;background:var(--gray);}
+.weaponList tr th:nth-child(2){text-align:left;}
+.weaponList tr td{text-align:center;}
+.weaponList tr:nth-child(odd) td{background:var(--light-gray);}
+.weaponList tr td:nth-child(2){text-align:left;}
