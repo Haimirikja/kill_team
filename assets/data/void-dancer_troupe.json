@@ -1,4 +1,4 @@
-const VOIDDANCER_TROUPE = {
+const VOID_DANCER_TROUPE = {
     "name": "VOID-DANCER TROUPE",
     "faction": "AELDARI",
     "compendium": [
