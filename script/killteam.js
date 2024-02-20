@@ -56,7 +56,7 @@ class Operative {
         Object.defineProperty(this, "equals", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = typeof name === 'string' ? name : "";
-        this.stats = Array.isArray(stats) ? stats : [];
+        this.stats = Array.isArray(stats) && stats.length === 6 ? stats : [];
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
         this.actions = Array.isArray(actions) ? actions.filter(x => x instanceof Action) : [];
         this.weapons = Array.isArray(weapons) ? weapons.filter(x => x instanceof Weapon) : [];
@@ -127,6 +127,34 @@ class Operative {
     equals = (operative) => {
         if (!(operative instanceof Operative)) operative = Operative.parse(operative);
         return this.toString() === operative.toString();
+    }
+
+    toHTML = () => {
+        const operativeElement = document.createElement("div");
+        const operativeHeader = document.createElement("header");
+        const operativeName = document.createElement("div");
+        operativeName.innerText = this.name;
+        operativeHeader.appendChild(operativeName);
+        const operativeStats = document.createElement("table");
+        let tableRow;
+        let tableCell;
+        tableRow = document.createElement("tr");
+        ["M", "APL", "GA", "DF", "SV", "W"].forEach(column => {
+            tableCell = document.createElement("th");
+            tableCell.innerText = column;
+            tableRow.appendChild(tableCell);
+        });
+        operativeStats.appendChild(tableRow);
+        tableRow = document.createElement("tr");
+        this.stats.forEach(stat => {
+            tableCell = document.createElement("td");
+            tableCell.innerText = column;
+            tableRow.appendChild(tableCell);
+        });
+        operativeStats.appendChild(tableRow);
+        operativeHeader.appendChild(operativeStats);
+        operativeElement.appendChild(operativeHeader);
+        return operativeElement;
     }
 
 }
