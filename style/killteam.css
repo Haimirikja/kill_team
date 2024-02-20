@@ -28,8 +28,7 @@ body {
 }
 .weaponList tr th {
     text-align: center;
-    background: var(--mid-gray);
-    color: var(--font);
+    background: var(--gray);
 }
 .weaponList tr th:nth-child(2) {
     text-align: left;

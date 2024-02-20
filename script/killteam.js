@@ -50,6 +50,8 @@ class Operative {
         } = {}
     ) {
         Object.defineProperty(this, "addExperience", { enumerable: false });
+        Object.defineProperty(this, "addEquipment", { enumerable: false });
+        Object.defineProperty(this, "removeEquipment", { enumerable: false });
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
         this.name = typeof name === 'string' ? name : "";
@@ -80,7 +82,15 @@ class Operative {
         return this.experiencePoints;
     }
 
+    addEquipment = (equipment) => {
+        if (equipment instanceof Equipment) this.equipment.push(equipment);
+        return this.equipment;
+    }
 
+    removeEquipment = (equipment) => {
+        if (equipment instanceof Equipment) this.equipment.splice(this.equipment.indexOf(this.equipment.find(x => x.equals(equipment))));
+        return this.equipment;
+    }
 
     static parse = (object) => {
         if (!(object instanceof Object)) return undefined;
@@ -266,11 +276,13 @@ class Weapon extends Equipment {
         table.classList.add("weaponList");
         let tableRow;
         let tableHead;
-
+        let tableHeadText;
         tableRow = document.createElement("tr");
         ["", "Name", "A", "BS/WS", "D", "Special Rules", "!"].forEach(column => {
             tableHead = document.createElement("th");
-            tableHead.innerText = column;
+            tableHeadText = document.createElement("div");
+            tableHeadText.innerText = column;
+            tableHead.appendChild(tableHeadText);
             tableRow.appendChild(tableHead);
         });
         table.appendChild(tableRow);
@@ -284,7 +296,6 @@ class Weapon extends Equipment {
             }
         }
         weaponElement.appendChild(table);
-
         return table;
     }
 }
@@ -302,6 +313,7 @@ class WeaponProfile {
             range = Infinity,
             ap = null,
             blast = null,
+            torrent = null,
             lethal = null
         } = {}
     ) {
@@ -315,6 +327,7 @@ class WeaponProfile {
         range = parseInt(range);
         ap = parseInt(ap);
         blast = parseInt(blast);
+        torrent = parseInt(torrent);
         lethal = parseInt(lethal);
         this.name = typeof name === 'string' ? name : "";
         this.attacks = !isNaN(attacks) && isFinite(attacks) && attacks > 0 ? attacks : 1;
@@ -326,7 +339,19 @@ class WeaponProfile {
         this.range = !isNaN(range) && range > 0 ? range : Infinity;
         this.ap = !isNaN(ap) && isFinite(ap) && ap > 0 ? ap : null;
         this.blast = !isNaN(blast) && isFinite(blast) && blast > 0 ? blast : null;
+        this.torrent = !isNaN(torrent) && isFinite(torrent) && torrent > 0 ? torrent : null;
         this.lethal = !isNaN(lethal) && isFinite(lethal) && lethal < 6 && lethal > 1 ? lethal : null;
+    }
+
+    get specialRulesFull() {
+        console.log(this);
+        const temp = [];
+        if (isFinite(this.range)) temp.push(`Rng ((${this.range}))`);
+        if (this.ap) temp.push(`AP${this.ap}`);
+        if (this.blast) temp.push(`Blast ((${this.blast}))`);
+        if (this.torrent) temp.push(`Torrent ((${this.torrent}))`);
+        if (this.lethal) temp.push(`Lethal ${this.lethal}+`);
+        return temp.concat(this.specialRules);
     }
 
     static parse = (object) => {
@@ -339,10 +364,13 @@ class WeaponProfile {
             object.damageCrit,
             object.specialRules,
             object.criticalEffects,
-            object.range,
-            object.ap,
-            object.blast,
-            object.lethal
+            {
+                range: object.range,
+                ap: object.ap,
+                blast: object.blast,
+                torrent: object.torrent,
+                lethal: object.lethal
+            }
         );
     }
 
@@ -358,6 +386,7 @@ class WeaponProfile {
             range: this.range,
             ap: this.ap,
             blast: this.blast,
+            torrent: this.torrent,
             lethal: this.lethal
         });
     }
@@ -394,7 +423,7 @@ class WeaponProfile {
             tableCell.innerText = `${this.damageNorm}/${this.damageCrit}`;
             tableRow.appendChild(tableCell);
             tableCell = document.createElement("td");
-            if (this.specialRules) tableCell.innerText = this.specialRules.join(", ");
+            if (this.specialRulesFull) tableCell.innerText = this.specialRulesFull.join(", ");
             else tableCell.innerText = "-";
             tableRow.appendChild(tableCell);
             tableCell = document.createElement("td");

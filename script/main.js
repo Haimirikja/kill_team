@@ -44,6 +44,18 @@ class Id {
     }
 }
 
+function markupReplace(string) {
+    const markupList = {
+        '((R))': '<img src="assets/image/range.png" />',
+        '((M))': '<img src="assets/image/melee.png" />',
+        '((1))': '<img src="assets/image/dist1.png" />',
+        '((2))': '<img src="assets/image/dist2.png" />',
+        '((3))': '<img src="assets/image/dist3.png" />',
+        '((6))': '<img src="assets/image/dist6.png" />',
+    }
+    
+}
+
 window.onload = () => {
     /*
     const kt = new KillTeam("Corsair Voidscarred", "Aeldari");

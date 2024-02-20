@@ -442,8 +442,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 4,
                                     "skill": 2,
-                                    "damage": 5,
-                                    "criticalDamage": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 3,
                                     "range": 3,
                                     "ap": 2,
                                     "criticalEffects": ["MW3"]
@@ -457,8 +457,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 4,
                                     "skill": 2,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "range": 6,
                                     "ap": 1,
                                     "criticalEffects": ["Stun"]
@@ -472,8 +472,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 4,
                                     "skill": 2,
-                                    "damage": 3,
-                                    "criticalDamage": 4,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
                                     "range": 6,
                                     "criticalEffects": ["Rending"]
                                 }
@@ -486,8 +486,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 5,
                                     "skill": 2,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "specialRules": ["Balanced"]
                                 }
                             ]
@@ -499,8 +499,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 5,
                                     "skill": 2,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "criticalEffects": ["Rending"]
                                 }
                             ]
@@ -512,8 +512,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 5,
                                     "skill": 2,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "specialRules": ["Brutal"]
                                 }
                             ]
@@ -525,8 +525,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 5,
                                     "skill": 2,
-                                    "damage": 3,
-                                    "criticalDamage": 7
+                                    "damageNorm": 3,
+                                    "damageCrit": 7
                                 }
                             ]
                         },
@@ -537,8 +537,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 5,
                                     "skill": 2,
-                                    "damage": 4,
-                                    "criticalDamage": 6,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
                                     "lethal": 5
                                 }
                             ]
@@ -570,8 +570,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 5,
                                     "skill": 3,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "specialRules": ["Fusillade","Heavy","*Humbling Cruelty"],
                                     "criticalEffects": ["Rending"]
                                 }
@@ -584,8 +584,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 4,
                                     "skill": 3,
-                                    "damage": 3,
-                                    "criticalDamage": 4,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
                                     "criticalEffects": ["Reap 2"]
                                 }
                             ]
@@ -611,8 +611,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 4,
                                     "skill": 3,
-                                    "damage": 5,
-                                    "criticalDamage": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 3,
                                     "range": 3,
                                     "ap": 2,
                                     "criticalEffects": ["MW3"]
@@ -626,8 +626,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 4,
                                     "skill": 3,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "range": 6,
                                     "ap": 1,
                                     "criticalEffects": ["Stun"]
@@ -641,8 +641,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 4,
                                     "skill": 3,
-                                    "damage": 3,
-                                    "criticalDamage": 4,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
                                     "range": 6,
                                     "criticalEffects": ["Rending"]
                                 }
@@ -655,8 +655,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 5,
                                     "skill": 3,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "specialRules": ["Balanced"]
                                 }
                             ]
@@ -668,8 +668,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 5,
                                     "skill": 3,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "criticalEffects": ["Rending"]
                                 }
                             ]
@@ -681,8 +681,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 5,
                                     "skill": 3,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "specialRules": ["Brutal"]
                                 }
                             ]
@@ -694,8 +694,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 5,
                                     "skill": 3,
-                                    "damage": 3,
-                                    "criticalDamage": 7
+                                    "damageNorm": 3,
+                                    "damageCrit": 7
                                 }
                             ]
                         }
@@ -741,8 +741,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 4,
                                     "skill": 3,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "range": 6,
                                     "ap": 1,
                                     "criticalEffects": ["Stun"]
@@ -756,8 +756,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 4,
                                     "skill": 3,
-                                    "damage": 3,
-                                    "criticalDamage": 4,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
                                     "range": 6,
                                     "criticalEffects": ["Rending"]
                                 }
@@ -770,8 +770,8 @@ const VOIDDANCER_TROUPE = {
                                 {
                                     "attacks": 4,
                                     "skill": 3,
-                                    "damage": 4,
-                                    "criticalDamage": 5,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
                                     "specialRules": ["Stun"]
                                 }
                             ]
