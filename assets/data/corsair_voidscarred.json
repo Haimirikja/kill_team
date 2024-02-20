@@ -98,10 +98,7 @@ const CORSAIR_VOIDSCARRED = {
                         "damageNorm": 3,
                         "damageCrit": 4,
                         "range": 6,
-                        "blast": 2,
-                        "ap": null,
-                        "lethal": null,
-                        "specialRules": ["Limited", "Indirect"],
+                        "specialRules": ["Blast ((2))", "Limited", "Indirect"],
                         "criticalEffects": []
                     }
                 ]
@@ -126,9 +123,6 @@ const CORSAIR_VOIDSCARRED = {
                         "damageNorm": 3,
                         "damageCrit": 4,
                         "range": null,
-                        "blast": null,
-                        "ap": null,
-                        "lethal": null,
                         "specialRules": [],
                         "criticalEffects": []
                     }
@@ -375,7 +369,7 @@ const CORSAIR_VOIDSCARRED = {
                                 "skill": 3,
                                 "damageNorm": 4,
                                 "damageCrit": 5,
-                                "ap": 1
+                                "specialRules": ["AP1"]
                             }
                         ]
                     },
@@ -440,7 +434,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "damageNorm": 4,
                                     "damageCrit": 5,
                                     "range": 6,
-                                    "ap": 1,
+                                    "specialEffects": ["AP1"],
                                     "criticalEffects": ["Stun"]
                                 }
                             ]
@@ -481,7 +475,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "skill": 2,
                                     "damageNorm": 4,
                                     "damageCrit": 6,
-                                    "lethal": 5
+                                    "specialRules": ["Lethal 5+"]
                                 }
                             ]
                         }
@@ -505,7 +499,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "skill": 3,
                                     "damageNorm": 5,
                                     "damageCrit": 6,
-                                    "ap": 2
+                                    "specialRules": ["AP2"]
                                 }
                             ]
                         },
@@ -518,7 +512,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "skill": 3,
                                     "damageNorm": 3,
                                     "damageCrit": 4,
-                                    "blast": 2,
+                                    "specialRules": ["Blast ((2))"],
                                     "criticalEffects": ["Rending"]
                                 }
                             ]
@@ -597,8 +591,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "skill": 3,
                                     "damageNorm": 6,
                                     "damageCrit": 3,
-                                    "ap": 2,
-                                    "specialRules": ["Heavy","Unwieldy"],
+                                    "specialRules": ["AP2", "Heavy","Unwieldy"],
                                     "criticalEffects": ["MW4"]
                                 }
                             ]
@@ -653,7 +646,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "damageNorm": 5,
                                     "damageCrit": 3,
                                     "range": 3,
-                                    "ap": 2,
+                                    "specialEffects": ["AP2"],
                                     "criticalEffects": ["MW3"]
                                 }
                             ]
@@ -732,7 +725,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "skill": 3,
                                     "damageNorm": 4,
                                     "damageCrit": 6,
-                                    "lethal": 5
+                                    "specialRules": ["Lethal 5+"]
                                 }
                             ]
                         }
@@ -796,8 +789,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "skill": 3,
                                     "damageNorm": 3,
                                     "damageCrit": 5,
-                                    "lethal": 5,
-                                    "specialRules": ["Relentless"]
+                                    "specialRules": ["Lethal 5+","Relentless"]
                                 }
                             ]
                         }
@@ -842,8 +834,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "skill": 3,
                                     "damageNorm": 4,
                                     "damageCrit": 6,
-                                    "lethal": 5,
-                                    "specialRules": ["Relentless"]
+                                    "specialRules": ["Lethal 5+","Relentless"]
                                 }
                             ]
                         }
@@ -1019,7 +1010,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "skill": 3,
                                     "damageNorm": 4,
                                     "damageCrit": 6,
-                                    "lethal": 5
+                                    "specialRules": ["Lethal 5+"]
                                 }
                             ]
                         }

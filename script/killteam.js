@@ -106,7 +106,7 @@ class Operative {
                 battleHonour: object.battleHonour,
                 battleScars: object.battleScars,
                 specialism: object.specialism,
-                experiencePoints: object.experiencePoints
+                experiencePoints: object.experiencePoints,
             }
         );
     }
@@ -121,7 +121,7 @@ class Operative {
         battleHonour: this.battleHonour,
         battleScars: this.battleScars,
         specialism: this.specialism,
-        experiencePoints: this.experiencePoints
+        experiencePoints: this.experiencePoints,
     });
 
     equals = (operative) => {
@@ -219,13 +219,13 @@ class Ability {
         if (!(object instanceof Object)) return undefined;
         return new Ability(
             object.name,
-            object.description
+            object.description,
         );
     }
 
     toString = () => JSON.stringify({
         name: this.name,
-        description: this.description
+        description: this.description,
     });
 
     equals = (ability) => {
@@ -264,14 +264,14 @@ class Action {
         return new Action(
             object.name,
             object.cost,
-            object.description
+            object.description,
         );
     }
 
     toString = () => JSON.stringify({
         name: this.name,
         cost: this.cost,
-        description: this.description
+        description: this.description,
     });
 
     equals = (action) => {
@@ -321,7 +321,7 @@ class Equipment {
             {
                 ability: object.ability ? Ability.parse(object.ability) : null,
                 action: object.action ? Action.parse(object.action) : null,
-                weapon: object.weapon ? Weapon.parse(object.weapon) : null
+                weapon: object.weapon ? Weapon.parse(object.weapon) : null,
             }
         );
     }
@@ -336,7 +336,7 @@ class Equipment {
             description: this.description,
             ability: this.ability,
             action: this.action,
-            weapon: this.weapon
+            weapon: this.weapon,
         });
     }
 
@@ -390,7 +390,7 @@ class Weapon {
         return new Weapon(
             object.name,
             object.type,
-            object.profiles?.map(x => WeaponProfile.parse(x))
+            object.profiles?.map(x => WeaponProfile.parse(x)),
         );
     }
 
@@ -446,17 +446,11 @@ class WeaponProfile {
         name = "",
         attacks = 1,
         skill = 6,
-        damageNorm = 0,
-        damageCrit = 0,
+        damageNorm = 1,
+        damageCrit = 1,
         specialRules = [],
         criticalEffects = [],
-        {
-            range = Infinity,
-            ap = null,
-            blast = null,
-            torrent = null,
-            lethal = null
-        } = {}
+        range = Infinity,
     ) {
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
@@ -466,10 +460,6 @@ class WeaponProfile {
         damageNorm = parseInt(damageNorm);
         damageCrit = parseInt(damageCrit);
         range = parseInt(range);
-        ap = parseInt(ap);
-        blast = parseInt(blast);
-        torrent = parseInt(torrent);
-        lethal = parseInt(lethal);
         this.name = typeof name === 'string' ? name : "";
         this.attacks = !isNaN(attacks) && isFinite(attacks) && attacks > 0 ? attacks : 1;
         this.skill = !isNaN(skill) && skill > 1 && skill <= 6 ? skill : 6;
@@ -478,19 +468,11 @@ class WeaponProfile {
         this.specialRules = Array.isArray(specialRules) ? specialRules.filter(x => typeof x === 'string') : [];
         this.criticalEffects = Array.isArray(criticalEffects) ? criticalEffects.filter(x => typeof x === 'string') : [];
         this.range = !isNaN(range) && range > 0 ? range : Infinity;
-        this.ap = !isNaN(ap) && isFinite(ap) && ap > 0 ? ap : null;
-        this.blast = !isNaN(blast) && isFinite(blast) && blast > 0 ? blast : null;
-        this.torrent = !isNaN(torrent) && isFinite(torrent) && torrent > 0 ? torrent : null;
-        this.lethal = !isNaN(lethal) && isFinite(lethal) && lethal < 6 && lethal > 1 ? lethal : null;
     }
 
     get specialRulesFull() {
         const temp = [];
         if (isFinite(this.range)) temp.push(`Rng ((${this.range}))`);
-        if (this.ap) temp.push(`AP${this.ap}`);
-        if (this.blast) temp.push(`Blast ((${this.blast}))`);
-        if (this.torrent) temp.push(`Torrent ((${this.torrent}))`);
-        if (this.lethal) temp.push(`Lethal ${this.lethal}+`);
         return temp.concat(this.specialRules);
     }
 
@@ -504,13 +486,7 @@ class WeaponProfile {
             object.damageCrit,
             object.specialRules,
             object.criticalEffects,
-            {
-                range: object.range,
-                ap: object.ap,
-                blast: object.blast,
-                torrent: object.torrent,
-                lethal: object.lethal
-            }
+            object.range,
         );
     }
 
@@ -524,10 +500,6 @@ class WeaponProfile {
             specialRules: this.specialRules,
             criticalEffects: this.criticalEffects,
             range: this.range,
-            ap: this.ap,
-            blast: this.blast,
-            torrent: this.torrent,
-            lethal: this.lethal
         });
     }
 

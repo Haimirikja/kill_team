@@ -157,10 +157,7 @@ const VOIDDANCER_TROUPE = {
                         "damageNorm": 3,
                         "damageCrit": 4,
                         "range": 6,
-                        "blast": 2,
-                        "ap": null,
-                        "lethal": null,
-                        "specialRules": ["Limited", "Indirect"],
+                        "specialRules": ["Blast ((2))","Limited", "Indirect"],
                         "criticalEffects": ["Stun"]
                     }
                 ]
@@ -431,7 +428,7 @@ const VOIDDANCER_TROUPE = {
                                     "damageNorm": 5,
                                     "damageCrit": 3,
                                     "range": 3,
-                                    "ap": 2,
+                                    "specialRules": ["AP2"],
                                     "criticalEffects": ["MW3"]
                                 }
                             ]
@@ -446,7 +443,7 @@ const VOIDDANCER_TROUPE = {
                                     "damageNorm": 4,
                                     "damageCrit": 5,
                                     "range": 6,
-                                    "ap": 1,
+                                    "specialRules": ["AP1"],
                                     "criticalEffects": ["Stun"]
                                 }
                             ]
@@ -525,7 +522,7 @@ const VOIDDANCER_TROUPE = {
                                     "skill": 2,
                                     "damageNorm": 4,
                                     "damageCrit": 6,
-                                    "lethal": 5
+                                    "specialRules": ["Lethal 5+"],
                                 }
                             ]
                         }
@@ -600,7 +597,7 @@ const VOIDDANCER_TROUPE = {
                                     "damageNorm": 5,
                                     "damageCrit": 3,
                                     "range": 3,
-                                    "ap": 2,
+                                    "specialRules": ["AP2"],
                                     "criticalEffects": ["MW3"]
                                 }
                             ]
@@ -615,7 +612,7 @@ const VOIDDANCER_TROUPE = {
                                     "damageNorm": 4,
                                     "damageCrit": 5,
                                     "range": 6,
-                                    "ap": 1,
+                                    "specialRules": ["AP1"],
                                     "criticalEffects": ["Stun"]
                                 }
                             ]
@@ -730,7 +727,7 @@ const VOIDDANCER_TROUPE = {
                                     "damageNorm": 4,
                                     "damageCrit": 5,
                                     "range": 6,
-                                    "ap": 1,
+                                    "specialRules": ["AP1"],
                                     "criticalEffects": ["Stun"]
                                 }
                             ]
