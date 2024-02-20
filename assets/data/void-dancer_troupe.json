@@ -698,7 +698,7 @@ const VOIDDANCER_TROUPE = {
                             ]
                         }
                     ],
-                    "uniqueActions": [
+                    "actions": [
                         {
                             "name": "Manifest Psychic Power",
                             "cost": 1,

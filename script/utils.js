@@ -43,43 +43,41 @@ class Id {
     }
 }
 
+//NEED REFACTORY...
 function replaceMarkup(string) {
     const markupList = [
-        { key: '((1))', value: { tagName: "img", attr: { src: "assets/image/dist1.png", class: "inline-image" } } },
-        { key: '((2))', value: { tagName: "img", attr: { src: "assets/image/dist2.png", class: "inline-image" } } },
-        { key: '((3))', value: { tagName: "img", attr: { src: "assets/image/dist3.png", class: "inline-image" } } },
-        { key: '((6))', value: { tagName: "img", attr: { src: "assets/image/dist6.png", class: "inline-image" } } },
-        { key: '((R))', value: { tagName: "img", attr: { src: "assets/image/ranged.png", class: "inline-image" } } },
-        { key: '((M))', value: { tagName: "img", attr: { src: "assets/image/melee.png", class: "inline-image" } } },
+        { key: '((1))', value: { tagName: "img", attr: { "src": "assets/image/dist1.png", "class": "inline-image" } } },
+        { key: '((2))', value: { tagName: "img", attr: { "src": "assets/image/dist2.png", "class": "inline-image" } } },
+        { key: '((3))', value: { tagName: "img", attr: { "src": "assets/image/dist3.png", "class": "inline-image" } } },
+        { key: '((6))', value: { tagName: "img", attr: { "src": "assets/image/dist6.png", "class": "inline-image" } } },
+        { key: '((R))', value: { tagName: "img", attr: { "src": "assets/image/ranged.png", "class": "inline-image" } } },
+        { key: '((M))', value: { tagName: "img", attr: { "src": "assets/image/melee.png", "class": "inline-image" } } },
     ];
     const container = document.createElement("span");
     let parts = [string];
     markupList.forEach(markup => {
-        let output = [];
-        parts.forEach(s => {
-            if (s instanceof HTMLElement) {
-                output.push(s);
+        const temp = [];
+        parts.forEach(element => {
+            if (element instanceof HTMLElement) {
+                temp.push(element);
                 return;
             }
-            s.split(markup.key).forEach((e, i) => {
+            element.split(markup.key).forEach((part, i) => {
                 if (i > 0) {
                     const replacement = document.createElement(markup.value.tagName);
-                    for (const a in markup.value.attr) {
-                        replacement.setAttribute(a, markup.value.attr[a]);
+                    for (const attr in markup.value.attr) {
+                        replacement.setAttribute(attr, markup.value.attr[attr]);
                     }
-                    output.push(replacement);
+                    temp.push(replacement);
                 }
-                output.push(e);
+                temp.push(part);
             });
         });
-        parts = output;
-    });
-    parts = parts.map(x => {
-        if (x instanceof HTMLElement) return x;
-        return document.createTextNode(x);
+        parts = temp;
     });
     parts.forEach(p => {
-        container.appendChild(p);
+        if (p instanceof HTMLElement) container.appendChild(p);
+        else container.appendChild(document.createTextNode(p));
     });
     return container;
 }

@@ -131,12 +131,15 @@ class Operative {
 
     toHTML = (id) => {
         const operativeElement = document.createElement("div");
+        operativeElement.classList.add("kill-team-operative");
         if (id instanceof Id) operativeElement.id = id.key;
         const operativeHeader = document.createElement("header");
         const operativeName = document.createElement("div");
+        operativeName.classList.add("operative-name");
         operativeName.innerText = this.name;
         operativeHeader.appendChild(operativeName);
         const operativeStats = document.createElement("table");
+        operativeStats.classList.add("operative-stats");
         let tableRow;
         let tableCell;
         tableRow = document.createElement("tr");
@@ -155,6 +158,49 @@ class Operative {
         operativeStats.appendChild(tableRow);
         operativeHeader.appendChild(operativeStats);
         operativeElement.appendChild(operativeHeader);
+        const operativeInventory = Weapon.tableHTMLWrapper;
+        const table = Weapon.tableHTMLWrapper;
+        table.appendChild(Weapon.tableHTMLHeader);
+        this.weapons.forEach(weapon => {
+            table.appendChild(weapon.toHTML());
+        });
+        operativeInventory.appendChild(table);
+        operativeElement.appendChild(operativeInventory);
+        const operativeInfo = document.createElement("div");
+        operativeInfo.classList.add("operative-info");
+        let blockElement;
+        let blockTitle;
+        let blockContent;
+        blockElement = document.createElement("div");
+        blockElement.classList.add("operative-abilities");
+        blockTitle = document.createElement("div");
+        blockTitle.classList.add("title");
+        blockTitle.innerText = "Abilities";
+        blockElement.appendChild(blockTitle);
+        blockContent = document.createElement("div");
+        blockContent.classList.add("content");
+        if (this.abilities.length === 0) blockContent.innerText = "-";
+        this.abilities.forEach(ability => {
+            blockContent.appendChild(ability.toHTML());
+        });
+        blockElement.appendChild(blockContent);
+        operativeInfo.appendChild(blockElement);
+        blockElement = document.createElement("div");
+        blockElement.classList.add("operative-actions");
+        blockTitle = document.createElement("div");
+        blockTitle.classList.add("title");
+        blockTitle.innerText = "Unique Actions";
+        blockElement.appendChild(blockTitle);
+        blockContent = document.createElement("div");
+        blockContent.classList.add("content");
+        if (this.actions.length === 0) blockContent.innerText = "-";
+        this.actions.forEach(action => {
+            console.log(action);
+            blockContent.appendChild(action.toHTML());
+        });
+        blockElement.appendChild(blockContent);
+        operativeInfo.appendChild(blockElement);
+        operativeElement.appendChild(operativeInfo);
         return operativeElement;
     }
 
@@ -218,12 +264,14 @@ class Action {
         if (!(object instanceof Object)) return undefined;
         return new Action(
             object.name,
+            object.cost,
             object.description
         );
     }
 
     toString = () => JSON.stringify({
         name: this.name,
+        cost: this.cost,
         description: this.description
     });
 
@@ -323,7 +371,7 @@ class Equipment {
         }
         if (this.ability) itemElement.appendChild(this.ability.toHTML());
         if (this.action) itemElement.appendChild(this.action.toHTML());
-        if (this.weapon) itemElement.appendChild(this.weapon.toHTML());
+        if (this.weapon) itemElement.appendChild(this.weapon.toHTML({ tableWrapper: true }));
         return itemElement;
     }
 }
@@ -347,33 +395,50 @@ class Weapon {
         );
     }
 
-    toHTML = () => {
-        const weaponElement = document.createElement("div");
+    static get tableHTMLWrapper() {
+        //const weaponElement = document.createElement("div");
         const table = document.createElement("table");
         table.classList.add("kill-team-weaponList");
-        let tableRow;
-        let tableHead;
-        let tableHeadText;
-        tableRow = document.createElement("tr");
+        //weaponElement.appendChild(table);
+        return table;
+    }
+
+    static get tableHTMLHeader() {
+        const tableHead = document.createElement("thead");
+        const tableRow = document.createElement("tr");
+        let tableCell;
+        let tableCellText;
         ["", "Name", "A", "BS/WS", "D", "Special Rules", "!"].forEach(column => {
-            tableHead = document.createElement("th");
-            tableHeadText = document.createElement("div");
-            tableHeadText.innerText = column;
-            tableHead.appendChild(tableHeadText);
-            tableRow.appendChild(tableHead);
+            tableCell = document.createElement("th");
+            tableCellText = document.createElement("div");
+            tableCellText.innerText = column;
+            tableCell.appendChild(tableCellText);
+            tableRow.appendChild(tableCell);
         });
-        table.appendChild(tableRow);
+        tableHead.appendChild(tableRow);
+        return tableHead;
+    }
+
+    toHTML = ({ tableWrapper = false } = {}) => {
+        const tableBody = document.createElement("tbody");
+        let tableRow;
         if (this.profiles.length) {
             tableRow = this.profiles[0].toHTML(this.name, this.type, this.profiles.length > 1);
-            table.appendChild(tableRow);
+            tableBody.appendChild(tableRow);
             if (this.profiles.length > 1) {
                 this.profiles.forEach(profile => {
-                    table.appendChild(profile.toHTML());
+                    tableBody.appendChild(profile.toHTML());
                 });
             }
         }
-        weaponElement.appendChild(table);
-        return table;
+        if (tableWrapper) {
+            const table = Weapon.tableHTMLWrapper;
+            table.appendChild(Weapon.tableHTMLHeader);
+            table.appendChild(tableBody);
+            return table;
+        } else {
+            return tableBody;
+        }
     }
 }
 
@@ -476,7 +541,6 @@ class WeaponProfile {
         let tableCell;
         const tableRow = document.createElement("tr");
         tableCell = document.createElement("td");
-        //tableCell.innerText = type && typeof type === 'string' ? type : "";
         tableCell.appendChild(replaceMarkup(type));
         tableRow.appendChild(tableCell);
         tableCell = document.createElement("td");
@@ -500,7 +564,7 @@ class WeaponProfile {
             tableCell.innerText = `${this.damageNorm}/${this.damageCrit}`;
             tableRow.appendChild(tableCell);
             tableCell = document.createElement("td");
-            if (this.specialRulesFull) {
+            if (this.specialRulesFull.length) {
                 this.specialRulesFull.forEach((x, i) => {
                     if (i > 0) tableCell.appendChild(document.createTextNode(", "));
                     tableCell.appendChild(replaceMarkup(x));
@@ -509,7 +573,12 @@ class WeaponProfile {
             else tableCell.innerText = "-";
             tableRow.appendChild(tableCell);
             tableCell = document.createElement("td");
-            if (this.criticalEffects) tableCell.innerText = this.criticalEffects.join(", ");
+            if (this.criticalEffects.length) {
+                this.criticalEffects.forEach((x, i) => {
+                    if (i > 0) tableCell.appendChild(document.createTextNode(", "));
+                    tableCell.appendChild(replaceMarkup(x));
+                });
+            }
             else tableCell.innerText = "-";
         }
         tableRow.appendChild(tableCell);

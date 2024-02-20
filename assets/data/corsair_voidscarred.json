@@ -1,4 +1,4 @@
-const VOIDSCARRED_CORSAIR = {
+const CORSAIR_VOIDSCARRED = {
     "name": "CORSAIR VOIDSCARRED",
     "faction": "AELDARI",
     "compendium": [
@@ -419,7 +419,7 @@ const VOIDSCARRED_CORSAIR = {
                             ]
                         }
                     ],
-                    "uniqueActions": [
+                    "actions": [
                         {
                             "name": "Take Aim",
                             "cost": 1,
@@ -632,7 +632,7 @@ const VOIDSCARRED_CORSAIR = {
                             ]
                         }
                     ],
-                    "uniqueActions": [
+                    "actions": [
                         {
                             "name": "Pistol Barrage",
                             "cost": 1,
@@ -694,7 +694,7 @@ const VOIDSCARRED_CORSAIR = {
                             "name": "Aeldari Raiders"
                         }
                     ],
-                    "uniqueActions": [
+                    "actions": [
                         {
                             "name": "Faolchú",
                             "cost": 1,
@@ -746,7 +746,7 @@ const VOIDSCARRED_CORSAIR = {
                             "name": "Aeldari Raiders"
                         }
                     ],
-                    "uniqueActions": [
+                    "actions": [
                         {
                             "name": "Slicing Attack",
                             "cost": 1,
@@ -863,7 +863,7 @@ const VOIDSCARRED_CORSAIR = {
                             ]
                         }
                     ],
-                    "uniqueActions": [
+                    "actions": [
                         {
                             "name": "Take Aim",
                             "cost": 1,
@@ -924,7 +924,7 @@ const VOIDSCARRED_CORSAIR = {
                             "name": "Aeldari Raiders"
                         }
                     ],
-                    "uniqueActions": [
+                    "actions": [
                         {
                             "name": "Manifest Psychic Power",
                             "cost": 1,
@@ -973,7 +973,7 @@ const VOIDSCARRED_CORSAIR = {
                             "name": "Aeldari Raiders"
                         }
                     ],
-                    "uniqueActions": [
+                    "actions": [
                         {
                             "name": "Soul Channel",
                             "cost": 1,
@@ -1033,7 +1033,7 @@ const VOIDSCARRED_CORSAIR = {
                             "name": "Aeldari Raiders"
                         }
                     ],
-                    "uniqueActions": [
+                    "actions": [
                         {
                             "name": "Take Aim",
                             "cost": 1,
