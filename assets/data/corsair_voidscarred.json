@@ -69,8 +69,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "DIURNAL MANTLE",
             "rare": false,
-            "value": 2,
-            "value2": null,
+            "value": [2],
             "limit": false,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],
@@ -84,8 +83,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "PLASMA GRANADE",
             "rare": false,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": false,
             "dedicated": null,
             "description": ["The operative is equipped with the following ranged weapon for the battle:"],
@@ -113,8 +111,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "CORSAIR BLADE",
             "rare": false,
-            "value": 1,
-            "value2": null,
+            "value": [1],
             "limit": false,
             "dedicated": null,
             "description": ["The operative is equipped with the following melee weapon for the battle:"],
@@ -142,8 +139,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "OCULAR SCANNER",
             "rare": false,
-            "value": 2,
-            "value2": null,
+            "value": [2],
             "limit": true,
             "dedicated": null,
             "description": ["The operative can perform the following action during the battle:"],
@@ -158,8 +154,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "RUNES OF PROTECTION",
             "rare": false,
-            "value": 2,
-            "value2": null,
+            "value": [2],
             "limit": false,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],
@@ -173,8 +168,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "MISTFIELD",
             "rare": false,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": true,
             "dedicated": "felarch",
             "description": ["VOIDSCARRED FELARCH operative only. The operative gains the following ability for the battle:"],
@@ -188,8 +182,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "LODESTAR HELM",
             "rare": false,
-            "value": 2,
-            "value2": null,
+            "value": [2],
             "limit": true,
             "dedicated": "way_seeker",
             "description": ["VOIDSCARRED WAY SEEKER operative only. The operative gains the following ability for the battle:"],
@@ -203,8 +196,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "PATHFINDER CLOAK",
             "rare": false,
-            "value": 2,
-            "value2": null,
+            "value": [2],
             "limit": true,
             "dedicated": "fate_dealer",
             "description": ["VOIDSCARRED FATE DEALER operative only. The operative gains the following ability for the battle:"],
@@ -218,8 +210,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "LONG-SIGHT HELM",
             "rare": true,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": true,
             "dedicated": null,
             "description": ["Ranged weapons the operative is equipped with gain the Ceaseless special rule for the battle."],
@@ -230,8 +221,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "FLIP BELT",
             "rare": true,
-            "value": 2,
-            "value2": null,
+            "value": [2],
             "limit": true,
             "dedicated": null,
             "description": ["The operative gains the FLY keyword for the battle."],
@@ -242,8 +232,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "SPIRIT STONE",
             "rare": true,
-            "value": 4,
-            "value2": null,
+            "value": [4],
             "limit": true,
             "dedicated": "soul_weaver",
             "description": ["VOIDSCARRED SOUL WEAVER operative only. The operative gains the following ability for the battle:"],
@@ -257,8 +246,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "PSYCHOREACTIVE ARMOUR",
             "rare": true,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": true,
             "dedicated": null,
             "description": ["Change the operative's Save characteristic to 3+ for the battle."],
@@ -269,8 +257,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "RELIC POWER WEAPON",
             "rare": true,
-            "value": 2,
-            "value2": null,
+            "value": [2],
             "limit": true,
             "dedicated": null,
             "description": ["Operative equipped with a power weapon only. The power weapon this operative is equipped with gains the Balanced special rule for the battle."],
@@ -281,8 +268,7 @@ const VOIDSCARRED_CORSAIR = {
         {
             "name": "RELIC WITCH STAFF",
             "rare": true,
-            "value": 2,
-            "value2": null,
+            "value": [2],
             "limit": true,
             "dedicated": "way_seeker",
             "description": ["VOIDSCARRED WAY SEEKER operative only. The operative gains the following ability for the battle:"],

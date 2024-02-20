@@ -81,8 +81,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "SHRIEKER TOXIN ROUNDS",
             "rare": false,
-            "value": 3,
-            "value2": 4,
+            "value": [3,4],
             "limit": false,
             "dedicated": null,
             "description": ["Select one shuriken pistol or shrieker cannon the operative is equipped with. That weapon gains the MW1 critical hit rule for the battle. If you selected a shrieker cannon, this equipment costs 4EP; otherwise, it costs 3EP."],
@@ -93,8 +92,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "DEATH MASK",
             "rare": false,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": true,
             "dedicated": null,
             "description": ["This operative gains the following ability for the battle:"],
@@ -108,8 +106,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "ACCELERATED MONOFILAMENT WIRE",
             "rare": false,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": false,
             "dedicated": null,
             "description": ["Select one embrace the operative is equipped with. That weapon gains the Reap 1 critical hit rule and Lethal 5+ special rule for the battle."],
@@ -120,8 +117,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "SUPERTENSILE MONOFILAMENT WIRE",
             "rare": false,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": false,
             "dedicated": null,
             "description": ["Select one kiss the operative is equipped with. Add 1 to that weapon's Normal Damage characteristic for the battle."],
@@ -132,8 +128,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "WRAITHBONE TALISMAN",
             "rare": false,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": false,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],
@@ -147,8 +142,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "PRISMATIC GRENADE",
             "rare": false,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": false,
             "dedicated": null,
             "description": ["The operative is equipped with the following ranged weapon for the battle:"],
@@ -176,8 +170,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "PURE PSYCHOCRYSTALS",
             "rare": false,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": true,
             "dedicated": null,
             "description": ["Select one neuro disruptor the operative is equipped with. That weapon gains the Lethal 5+ special rule for the battle."],
@@ -188,8 +181,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "SUPPORT GRIP",
             "rare": false,
-            "value": 1,
-            "value2": null,
+            "value": [1],
             "limit": true,
             "dedicated": "death_jester",
             "description": ["DEATH JESTER operative only. Remove the Heavy special rule from the shrieker cannon that operative is equipped with for the battle. That weapon gains the following special rule for the battle instead:"],
@@ -203,8 +195,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "HIDDEN GUISE",
             "rare": true,
-            "value": 1,
-            "value2": null,
+            "value": [1],
             "limit": true,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],
@@ -218,8 +209,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "CRYSTAL SHARD",
             "rare": true,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": true,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],
@@ -233,8 +223,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "SHIMMERCLONE",
             "rare": true,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": true,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],
@@ -248,8 +237,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "FALCON'S FEATHER",
             "rare": true,
-            "value": 3,
-            "value2": null,
+            "value": [3],
             "limit": true,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],
@@ -263,8 +251,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "MOCKING PANOPLY",
             "rare": true,
-            "value": 2,
-            "value2": null,
+            "value": [2],
             "limit": true,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],
@@ -278,8 +265,7 @@ const VOIDDANCER_TROUPE = {
         {
             "name": "RAIMENT OF MIRRORS",
             "rare": true,
-            "value": 2,
-            "value2": null,
+            "value": [2],
             "limit": true,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],

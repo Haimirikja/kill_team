@@ -54,6 +54,7 @@ class Operative {
         Object.defineProperty(this, "removeEquipment", { enumerable: false });
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
+        Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = typeof name === 'string' ? name : "";
         this.stats = Array.isArray(stats) ? stats : [];
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
@@ -131,7 +132,7 @@ class Operative {
 }
 
 class Ability {
-    constructor(name, description) {
+    constructor(name, description = []) {
         Object.defineProperty(this, "toString", { enumrable: false });
         Object.defineProperty(this, "equals", { enumrable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
@@ -177,7 +178,7 @@ class Ability {
 }
 
 class Action {
-    constructor(name, cost, description) {
+    constructor(name, cost = 1, description = []) {
         Object.defineProperty(this, "toString", { enumrable: false });
         Object.defineProperty(this, "equals", { enumrable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
@@ -225,25 +226,49 @@ class Action {
 }
 
 class Equipment {
-    constructor(name, description = []) {
+    constructor(name, rare = false, value = [], limit = false, dedicated = null, description = [], { ability = null, action = null, weapon = null } = {}) {
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
+        Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = typeof name === 'string' ? name : "";
+        this.rare = typeof rare === 'boolean' ? rare : false;
+        this.value = Array.isArray(value) ? value.filter(x => typeof x === 'number' && isFinite(x) && x >= 0) : [];
+        this.limit = typeof limit === 'boolean' ? limit : false;
+        this.dedicated = dedicated instanceof Id ? dedicated.key : null;
         this.description = Array.isArray(description) ? description.filter(x => typeof x === 'string') : [];
+        this.ability = ability instanceof Ability ? ability : null;
+        this.action = action instanceof Action ? action : null;
+        this.weapon = weapon instanceof Weapon ? weapon : null;
     }
 
     static parse = (object) => {
         if (!(object instanceof Object)) return undefined;
         return new Equipment(
             object.name,
-            object.description
+            object.rare,
+            object.value,
+            object.limit,
+            object.dedicated,
+            object.description,
+            {
+                ability: object.ability?.map(x => Ability.parse(x)),
+                action: object.action?.map(x => Action.parse(x)),
+                weapon: object.weapon?.map(x => Weapon.parse(x))
+            }
         );
     }
 
     toString = () => {
         return JSON.stringify({
             name: this.name,
-            description: this.description
+            rare: this.rare,
+            value: this.value,
+            limit: this.limit,
+            dedicated: this.dedicated,
+            description: this.description,
+            ability: this.ability,
+            action: this.action,
+            weapon: this.weapon
         });
     }
 
@@ -251,13 +276,47 @@ class Equipment {
         if (!(equipment instanceof Equipment)) equipment = Equipment.parse(equipment);
         return this.toString() === equipment.toString();
     }
+
+    toHTML = (id) => {
+        const itemElement = document.createElement("div");
+        if (id instanceof Id) itemElement.id = id.key;
+        //if (dedicated) itemElement.setAttribute("for", new Id(dedicated).key);
+        const itemHeader = document.createElement("header");
+        const itemName = document.createElement("h2");
+        itemName.innerText = this.name;
+        if (this.limit) {
+            const limitElement = document.createElement("sup");
+            limitElement.innerText = "+";
+            itemName.appendChild(limitElement);
+        }
+        const itemCost = document.createElement("span");
+        itemCost.innerText = `[${this.value.join("/")}EP]`;
+        itemName.appendChild(itemCost);
+        itemHeader.appendChild(itemName);
+        itemElement.appendChild(itemHeader);
+        if (this.description) {
+            const descriptionElement = document.createElement("div");
+            this.description.forEach(row => {
+                const rowElement = document.createElement("div");
+                rowElement.innerText = row;
+                descriptionElement.appendChild(rowElement);
+            });
+            itemElement.appendChild(descriptionElement);
+        }
+        if (this.ability) itemElement.appendChild(this.ability.toHTML());
+        if (this.action) itemElement.appendChild(this.action.toHTML());
+        if (this.weapon) itemElement.appendChild(this.weapon.toHTML());
+        return itemElement;
+    }
 }
 
-class Weapon extends Equipment {
+class Weapon {
     constructor(name, type, profiles = []) {
-        super(name);
+        Object.defineProperty(this, "toString", { enumerable: false });
+        Object.defineProperty(this, "equals", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
-        this.type = type;
+        this.name = typeof name === 'string' ? name : "";
+        this.type = typeof type === 'string' ? type : "";
         this.profiles = Array.isArray(profiles) ? profiles.filter(x => x instanceof WeaponProfile) : [];
     }
 
@@ -344,7 +403,6 @@ class WeaponProfile {
     }
 
     get specialRulesFull() {
-        console.log(this);
         const temp = [];
         if (isFinite(this.range)) temp.push(`Rng ((${this.range}))`);
         if (this.ap) temp.push(`AP${this.ap}`);
