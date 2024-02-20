@@ -20,16 +20,16 @@ class KillTeam {
         Object.defineProperty(this, "removeOperative", { enumerable: false });
         this.name = name;
         this.faction = faction;
-        this.operatives = operatives;
+        this.operatives = Array.isArray(operatives) ? operatives.filter(x => x instanceof Operative) : [];
     }
 
     addOperative = (operative) => {
-        if (operative instanceof Operative) this.operatives.push(operative);//Operative.parse(operative)??
+        if (operative instanceof Operative) this.operatives.push(operative);
         return this.operatives;
     }
 
     removeOperative = (operative) => {
-        this.operatives.splice(this.operatives.indexOf(this.operatives.find(x => x.equals(operative))), 1);
+        if (operative instanceof Operative) this.operatives.splice(this.operatives.indexOf(this.operatives.find(x => x.equals(operative))), 1);
         return this.operatives;
     }
 }
@@ -38,10 +38,10 @@ class Operative {
     constructor(
         name = "",
         stats = [],
+        weapons = [],
+        abilities = [],
+        actions = [],
         {
-            abilities = [],
-            actions = [],
-            weapons = [],
             equipment = [],
             battleHonour = [],
             battleScars = [],
@@ -80,14 +80,18 @@ class Operative {
         return this.experiencePoints;
     }
 
+
+
     static parse = (object) => {
         if (!(object instanceof Object)) return undefined;
         return new Operative(
             object.name,
             object.stats,
+            object.weapons?.map(x => Weapon.parse(x)),
+            object.abilities?.map(x => Ability.parse(x)),
+            object.actions?.map(x => Action.parse(x)),
             {
-                weapons: object.weapons.map(x => Weapon.parse(x)),
-                equipment: object.equipment.map(x => Equipment.parse(x)),
+                equipment: object.equipment?.map(x => Equipment.parse(x)),
                 battleHonour: object.battleHonour,
                 battleScars: object.battleScars,
                 specialism: object.specialism,
@@ -99,9 +103,9 @@ class Operative {
     toString = () => JSON.stringify({
         name: this.name,
         stats: this.stats,
+        weapons: this.weapons,
         abilities: this.abilities,
         actions: this.actions,
-        weapons: this.weapons,
         equipment: this.equipment,
         battleHonour: this.battleHonour,
         battleScars: this.battleScars,
@@ -252,7 +256,7 @@ class Weapon extends Equipment {
         return new Weapon(
             object.name,
             object.type,
-            object.profiles.map(x => WeaponProfile.parse(x))
+            object.profiles?.map(x => WeaponProfile.parse(x))
         );
     }
 
@@ -286,7 +290,21 @@ class Weapon extends Equipment {
 }
 
 class WeaponProfile {
-    constructor(name = "", attacks = 1, skill = 6, damageNorm = 0, damageCrit = 0, specialRules = [], criticalEffects = []) {
+    constructor(
+        name = "",
+        attacks = 1,
+        skill = 6,
+        damageNorm = 0,
+        damageCrit = 0,
+        specialRules = [],
+        criticalEffects = [],
+        {
+            range = Infinity,
+            ap = null,
+            blast = null,
+            lethal = null
+        } = {}
+    ) {
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
@@ -294,6 +312,10 @@ class WeaponProfile {
         skill = parseInt(skill);
         damageNorm = parseInt(damageNorm);
         damageCrit = parseInt(damageCrit);
+        range = parseInt(range);
+        ap = parseInt(ap);
+        blast = parseInt(blast);
+        lethal = parseInt(lethal);
         this.name = typeof name === 'string' ? name : "";
         this.attacks = !isNaN(attacks) && isFinite(attacks) && attacks > 0 ? attacks : 1;
         this.skill = !isNaN(skill) && skill > 1 && skill <= 6 ? skill : 6;
@@ -301,6 +323,10 @@ class WeaponProfile {
         this.damageCrit = !isNaN(damageCrit) && isFinite(damageCrit) && damageCrit >= 0 ? damageCrit : 0;
         this.specialRules = Array.isArray(specialRules) ? specialRules.filter(x => typeof x === 'string') : [];
         this.criticalEffects = Array.isArray(criticalEffects) ? criticalEffects.filter(x => typeof x === 'string') : [];
+        this.range = !isNaN(range) && range > 0 ? range : Infinity;
+        this.ap = !isNaN(ap) && isFinite(ap) && ap > 0 ? ap : null;
+        this.blast = !isNaN(blast) && isFinite(blast) && blast > 0 ? blast : null;
+        this.lethal = !isNaN(lethal) && isFinite(lethal) && lethal < 6 && lethal > 1 ? lethal : null;
     }
 
     static parse = (object) => {
@@ -312,7 +338,11 @@ class WeaponProfile {
             object.damageNorm,
             object.damageCrit,
             object.specialRules,
-            object.criticalEffects
+            object.criticalEffects,
+            object.range,
+            object.ap,
+            object.blast,
+            object.lethal
         );
     }
 
@@ -325,6 +355,10 @@ class WeaponProfile {
             damageCrit: this.damageCrit,
             specialRules: this.specialRules,
             criticalEffects: this.criticalEffects,
+            range: this.range,
+            ap: this.ap,
+            blast: this.blast,
+            lethal: this.lethal
         });
     }
 
