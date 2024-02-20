@@ -34,11 +34,11 @@ function loadKillTeam(value, mode = "debug") {
         target.innerHTML = "";
         killTeam.equipment.forEach(item => {
             const eq = Equipment.parse(item);
-            target.appendChild(eq.toHTML(new Id(eq.name)));
+            target.appendChild(eq.toHTML());
         });
         killTeam.fireTeam[0].operatives.forEach(operative => {
             const op = Operative.parse(operative);
-            target.appendChild(op.toHTML(new Id(op.name)));
+            target.appendChild(op.toHTML());
         });
     }
 }

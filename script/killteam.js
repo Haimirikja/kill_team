@@ -129,10 +129,10 @@ class Operative {
         return this.toString() === operative.toString();
     }
 
-    toHTML = (id) => {
+    toHTML = () => {
         const operativeElement = document.createElement("div");
         operativeElement.classList.add("kill-team-operative");
-        if (id instanceof Id) operativeElement.id = id.key;
+        operativeElement.id = new Id(this.name, "operative").key;
         const operativeHeader = document.createElement("header");
         const operativeName = document.createElement("div");
         operativeName.classList.add("operative-name");
@@ -345,10 +345,10 @@ class Equipment {
         return this.toString() === equipment.toString();
     }
 
-    toHTML = (id) => {
+    toHTML = () => {
         const itemElement = document.createElement("div");
         itemElement.classList.add("kill-team-item");
-        if (id instanceof Id) itemElement.id = id.key;
+        itemElement.id = new Id(this.name, "equipment").key;
         if (this.dedicated) itemElement.setAttribute("for", new Id(this.dedicated).key);
         const itemHeader = document.createElement("header");
         const itemName = document.createElement("div");
