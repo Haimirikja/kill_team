@@ -148,7 +148,7 @@ class Operative {
         tableRow = document.createElement("tr");
         this.stats.forEach(stat => {
             tableCell = document.createElement("td");
-            tableCell.innerText = column;
+            tableCell.innerText = stat;
             tableRow.appendChild(tableCell);
         });
         operativeStats.appendChild(tableRow);
