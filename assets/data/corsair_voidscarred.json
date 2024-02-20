@@ -164,7 +164,7 @@ const CORSAIR_VOIDSCARRED = {
             "rare": false,
             "value": [3],
             "limit": true,
-            "dedicated": "felarch",
+            "dedicated": "voidscarred_felarch",
             "description": ["VOIDSCARRED FELARCH operative only. The operative gains the following ability for the battle:"],
             "ability": {
                 "name": "Mistfield",
@@ -178,7 +178,7 @@ const CORSAIR_VOIDSCARRED = {
             "rare": false,
             "value": [2],
             "limit": true,
-            "dedicated": "way_seeker",
+            "dedicated": "voidscarred_way_seeker",
             "description": ["VOIDSCARRED WAY SEEKER operative only. The operative gains the following ability for the battle:"],
             "ability": {
                 "name": "Lodestar Helm",
@@ -192,7 +192,7 @@ const CORSAIR_VOIDSCARRED = {
             "rare": false,
             "value": [2],
             "limit": true,
-            "dedicated": "fate_dealer",
+            "dedicated": "voidscarred_fate_dealer",
             "description": ["VOIDSCARRED FATE DEALER operative only. The operative gains the following ability for the battle:"],
             "ability": {
                 "name": "Pathfinder Cloak",
@@ -228,7 +228,7 @@ const CORSAIR_VOIDSCARRED = {
             "rare": true,
             "value": [4],
             "limit": true,
-            "dedicated": "soul_weaver",
+            "dedicated": "voidscarred_soul_weaver",
             "description": ["VOIDSCARRED SOUL WEAVER operative only. The operative gains the following ability for the battle:"],
             "ability": {
                 "name": "Spirit Stone",
@@ -264,7 +264,7 @@ const CORSAIR_VOIDSCARRED = {
             "rare": true,
             "value": [2],
             "limit": true,
-            "dedicated": "way_seeker",
+            "dedicated": "voidscarred_way_seeker",
             "description": ["VOIDSCARRED WAY SEEKER operative only. The operative gains the following ability for the battle:"],
             "ability": {
                 "name": "Relic Witch Staff",

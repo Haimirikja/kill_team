@@ -33,7 +33,6 @@ function loadKillTeam(value, mode = "debug") {
         const target = document.getElementById("Content");
         target.innerHTML = "";
         killTeam.equipment.forEach(item => {
-            //dedicated Id not passed
             const eq = Equipment.parse(item);
             target.appendChild(eq.toHTML(new Id(eq.name)));
         });

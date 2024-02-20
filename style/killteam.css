@@ -25,7 +25,10 @@ table{width:100%;border-collapse:collapse;}
 
 img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 
-.kill-team-item{width:400px;}
+.kill-team-phases{text-align:center;}
+.kill-team-phases h2{color:var(--orange);}
+
+/* .kill-team-item{width:400px;} */
 .kill-team-item .title{font-size:1.4em;}
 .kill-team-item .kill-team-ability,
 .kill-team-item .kill-team-actions,

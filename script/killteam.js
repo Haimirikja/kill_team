@@ -349,6 +349,7 @@ class Equipment {
         const itemElement = document.createElement("div");
         itemElement.classList.add("kill-team-item");
         if (id instanceof Id) itemElement.id = id.key;
+        if (this.dedicated) itemElement.setAttribute("for", new Id(this.dedicated).key);
         const itemHeader = document.createElement("header");
         const itemName = document.createElement("div");
         itemName.classList.add("title");
