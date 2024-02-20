@@ -395,10 +395,8 @@ class Weapon {
     }
 
     static get tableHTMLWrapper() {
-        //const weaponElement = document.createElement("div");
         const table = document.createElement("table");
         table.classList.add("kill-team-weaponList");
-        //weaponElement.appendChild(table);
         return table;
     }
 
@@ -448,9 +446,11 @@ class WeaponProfile {
         skill = 6,
         damageNorm = 1,
         damageCrit = 1,
-        specialRules = [],
-        criticalEffects = [],
         range = Infinity,
+        {
+            specialRules = [],
+            criticalEffects = [],
+        } = {}
     ) {
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
@@ -465,9 +465,9 @@ class WeaponProfile {
         this.skill = !isNaN(skill) && skill > 1 && skill <= 6 ? skill : 6;
         this.damageNorm = !isNaN(damageNorm) && isFinite(damageNorm) && damageNorm >= 0 ? damageNorm : 0;
         this.damageCrit = !isNaN(damageCrit) && isFinite(damageCrit) && damageCrit >= 0 ? damageCrit : 0;
+        this.range = !isNaN(range) && range > 0 ? range : Infinity;
         this.specialRules = Array.isArray(specialRules) ? specialRules.filter(x => typeof x === 'string') : [];
         this.criticalEffects = Array.isArray(criticalEffects) ? criticalEffects.filter(x => typeof x === 'string') : [];
-        this.range = !isNaN(range) && range > 0 ? range : Infinity;
     }
 
     get specialRulesFull() {
@@ -484,9 +484,11 @@ class WeaponProfile {
             object.skill,
             object.damageNorm,
             object.damageCrit,
-            object.specialRules,
-            object.criticalEffects,
             object.range,
+            {
+                specialRules: object.specialRules,
+                criticalEffects: object.criticalEffects,
+            }
         );
     }
 
@@ -497,9 +499,9 @@ class WeaponProfile {
             skill: this.skill,
             damageNorm: this.damageNorm,
             damageCrit: this.damageCrit,
+            range: this.range,
             specialRules: this.specialRules,
             criticalEffects: this.criticalEffects,
-            range: this.range,
         });
     }
 
