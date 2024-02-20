@@ -251,9 +251,9 @@ class Equipment {
             object.dedicated,
             object.description,
             {
-                ability: object.ability?.map(x => Ability.parse(x)),
-                action: object.action?.map(x => Action.parse(x)),
-                weapon: object.weapon?.map(x => Weapon.parse(x))
+                ability: object.ability ? Ability.parse(object.ability) : null,
+                action: object.action ? Action.parse(object.action) : null,
+                weapon: object.weapon ? Weapon.parse(object.weapon) : null
             }
         );
     }
