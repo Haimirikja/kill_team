@@ -15,12 +15,21 @@ const Rank = {
 }
 
 class KillTeam {
-    constructor(name = "", faction = "", fireTeam = []) {
+    constructor(name = "", faction = "", fireTeams = []) {
         Object.defineProperty(this, "addOperative", { enumerable: false });
         Object.defineProperty(this, "removeOperative", { enumerable: false });
-        this.name = typeof name === 'string' ? name : null;
-        this.faction = typeof faction === 'string' ? faction : null;
-        this.fireTeams = Array.isArray(fireTeam) ? fireTeam.filter(x => x instanceof FireTeam) : [];
+        this.name = name && typeof name === 'string' ? name : "";
+        this.faction = faction && typeof faction === 'string' ? faction : "";
+        this.fireTeams = Array.isArray(fireTeams) ? fireTeams.filter(x => x instanceof FireTeam) : [];
+    }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new KillTeam(
+            object.name,
+            object.faction,
+            object.fireTeams,
+        )
     }
 
     addFireTeam = (fireTeam) => {
@@ -41,7 +50,7 @@ class FireTeam {
         Object.defineProperty(this, "parse", { enumerable: false });
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
-        this.name = typeof name === 'string' ? name : null;
+        this.name = name && typeof name === 'string' ? name : "";
         this.operatives = Array.isArray(operatives) ? operatives.filter(x => x instanceof Operative) : [];
     }
     
@@ -95,7 +104,7 @@ class Operative {
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
-        this.name = typeof name === 'string' ? name : "";
+        this.name = name && typeof name === 'string' ? name : "";
         this.stats = Array.isArray(stats) && stats.length === 6 ? stats : [];
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
         this.actions = Array.isArray(actions) ? actions.filter(x => x instanceof Action) : [];
@@ -256,7 +265,7 @@ class Ability {
         Object.defineProperty(this, "toString", { enumrable: false });
         Object.defineProperty(this, "equals", { enumrable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
-        this.name = typeof name === 'string' ? name : "";
+        this.name = name && typeof name === 'string' ? name : "";
         if (!Array.isArray(description)) description = [description];
         this.description = description.filter(x => typeof x === 'string');
     }
@@ -299,7 +308,7 @@ class Action {
         Object.defineProperty(this, "equals", { enumrable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
         cost = parseInt(cost);
-        this.name = typeof name === 'string' ? name : "";
+        this.name = name && typeof name === 'string' ? name : "";
         this.cost = !isNaN(cost) && isFinite(cost) && cost >= 0 ? cost : 1;
         if (!Array.isArray(description)) description = [description];
         this.description = description.filter(x => typeof x === 'string');
@@ -344,7 +353,7 @@ class Equipment {
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
-        this.name = typeof name === 'string' ? name : "";
+        this.name = name && typeof name === 'string' ? name : "";
         this.rare = typeof rare === 'boolean' ? rare : false;
         this.value = Array.isArray(value) ? value.filter(x => typeof x === 'number' && isFinite(x) && x >= 0) : [];
         this.limit = typeof limit === 'boolean' ? limit : false;
@@ -425,8 +434,8 @@ class Weapon {
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
-        this.name = typeof name === 'string' ? name : "";
-        this.type = typeof type === 'string' ? type : "";
+        this.name = name && typeof name === 'string' ? name : "";
+        this.type = type && typeof type === 'string' ? type : "";
         this.profiles = Array.isArray(profiles) ? profiles.filter(x => x instanceof WeaponProfile) : [];
     }
 
@@ -516,7 +525,7 @@ class WeaponProfile {
         damageNorm = parseInt(damageNorm);
         damageCrit = parseInt(damageCrit);
         range = parseInt(range);
-        this.name = typeof name === 'string' ? name : "";
+        this.name = name && typeof name === 'string' ? name : "";
         this.attacks = !isNaN(attacks) && isFinite(attacks) && attacks > 0 ? attacks : 1;
         this.skill = !isNaN(skill) && skill > 1 && skill <= 6 ? skill : 6;
         this.damageNorm = !isNaN(damageNorm) && isFinite(damageNorm) && damageNorm >= 0 ? damageNorm : 0;

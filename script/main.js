@@ -40,6 +40,9 @@ function loadKillTeam(value, mode = "debug") {
             const op = Operative.parse(operative);
             target.appendChild(op.toHTML());
         });
+
+        const bm = new BattelManager(KillTeam.parse(killTeam), 4);
+        bm.toHTML();
     }
 }
 
@@ -50,6 +53,5 @@ window.onload = () => {
         loadKillTeam(sender.value, "debug");
     });
     //CORSAIR_VOIDSCARRED
-    
 
 }

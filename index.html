@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Enrico Beccalli">
+    <title>KILL TEAM</title>
     <link rel="stylesheet" type="text/css" href="style/killteam.css" />
     <script src="assets/data/corsair_voidscarred.json"></script>
     <script src="assets/data/void-dancer_troupe.json"></script>
     <script type="application/javascript" src="script/utils.js"></script>
     <script type="application/javascript" src="script/killteam.js"></script>
+    <script type="application/javascript" src="script/battleManager.js"></script>
     <script type="application/javascript" src="script/main.js"></script>
 </head>
 <body>
@@ -81,7 +83,10 @@
         </select>
 
         <div class="kill-team-command-points">
-            <div id="CommandPointList" class="list"></div>
+            <div id="CommandPointList">
+                <div class="point">1</div>
+                <div class="point">2</div>
+            </div>
             <div id="CommandPointActions" class="actions">
                 <div id="CommandPointAdd" class="elevatedButton">+</div>
                 <div id="CommandPointRemove" class="elevatedButton">−</div>
