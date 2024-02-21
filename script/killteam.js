@@ -15,14 +15,36 @@ const Rank = {
 }
 
 class KillTeam {
-    constructor(name = "", faction = "", operatives = []) {
+    constructor(name = "", faction = "", fireTeam = []) {
         Object.defineProperty(this, "addOperative", { enumerable: false });
         Object.defineProperty(this, "removeOperative", { enumerable: false });
-        this.name = name;
-        this.faction = faction;
-        this.operatives = Array.isArray(operatives) ? operatives.filter(x => x instanceof Operative) : [];
+        this.name = typeof name === 'string' ? name : null;
+        this.faction = typeof faction === 'string' ? faction : null;
+        this.fireTeams = Array.isArray(fireTeam) ? fireTeam.filter(x => x instanceof FireTeam) : [];
     }
 
+    addFireTeam = (fireTeam) => {
+        if (fireTeam instanceof FireTeam) this.fireTeams.push(fireTeam);
+        return this.fireTeams;
+    }
+
+    removeFireTeam = (fireTeam) => {
+        if (fireTeam instanceof FireTeam) this.fireTeams.splice(this.fireTeams.indexOf(this.fireTeams.find(x => x.equals(fireTeam))), 1);
+        return this.fireTeams;
+    }
+}
+
+class FireTeam {
+    constructor(name = "", operatives = []) {
+        Object.defineProperty(this, "addOperative", { enumerable: false });
+        Object.defineProperty(this, "removeOperative", { enumerable: false });
+        Object.defineProperty(this, "parse", { enumerable: false });
+        Object.defineProperty(this, "toString", { enumerable: false });
+        Object.defineProperty(this, "equals", { enumerable: false });
+        this.name = typeof name === 'string' ? name : null;
+        this.operatives = Array.isArray(operatives) ? operatives.filter(x => x instanceof Operative) : [];
+    }
+    
     addOperative = (operative) => {
         if (operative instanceof Operative) this.operatives.push(operative);
         return this.operatives;
@@ -32,6 +54,22 @@ class KillTeam {
         if (operative instanceof Operative) this.operatives.splice(this.operatives.indexOf(this.operatives.find(x => x.equals(operative))), 1);
         return this.operatives;
     }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new FireTeam (
+            object.name,
+            object.operatives,
+        )
+    }
+
+    toString = () => JSON.stringify({
+        name: this.name,
+        operatives: this.operatives,
+    });
+
+    equals = (fireTeam) => fireTeam && fireTeam.name && this.name === fireTeam.name;
+
 }
 
 class Operative {
@@ -42,6 +80,8 @@ class Operative {
         abilities = [],
         actions = [],
         {
+            unique = false,
+            limitTag = [],
             equipment = [],
             battleHonour = [],
             battleScars = [],
@@ -60,10 +100,12 @@ class Operative {
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
         this.actions = Array.isArray(actions) ? actions.filter(x => x instanceof Action) : [];
         this.weapons = Array.isArray(weapons) ? weapons.filter(x => x instanceof Weapon) : [];
+        this.unique = typeof unique === 'boolean' ? unique : false;
+        this.limitTag = Array.isArray(limitTag) ? limitTag.filter(x => typeof x === 'string') : [];
         this.equipment = Array.isArray(equipment) ? equipment.filter(x => x instanceof Equipment) : [];
         this.battleHonour = Array.isArray(battleHonour) ? battleHonour.filter(x => typeof x === 'string') : [];
         this.battleScars = Array.isArray(battleScars) ? battleScars.filter(x => typeof x === 'string') : [];
-        this.specialism = typeof specialism === 'string' ? specialism : Specialism.NONE;
+        this.specialism = Object.values(Specialism).find(x => x === specialism).length ? specialism : Specialism.NONE;
         this.experiencePoints = experiencePoints < 0 ? 0 : experiencePoints;
         this.rank = this.#getRank(experiencePoints);
     }
@@ -102,6 +144,8 @@ class Operative {
             object.abilities?.map(x => Ability.parse(x)),
             object.actions?.map(x => Action.parse(x)),
             {
+                unique: object.unique,
+                limitTag: object.limitTag,
                 equipment: object.equipment?.map(x => Equipment.parse(x)),
                 battleHonour: object.battleHonour,
                 battleScars: object.battleScars,
@@ -117,6 +161,8 @@ class Operative {
         weapons: this.weapons,
         abilities: this.abilities,
         actions: this.actions,
+        unique: this.unique,
+        limitTag: this.limitTag,
         equipment: this.equipment,
         battleHonour: this.battleHonour,
         battleScars: this.battleScars,
@@ -326,19 +372,17 @@ class Equipment {
         );
     }
 
-    toString = () => {
-        return JSON.stringify({
-            name: this.name,
-            rare: this.rare,
-            value: this.value,
-            limit: this.limit,
-            dedicated: this.dedicated,
-            description: this.description,
-            ability: this.ability,
-            action: this.action,
-            weapon: this.weapon,
-        });
-    }
+    toString = () => JSON.stringify({
+        name: this.name,
+        rare: this.rare,
+        value: this.value,
+        limit: this.limit,
+        dedicated: this.dedicated,
+        description: this.description,
+        ability: this.ability,
+        action: this.action,
+        weapon: this.weapon,
+    });
 
     equals = (equipment) => {
         if (!(equipment instanceof Equipment)) equipment = Equipment.parse(equipment);
@@ -386,15 +430,6 @@ class Weapon {
         this.profiles = Array.isArray(profiles) ? profiles.filter(x => x instanceof WeaponProfile) : [];
     }
 
-    static parse = (object) => {
-        if (!(object instanceof Object)) return undefined;
-        return new Weapon(
-            object.name,
-            object.type,
-            object.profiles?.map(x => WeaponProfile.parse(x)),
-        );
-    }
-
     static get tableHTMLWrapper() {
         const table = document.createElement("table");
         table.classList.add("kill-team-weaponList");
@@ -415,6 +450,26 @@ class Weapon {
         });
         tableHead.appendChild(tableRow);
         return tableHead;
+    }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new Weapon(
+            object.name,
+            object.type,
+            object.profiles?.map(x => WeaponProfile.parse(x)),
+        );
+    }
+
+    toString = () => JSON.stringify({
+        name: this.name,
+        type: this.type,
+        profiles: this.profiles,
+    });
+
+    equals = (weapon) => {
+        if (!(weapon instanceof Weapon)) weapon = Weapon.parse(weapon);
+        return this.toString() === weapon.toString();
     }
 
     toHTML = ({ tableWrapper = false } = {}) => {
@@ -493,18 +548,16 @@ class WeaponProfile {
         );
     }
 
-    toString = () => {
-        return JSON.stringify({
-            name: this.name,
-            attacks: this.attacks,
-            skill: this.skill,
-            damageNorm: this.damageNorm,
-            damageCrit: this.damageCrit,
-            range: this.range,
-            specialRules: this.specialRules,
-            criticalEffects: this.criticalEffects,
-        });
-    }
+    toString = () => JSON.stringify({
+        name: this.name,
+        attacks: this.attacks,
+        skill: this.skill,
+        damageNorm: this.damageNorm,
+        damageCrit: this.damageCrit,
+        range: this.range,
+        specialRules: this.specialRules,
+        criticalEffects: this.criticalEffects,
+    });
 
     equals = (profile) => {
         if (!(profile instanceof WeaponProfile)) profile = WeaponProfile.parse(profile);
