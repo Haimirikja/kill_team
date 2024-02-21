@@ -9,6 +9,18 @@
     --mid-gray: #676767;
     --font: #dadada;
 }
+:root{
+    --faction-generic: url('../assets/faction/generic.png');
+    --faction-aeldari: url('../assets/faction/aeldari.png');
+    --faction-chaos: url('../assets/faction/chaos.png');
+    --faction-imperium: url('../assets/faction/imperium.png');
+    --faction-necron: url('../assets/faction/necron.png');
+    --faction-ork: url('../assets/faction/ork.png');
+    --faction-spacemarines: url('../assets/faction/spacemarines.png');
+    --faction-tau: url('../assets/faction/tau.png');
+    --faction-tyranid: url('../assets/faction/tyranid.png');
+    --faction-votann: url('../assets/faction/votann.png');
+}
 *,*::before,*::after{box-sizing:border-box;min-width:0;}
 html {
     font-family: 'Verdana','sans-serif';
@@ -47,6 +59,32 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 }
 .kill-team-phases{text-align:center;}
 .kill-team-phases h2{color:var(--orange);}
+
+.kill-team-command-points {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.kill-team-command-points #CommandPointList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.kill-team-command-points .point {
+    width: 64px;
+    height: 64px;
+    background: var(--faction-generic);
+}
+.kill-team-command-points .aeldari .point{background:var(--faction-aeldari);}
+.kill-team-command-points .chaos .point{background:var(--faction-chaos);}
+.kill-team-command-points .imperium .point{background:var(--faction-imperium);}
+.kill-team-command-points .necron .point{background:var(--faction-necron);}
+.kill-team-command-points .ork .point{background:var(--faction-ork);}
+.kill-team-command-points .spacemarines .point{background:var(--faction-spacemarines);}
+.kill-team-command-points .tau .point{background:var(--faction-tau);}
+.kill-team-command-points .tyranid .point{background:var(--faction-tyranid);}
+.kill-team-command-points .votann .point{background:var(--faction-votann);}
 
 /* .kill-team-item{width:400px;} */
 .kill-team-item .title{font-size:1.4em;}

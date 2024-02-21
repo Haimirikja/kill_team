@@ -522,7 +522,7 @@ const VOID_DANCER_TROUPE = {
                                     "skill": 2,
                                     "damageNorm": 4,
                                     "damageCrit": 6,
-                                    "specialRules": ["Lethal 5+"],
+                                    "specialRules": ["Lethal 5+"]
                                 }
                             ]
                         }

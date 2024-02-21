@@ -1,8 +1,10 @@
 class BattelManager {
-    constructor(killTeam = new KillTeam(), commandPoint) {
-        commandPoint = parseInt(commandPoint);
+    constructor(killTeam = new KillTeam(), commandPoints = 3, victoryPoints = 0) {
+        commandPoints = parseInt(commandPoints);
+        victoryPoints = parseInt(victoryPoints);
         this.killTeam = killTeam instanceof KillTeam ? killTeam : null;
-        this.commandPoints = !isNaN(commandPoint) && isFinite(commandPoint) && commandPoint >= 0 ? commandPoint : 3;
+        this.commandPoints = !isNaN(commandPoints) && isFinite(commandPoints) && commandPoints >= 0 ? commandPoints : 3;
+        this.victoryPoints = !isNaN(commandPoints) && isFinite(commandPoints) && commandPoints >= 0 ? commandPoints : 0;
     }
 
     toHTML = () => {
@@ -26,7 +28,6 @@ class BattelManager {
                 for (let i = this.commandPoints - list.length; i > 0; i--) {
                     const point = document.createElement("div");
                     point.classList.add("point");
-                    point.innerText = ".";
                     target.appendChild(point);
                 }
             }

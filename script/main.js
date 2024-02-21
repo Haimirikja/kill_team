@@ -21,7 +21,7 @@ function loadKillTeam(value, mode = "debug") {
         killTeam = loadDebugKillTeam(value);
     } else {
         const selectedIndex = registeredKillTeams.indexOf(value);
-        fetch(`/assets/data/${registeredKillTeams[selectedIndex]}.json`)
+        fetch(`../assets/data/${registeredKillTeams[selectedIndex]}.json`)
             .then(response => {
                 if (!response.ok) throw response
                 return response.json()
