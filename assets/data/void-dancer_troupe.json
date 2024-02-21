@@ -362,7 +362,7 @@ const VOID_DANCER_TROUPE = {
             ]
         }
     ],
-    "fireTeam": [
+    "fireTeams": [
         {
             "name": "VOID-DANCER TROUPE",
             "psychicPowers": {

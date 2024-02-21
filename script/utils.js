@@ -40,6 +40,12 @@ class Id {
         if (!key || !context) return false;
         return (this.logIdList.find(e => e.context === context && e.list?.includes(key)) ? true : false);
     }
+
+    static cleanContext = (context) => {
+        if (typeof context === 'undefined' || context === "") this.logIdList = [];
+        this.logIdList = this.logIdList.filter(x => x.context !== context);
+        return this.logIdList;
+    }
 }
 
 //NEED REFACTORY...

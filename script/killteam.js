@@ -18,9 +18,21 @@ class KillTeam {
     constructor(name = "", faction = "", fireTeams = []) {
         Object.defineProperty(this, "addOperative", { enumerable: false });
         Object.defineProperty(this, "removeOperative", { enumerable: false });
+        Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
         this.faction = faction && typeof faction === 'string' ? faction : "";
         this.fireTeams = Array.isArray(fireTeams) ? fireTeams.filter(x => x instanceof FireTeam) : [];
+    }
+
+    
+    addFireTeam = (fireTeam) => {
+        if (fireTeam instanceof FireTeam) this.fireTeams.push(fireTeam);
+        return this.fireTeams;
+    }
+    
+    removeFireTeam = (fireTeam) => {
+        if (fireTeam instanceof FireTeam) this.fireTeams.splice(this.fireTeams.indexOf(this.fireTeams.find(x => x.equals(fireTeam))), 1);
+        return this.fireTeams;
     }
 
     static parse = (object) => {
@@ -28,18 +40,20 @@ class KillTeam {
         return new KillTeam(
             object.name,
             object.faction,
-            object.fireTeams,
+            object.fireTeams?.map(x => FireTeam.parse(x)),
         )
     }
 
-    addFireTeam = (fireTeam) => {
-        if (fireTeam instanceof FireTeam) this.fireTeams.push(fireTeam);
-        return this.fireTeams;
-    }
-
-    removeFireTeam = (fireTeam) => {
-        if (fireTeam instanceof FireTeam) this.fireTeams.splice(this.fireTeams.indexOf(this.fireTeams.find(x => x.equals(fireTeam))), 1);
-        return this.fireTeams;
+    toHTML = () => {
+        const killTeamElement = document.createElement("div");
+        killTeamElement.id = new Id(this.name, "killTeam").key;
+        const killTeamName = document.createElement("h1");
+        killTeamName.innerText = this.name + (this.faction ? ` (${this.faction})` : "");
+        killTeamElement.appendChild(killTeamName);
+        this.fireTeams.forEach(fireTeam => {
+            killTeamElement.appendChild(fireTeam.toHTML());
+        });
+        return killTeamElement;
     }
 }
 
@@ -50,6 +64,7 @@ class FireTeam {
         Object.defineProperty(this, "parse", { enumerable: false });
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
+        Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
         this.operatives = Array.isArray(operatives) ? operatives.filter(x => x instanceof Operative) : [];
     }
@@ -68,7 +83,7 @@ class FireTeam {
         if (!(object instanceof Object)) return undefined;
         return new FireTeam (
             object.name,
-            object.operatives,
+            object.operatives?.map(x => Operative.parse(x)),
         )
     }
 
@@ -79,6 +94,18 @@ class FireTeam {
 
     equals = (fireTeam) => fireTeam && fireTeam.name && this.name === fireTeam.name;
 
+    toHTML = () => {
+        const fireTeamElement = document.createElement("div");
+        const fireTeamName = document.createElement("h2");
+        fireTeamName.innerText = this.name;
+        fireTeamElement.appendChild(fireTeamName);
+        const operativesElement = document.createElement("div");
+        this.operatives.forEach(operative => {
+            operativesElement.appendChild(operative.toHTML());
+        });
+        fireTeamElement.appendChild(operativesElement);
+        return fireTeamElement;
+    }
 }
 
 class Operative {

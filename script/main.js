@@ -30,18 +30,21 @@ function loadKillTeam(value, mode = "debug") {
             .catch(e => console.error(e));
     }
     if (killTeam) {
+        killTeam = KillTeam.parse(killTeam);
+        Id.cleanContext();
         const target = document.getElementById("Content");
         target.innerHTML = "";
-        killTeam.equipment.forEach(item => {
-            const eq = Equipment.parse(item);
-            target.appendChild(eq.toHTML());
-        });
-        killTeam.fireTeam[0].operatives.forEach(operative => {
-            const op = Operative.parse(operative);
-            target.appendChild(op.toHTML());
-        });
+        target.appendChild(killTeam.toHTML());
+        // killTeam.equipment.forEach(item => {
+        //     const eq = Equipment.parse(item);
+        //     target.appendChild(eq.toHTML());
+        // });
+        // killTeam.fireTeam[0].operatives.forEach(operative => {
+        //     const op = Operative.parse(operative);
+        //     target.appendChild(op.toHTML());
+        // });
 
-        const bm = new BattelManager(KillTeam.parse(killTeam), 4);
+        const bm = new BattelManager(killTeam, 3);
         bm.toHTML();
     }
 }

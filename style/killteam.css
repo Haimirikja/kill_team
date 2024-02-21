@@ -67,9 +67,11 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     align-items: center;
 }
 .kill-team-command-points #CommandPointList {
+    padding: 1em;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    gap: 1em;
 }
 .kill-team-command-points .point {
     width: 64px;
@@ -85,6 +87,14 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .kill-team-command-points .tau .point{background:var(--faction-tau);}
 .kill-team-command-points .tyranid .point{background:var(--faction-tyranid);}
 .kill-team-command-points .votann .point{background:var(--faction-votann);}
+
+.kill-team-command-points #CommandPointActions {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 2em;
+}
 
 /* .kill-team-item{width:400px;} */
 .kill-team-item .title{font-size:1.4em;}
