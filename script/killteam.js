@@ -46,13 +46,21 @@ class KillTeam {
 
     toHTML = () => {
         const killTeamElement = document.createElement("div");
-        killTeamElement.id = new Id(this.name, "killTeam").key;
         const killTeamName = document.createElement("h1");
         killTeamName.innerText = this.name + (this.faction ? ` (${this.faction})` : "");
         killTeamElement.appendChild(killTeamName);
+        const fireTeamsList = document.createElement("div");
+        ["flex", "column", "nowrap"].forEach(cls => fireTeamsList.classList.add(cls));
+        const fireTeamsBlock = document.createElement("div");
         this.fireTeams.forEach(fireTeam => {
-            killTeamElement.appendChild(fireTeam.toHTML());
+            const fireTeamLink = document.createElement("a");
+            fireTeamLink.setAttribute("href", `#${new Id(fireTeam.name).key}`);
+            fireTeamLink.innerText = fireTeam.name;
+            fireTeamsList.appendChild(fireTeamLink);
+            fireTeamsBlock.appendChild(fireTeam.toHTML());
         });
+        killTeamElement.appendChild(fireTeamsList);
+        killTeamElement.appendChild(fireTeamsBlock);
         return killTeamElement;
     }
 }
@@ -96,14 +104,23 @@ class FireTeam {
 
     toHTML = () => {
         const fireTeamElement = document.createElement("div");
+        fireTeamElement.classList.add("fireTeam");
+        fireTeamElement.id = new Id(this.name).key;
         const fireTeamName = document.createElement("h2");
         fireTeamName.innerText = this.name;
         fireTeamElement.appendChild(fireTeamName);
-        const operativesElement = document.createElement("div");
+        const operativeList = document.createElement("div");
+        ["flex", "column", "nowrap"].forEach(cls => operativeList.classList.add(cls));
+        const operativeBlock = document.createElement("div");
         this.operatives.forEach(operative => {
-            operativesElement.appendChild(operative.toHTML());
+            const operativeLink = document.createElement("a");
+            operativeLink.setAttribute("href", `#${new Id(operative.name).key}`);
+            operativeLink.innerText = operative.name;
+            operativeList.appendChild(operativeLink);
+            operativeBlock.appendChild(operative.toHTML());
         });
-        fireTeamElement.appendChild(operativesElement);
+        fireTeamElement.appendChild(operativeList);
+        fireTeamElement.appendChild(operativeBlock);
         return fireTeamElement;
     }
 }

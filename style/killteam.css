@@ -34,8 +34,13 @@ body {
     margin: 0;
 }
 table{width:100%;border-collapse:collapse;}
+a{text-decoration-style:dotted;color:inherit;}
 
 img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
+.flex{display:flex;}
+.flex.row{flex-direction:row;}
+.flex.column{flex-direction:column;}
+.flex.nowrap{flex-wrap:nowrap;}
 
 .elevatedButton {
     display: inline-block;
@@ -48,6 +53,9 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     border: 1px solid var(--dark-gray);
     border-radius: 50%;
     cursor: pointer;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .kill-team {

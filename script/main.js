@@ -15,10 +15,14 @@ function loadDebugKillTeam(id) {
         default: return undefined;
     }
 }
-function loadKillTeam(value, mode = "debug") {
-    let killTeam;
+function loadKillTeam({
+    value,
+    mode = "debug",
+    battleManager = null
+}) {
+    let currentKillTeam;
     if (mode === "debug") {
-        killTeam = loadDebugKillTeam(value);
+        currentKillTeam = loadDebugKillTeam(value);
     } else {
         const selectedIndex = registeredKillTeams.indexOf(value);
         fetch(`../assets/data/${registeredKillTeams[selectedIndex]}.json`)
@@ -26,15 +30,15 @@ function loadKillTeam(value, mode = "debug") {
                 if (!response.ok) throw response
                 return response.json()
             })
-            .then(json => killTeam = json)
+            .then(json => currentKillTeam = json)
             .catch(e => console.error(e));
     }
-    if (killTeam) {
-        killTeam = KillTeam.parse(killTeam);
+    if (currentKillTeam) {
+        currentKillTeam = KillTeam.parse(currentKillTeam);
         Id.cleanContext();
         const target = document.getElementById("Content");
         target.innerHTML = "";
-        target.appendChild(killTeam.toHTML());
+        target.appendChild(currentKillTeam.toHTML());
         // killTeam.equipment.forEach(item => {
         //     const eq = Equipment.parse(item);
         //     target.appendChild(eq.toHTML());
@@ -43,17 +47,17 @@ function loadKillTeam(value, mode = "debug") {
         //     const op = Operative.parse(operative);
         //     target.appendChild(op.toHTML());
         // });
-
-        const bm = new BattelManager(killTeam, 3);
-        bm.toHTML();
+        battleManager.setCurrentKillTeam(currentKillTeam);
     }
 }
 
 window.onload = () => {
     
+    const bm = new BattleManager();
+
     document.getElementById("KillTeamSelect").addEventListener('change', e => {
         const sender = e.currentTarget;
-        loadKillTeam(sender.value, "debug");
+        loadKillTeam({ value: sender.value, mode: "debug", battleManager: bm });
     });
     //CORSAIR_VOIDSCARRED
 
