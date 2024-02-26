@@ -223,10 +223,65 @@ const CRAFTWORLD = {
                                     "skill": 3,
                                     "damageNorm": 5,
                                     "damageCrit": 7,
-                                    "ap": 1,
                                     "specialRules": [
-                                        "Heavy"
+                                        "Heavy", "AP1"
                                     ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Bright Lance",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 6,
+                                    "damageCrit": 7,
+                                    "specialRules": [
+                                        "Heavy", "AP2"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Scatter Laser",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Heavy", "Ceaseless", "Fusillade"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken Cannon",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Heavy", "Fusillade"],
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Starcannon",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["Heavy", "AP1"],
+                                    "criticalEffects": ["P2"]
                                 }
                             ]
                         }
