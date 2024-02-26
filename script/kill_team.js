@@ -57,7 +57,8 @@ class KillTeam {
         killTeamName.innerText = this.name + (this.faction ? ` (${this.faction})` : "");
         killTeamElement.appendChild(killTeamName);
         const fireTeamsList = document.createElement("div");
-        ["flex", "column", "nowrap"].forEach(cls => fireTeamsList.classList.add(cls));
+        //["flex", "column", "nowrap", "gap"].forEach(cls => fireTeamsList.classList.add(cls));
+        fireTeamsList.classList.add("legend");
         const fireTeamsBlock = document.createElement("div");
         this.fireTeams.forEach(fireTeam => {
             const fireTeamLink = document.createElement("a");
@@ -111,14 +112,16 @@ class FireTeam {
 
     toHTML = () => {
         const fireTeamElement = document.createElement("div");
-        fireTeamElement.classList.add("fireTeam");
+        fireTeamElement.classList.add("kill-team-fire-team");
         fireTeamElement.id = new Id(this.name).key;
         const fireTeamName = document.createElement("h2");
         fireTeamName.innerText = this.name;
         fireTeamElement.appendChild(fireTeamName);
         const operativeList = document.createElement("div");
-        ["flex", "column", "nowrap"].forEach(cls => operativeList.classList.add(cls));
+        //["flex", "column", "nowrap", "gap"].forEach(cls => operativeList.classList.add(cls));
+        operativeList.classList.add("legend");
         const operativeBlock = document.createElement("div");
+        operativeBlock.classList.add("datasheet");
         this.operatives.forEach(operative => {
             const operativeLink = document.createElement("a");
             operativeLink.setAttribute("href", `#${new Id(operative.name).key}`);
@@ -628,7 +631,7 @@ class WeaponProfile {
         let tableCell;
         const tableRow = document.createElement("tr");
         tableCell = document.createElement("td");
-        tableCell.appendChild(replaceMarkup(type));
+        if (type) tableCell.appendChild(replaceMarkup(type));
         tableRow.appendChild(tableCell);
         tableCell = document.createElement("td");
         tableCell.innerText = name && typeof name === 'string' ? name : `- ${this.name}`;

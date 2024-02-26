@@ -47,6 +47,7 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .flex.row{flex-direction:row;}
 .flex.column{flex-direction:column;}
 .flex.nowrap{flex-wrap:nowrap;}
+.flex.gap{gap:1em;}
 
 .button{
     display: inline-block;
@@ -77,6 +78,7 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 }
 
 .kill-team {
+    padding: 1em;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -120,21 +122,21 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     height: 32px;
     background-size: contain;
 }
-.dice.d6-1{background:var(--d6-1);}
-.dice.d6-2{background:var(--d6-2);}
-.dice.d6-3{background:var(--d6-3);}
-.dice.d6-4{background:var(--d6-4);}
-.dice.d6-5{background:var(--d6-5);}
-.dice.d6-6{background:var(--d6-6);}
-.kill-team-battle-manager[for=aeldari] .points-manager .point{background:var(--faction-aeldari);}
-.kill-team-battle-manager[for=chaos] .points-manager .point{background:var(--faction-chaos);}
-.kill-team-battle-manager[for=imperium] .points-manager .point{background:var(--faction-imperium);}
-.kill-team-battle-manager[for=necron] .points-manager .point{background:var(--faction-necron);}
-.kill-team-battle-manager[for=ork] .points-manager .point{background:var(--faction-ork);}
-.kill-team-battle-manager[for=spacemarines] .points-manager .point{background:var(--faction-spacemarines);}
-.kill-team-battle-manager[for=tau] .points-manager .point{background:var(--faction-tau);}
-.kill-team-battle-manager[for=tyranid] .points-manager .point{background:var(--faction-tyranid);}
-.kill-team-battle-manager[for=votann] .points-manager .point{background:var(--faction-votann);}
+.kill-team-battle-manager .points-manager .dice.d6-1{background-image:var(--d6-1);}
+.kill-team-battle-manager .points-manager .dice.d6-2{background-image:var(--d6-2);}
+.kill-team-battle-manager .points-manager .dice.d6-3{background-image:var(--d6-3);}
+.kill-team-battle-manager .points-manager .dice.d6-4{background-image:var(--d6-4);}
+.kill-team-battle-manager .points-manager .dice.d6-5{background-image:var(--d6-5);}
+.kill-team-battle-manager .points-manager .dice.d6-6{background-image:var(--d6-6);}
+.kill-team-battle-manager[for=aeldari] .points-manager .point{background-image:var(--faction-aeldari);}
+.kill-team-battle-manager[for=chaos] .points-manager .point{background-image:var(--faction-chaos);}
+.kill-team-battle-manager[for=imperium] .points-manager .point{background-image:var(--faction-imperium);}
+.kill-team-battle-manager[for=necron] .points-manager .point{background-image:var(--faction-necron);}
+.kill-team-battle-manager[for=ork] .points-manager .point{background-image:var(--faction-ork);}
+.kill-team-battle-manager[for=spacemarines] .points-manager .point{background-image:var(--faction-spacemarines);}
+.kill-team-battle-manager[for=tau] .points-manager .point{background-image:var(--faction-tau);}
+.kill-team-battle-manager[for=tyranid] .points-manager .point{background-image:var(--faction-tyranid);}
+.kill-team-battle-manager[for=votann] .points-manager .point{background-image:var(--faction-votann);}
 
 .kill-team-battle-manager .points-manager .actions {
     padding: 1em;
@@ -142,6 +144,14 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 2em;
+}
+
+.legend {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 0.5em;
 }
 
 /* .kill-team-item{width:400px;} */
@@ -157,9 +167,19 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .kill-team-weaponList tbody{text-align:center;}
 .kill-team-weaponList tr th:nth-child(1){width:1%;}
 .kill-team-weaponList tr th:nth-child(2),
-.kill-team-weaponList tr td:nth-child(2){text-align:left;}
+.kill-team-weaponList tr td:nth-child(2),
+.kill-team-weaponList tr td[colspan]{text-align:left;}
 
-.kill-team-operative{width:100%;padding:0.5em;}
+.kill-team-fire-team{margin-top:1em;}
+.kill-team-fire-team .datasheet {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1em;
+}
+
+.kill-team-operative{width:100%;padding:0.5em;border:1px solid var(--orange);}
 .kill-team-operative header {
     text-align: center;
     display: flex;
