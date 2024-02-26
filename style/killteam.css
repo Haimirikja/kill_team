@@ -8,6 +8,12 @@
     --dark-gray: #515a5c;
     --mid-gray: #676767;
     --font: #dadada;
+    --d6-1: url('../assets/image/d6-1.png');
+    --d6-2: url('../assets/image/d6-2.png');
+    --d6-3: url('../assets/image/d6-3.png');
+    --d6-4: url('../assets/image/d6-4.png');
+    --d6-5: url('../assets/image/d6-5.png');
+    --d6-6: url('../assets/image/d6-6.png');
 }
 :root{
     --faction-generic: url('../assets/faction/generic.png');
@@ -37,11 +43,23 @@ table{width:100%;border-collapse:collapse;}
 a{text-decoration-style:dotted;color:inherit;}
 
 img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
-.flex{display:flex;}
+.flex{display:flex;align-items:flex-start;}
 .flex.row{flex-direction:row;}
 .flex.column{flex-direction:column;}
 .flex.nowrap{flex-wrap:nowrap;}
 
+.button{
+    display: inline-block;
+    text-align: center;
+    line-height: 1em;
+    padding: 0.5em 0.75em;
+    border: 1px solid var(--dark-gray);
+    border-radius: 1em;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .elevatedButton {
     display: inline-block;
     font-size: 1.5em;
@@ -68,35 +86,57 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .kill-team-phases{text-align:center;}
 .kill-team-phases h2{color:var(--orange);}
 
-.kill-team-command-points {
+.kill-team-battle-manager {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+.kill-team-battle-manager .points-manager {
+    width: 50%;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
 }
-.kill-team-command-points #CommandPointList {
+.kill-team-battle-manager .points-manager .points-area {
+    min-height: calc(64px + 2em);
     padding: 1em;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    align-items: center;
     gap: 1em;
 }
-.kill-team-command-points .point {
+.kill-team-battle-manager .points-manager .point {
     width: 64px;
     height: 64px;
     background: var(--faction-generic);
 }
-.kill-team-command-points .aeldari .point{background:var(--faction-aeldari);}
-.kill-team-command-points .chaos .point{background:var(--faction-chaos);}
-.kill-team-command-points .imperium .point{background:var(--faction-imperium);}
-.kill-team-command-points .necron .point{background:var(--faction-necron);}
-.kill-team-command-points .ork .point{background:var(--faction-ork);}
-.kill-team-command-points .spacemarines .point{background:var(--faction-spacemarines);}
-.kill-team-command-points .tau .point{background:var(--faction-tau);}
-.kill-team-command-points .tyranid .point{background:var(--faction-tyranid);}
-.kill-team-command-points .votann .point{background:var(--faction-votann);}
+.kill-team-battle-manager .points-manager .dice {
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+}
+.dice.d6-1{background:var(--d6-1);}
+.dice.d6-2{background:var(--d6-2);}
+.dice.d6-3{background:var(--d6-3);}
+.dice.d6-4{background:var(--d6-4);}
+.dice.d6-5{background:var(--d6-5);}
+.dice.d6-6{background:var(--d6-6);}
+.kill-team-battle-manager[for=aeldari] .points-manager .point{background:var(--faction-aeldari);}
+.kill-team-battle-manager[for=chaos] .points-manager .point{background:var(--faction-chaos);}
+.kill-team-battle-manager[for=imperium] .points-manager .point{background:var(--faction-imperium);}
+.kill-team-battle-manager[for=necron] .points-manager .point{background:var(--faction-necron);}
+.kill-team-battle-manager[for=ork] .points-manager .point{background:var(--faction-ork);}
+.kill-team-battle-manager[for=spacemarines] .points-manager .point{background:var(--faction-spacemarines);}
+.kill-team-battle-manager[for=tau] .points-manager .point{background:var(--faction-tau);}
+.kill-team-battle-manager[for=tyranid] .points-manager .point{background:var(--faction-tyranid);}
+.kill-team-battle-manager[for=votann] .points-manager .point{background:var(--faction-votann);}
 
-.kill-team-command-points #CommandPointActions {
+.kill-team-battle-manager .points-manager .actions {
     padding: 1em;
     display: flex;
     flex-direction: row;

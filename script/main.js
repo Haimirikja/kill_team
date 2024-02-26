@@ -16,15 +16,16 @@ function loadDebugKillTeam(id) {
     }
 }
 function loadKillTeam({
-    value,
+    id,
     mode = "debug",
     battleManager = null
 }) {
     let currentKillTeam;
+    console.log(id);
     if (mode === "debug") {
-        currentKillTeam = loadDebugKillTeam(value);
+        currentKillTeam = loadDebugKillTeam(id);
     } else {
-        const selectedIndex = registeredKillTeams.indexOf(value);
+        const selectedIndex = registeredKillTeams.indexOf(id);
         fetch(`../assets/data/${registeredKillTeams[selectedIndex]}.json`)
             .then(response => {
                 if (!response.ok) throw response
@@ -54,10 +55,11 @@ function loadKillTeam({
 window.onload = () => {
     
     const bm = new BattleManager();
+    bm.load();
 
     document.getElementById("KillTeamSelect").addEventListener('change', e => {
         const sender = e.currentTarget;
-        loadKillTeam({ value: sender.value, mode: "debug", battleManager: bm });
+        loadKillTeam({ id: sender.value, mode: "debug", battleManager: bm });
     });
     //CORSAIR_VOIDSCARRED
 

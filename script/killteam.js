@@ -18,6 +18,7 @@ class KillTeam {
     constructor(name = "", faction = "", fireTeams = []) {
         Object.defineProperty(this, "addOperative", { enumerable: false });
         Object.defineProperty(this, "removeOperative", { enumerable: false });
+        Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
         this.faction = faction && typeof faction === 'string' ? faction : "";
@@ -43,6 +44,12 @@ class KillTeam {
             object.fireTeams?.map(x => FireTeam.parse(x)),
         )
     }
+
+    toString = () => JSON.stringify({
+        name: this.name,
+        faction: this.faction,
+        fireTeams: this.fireTeams
+    });
 
     toHTML = () => {
         const killTeamElement = document.createElement("div");
