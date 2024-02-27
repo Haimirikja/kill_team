@@ -5,6 +5,7 @@ class BattleManager {
         "void-dancer_troupe",
         "fleet_hive",
         "legionary",
+        "exaction",
     ];
     
     #BattleManagerRefList = {
@@ -75,6 +76,9 @@ class BattleManager {
                     break;
                 case "void-dancer_troupe":
                     rules = VOID_DANCER_TROUPE;
+                    break;
+                case "exaction":
+                    rules = EXACTION;
                     break;
                 default: return undefined;
             }

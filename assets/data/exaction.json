@@ -1,0 +1,773 @@
+const EXACTION = {
+    "name": "EXACTION",
+    "faction": "IMPERIUM",
+    "abilities": [
+        {
+            "name": "RUTHLESS EFFICIENCY",
+            "description": [
+                "Each time a friendly operative with this ability makes a shooting attack with a weapon that doesn't have the Blast special rule or the word 'grenade' in its name, in the Select Valid Target step of that shooting attack, enemy operatives within ((6)) of it can have other friendly operatives within Engagement Range and still be selected as a valid target (they must still be a valid target by all other means).",
+                "Each time a friendly operative with this ability makes a shooting attack with a weapon that doesn't have the Blast special rule or the word 'grenade' in its name, if the target is within ((2)) of another friendly EXACTION SQUAD operative, that ranged weapon has the P1 critical hit rule for that shooting attack."
+            ]
+        }
+    ],
+    "fireTeams": [
+        {
+            "name": "Exaction",
+            "operatives": [
+                {
+                    "name": "Arbites Proctor-exactant",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        9
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        },
+                        {
+                            "name": "Assault Shield",
+                            "description": [
+                                "If this operative is equipped with a dominator maul & assault shield, it has a 3+ Save characteristic."
+                            ]
+                        },
+                        {
+                            "name": "*Repress",
+                            "description": [
+                                "Each time this operative fights in combat with this weapon, you are the Attacker (i.e. even if this operative is not the active operative). If both operatives have this special rule, it has no effect."
+                            ]
+                        },
+                        {
+                            "name": "*Shield",
+                            "description": [
+                                "Each time this operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, each time it parries, two of your opponent's successful hits are discarded (instead of one)."
+                            ]
+                        },
+                        {
+                            "name": "Nuncio-aquila",
+                            "description": [
+                                "• Each time an enemy operative would perform a mission action or the Pick Up action, if that enemy operative is within ((3)) of your Nuncio-aquila token (or this operative if that token has not been placed), one additional action point must be subtracted to perform that action. See the Deploy Nuncio-aquila action below for how that token is placed.",
+                                "• When determining control of an objective marker your Nuncio-aquila token (or this operative if that token has not been placed) is within ((3)) of, treat enemy operatives' total APL as being 1 less. Note that this is not a modifier."
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Deploy Nuncio-aquila",
+                            "cost": 0,
+                            "description": [
+                                "The first time this operative performs this action during a battle, place one of your Nuncio-aquila tokens within ((6)) horizontally and any distance vertically of this operative. Each time this operative performs this action thereafter, you can move that Nuncio-aquila token up to ((6)) horizontally and up to any distance vertically. This operative cannot perform this action while within Engagement Range of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Combat shotgun",
+                            "profiles": [
+                                {
+                                    "name": "Close range",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                },
+                                {
+                                    "name": "Long range",
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Repression baton",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Dominator maul & assault shield",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4,
+                                    "specialRules": [
+                                        "Lethal 5+",
+                                        "Repress*",
+                                        "Shield*"
+                                    ],
+                                    "criticalEffects": [
+                                        "Stun"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Arbites Castigator",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        },
+                        {
+                            "name": "Engendered Focus",
+                            "description": [
+                                "You can ignore any or all modifiers to this operative's characteristics (including modifiers to the weapons it is equipped with, but excluding its Defence characteristic)."
+                            ]
+                        },
+                        {
+                            "name": "Zealous Dedication",
+                            "description": [
+                                "Each time this operative would lose a wound, roll one D6: on a 6, that wound is not lost."
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Castigator's Arrest",
+                            "cost": 1,
+                            "description": [
+                                "Perform a free Fight action with this operative against a valid target with a Wounds characteristic of 10 or less. At the end of that combat, if neither operative has been incapacitated, the target is arrested until the end of the battle. While a friendly EXACTION SQUAD operative is within Engagement Range of no more than one arrested enemy operative and no other enemy operatives, that arrested enemy operative cannot perform any actions other than Pass. Operatives that can perform this action cannot themselves be arrested."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Combat shotgun",
+                            "profiles": [
+                                {
+                                    "name": "Close range",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                },
+                                {
+                                    "name": "Long range",
+                                    "attacks": 4,
+                                    "skill": 5,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Execruciator maul",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4,
+                                    "criticalEffects": [
+                                        "Rending",
+                                        "Stun"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Arbites Chirurgant",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        },
+                        {
+                            "name": "Medic!",
+                            "description": [
+                                "Once per Turning Point, the first time another friendly EXACTION SQUAD operative would be incapacitated while Visible to and within ((3)) of this operative and not within Engagement Range of an enemy operative, if this operative is not within Engagement Range of an enemy operative, this operative can revive it. That friendly operative is not incapacitated, has 1 wound remaining, and if it was a shooting attack, any remaining attack dice are discarded. That friendly operative can then perform a free Dash action, but must finish that move within  of this operative. Subtract 1 from both operatives' APL."
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Medikit",
+                            "cost": 1,
+                            "description": [
+                                "Select one friendly EXACTION SQUAD operative Visible to and within ((1)) of this operative. That friendly operative regains 2D3 lost wounds. An operative cannot be selected for this action if it was revived using the Medic! ability during the same Turning Point. This operative cannot perform this action while within Engagement Range of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Combat shotgun",
+                            "profiles": [
+                                {
+                                    "name": "Close range",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                },
+                                {
+                                    "name": "Long range",
+                                    "attacks": 4,
+                                    "skill": 5,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Repression baton",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Arbites Gunner",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Grenade launcher",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "specialRules": ["AP1"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Heavy stubber",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 4,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": ["Ceaseless","Fusillade","Heavy"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Webber",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 6,
+                                    "specialRules": ["Lethal 5+"],
+                                    "criticalEffects": ["Stun"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Repression baton",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Arbites Leashmaster",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        },
+                        {
+                            "name": "Handler",
+                            "description": [
+                                "Each time this operative is activated, you can also activate a ready friendly R-VR CYBER-MASTIFF operative at the same time. Complete their actions in any order."
+                            ]
+                        },
+                        {
+                            "name": "Attack Pattern",
+                            "description": [
+                                "When this operative is selected for deployment, select one of the following attack patterns for a friendly R-VR CYBER-MASTIFF operative to have for the battle:",
+                                "• Aggressive: Melee weapons it is equipped with gain the Relentless special rule.",
+                                "• Swift: Add ((2)) to its Movement characteristic.",
+                                "• Defensive: Improve its Save characteristic by 1."
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Command",
+                            "cost": 0,
+                            "description": [
+                                "Select one friendly R-VR CYBER-MASTIFF operative within ((6)) of this operative and change its attack pattern."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Combat shotgun",
+                            "profiles": [
+                                {
+                                    "name": "Close range",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                },
+                                {
+                                    "name": "Long range",
+                                    "attacks": 4,
+                                    "skill": 5,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Repression baton",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "R-VR Cyber-mastiff",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Beast",
+                            "description": ["Other than the Gather Evidence mission action, this operative cannot perform mission actions and cannot be equipped with equipment."]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Apprehend",
+                            "cost": 1,
+                            "description": ["Select one enemy operative within this operative's Engagement Range. That enemy operative suffers D3 mortal wounds, and until it's no longer within this operative's Engagement Range, it's apprehended. Each time an apprehended enemy operative would perform a Fall Back action, your opponent must roll one D6, adding 1 to the result for each wound it has remaining that's greater than this operative's remaining wounds. If the result is less than this operative's remaining wounds, that enemy operative cannot perform that action (the action points are refunded)."]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((M))",
+                            "name": "Mechanical bite",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 3,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Lethal 5+"]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Arbites Malocator",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        },
+                        {
+                            "name": "Acute Focus",
+                            "description": ["Once per Turning Point, during this operative's activation, it can perform a mission action or the Pick Up action for one less action point (to a minimum of 0AP)."]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Veriscant",
+                            "cost": 1,
+                            "description": ["Select one enemy operative in this operative's Line of Sight. Until the end of the Turning Point, each time a friendly EXACTION SQUAD operative fights in combat or makes a shooting attack against that enemy operative, in the Roll Attack Dice step of that combat or shooting attack, you can retain one of your successful normal hits as a critical hit instead. This operative cannot perform this action while within Engagement Range of an enemy operative."]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Combat shotgun",
+                            "profiles": [
+                                {
+                                    "name": "Close range",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                },
+                                {
+                                    "name": "Long range",
+                                    "attacks": 4,
+                                    "skill": 5,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Repression baton",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Arbites Marksman",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Take Aim",
+                            "cost": 1,
+                            "description": ["Until the end of the activation, the executioner shotgun this operative is equipped with gains the Balanced and No Cover special rules. This operative cannot perform this action while within ((3)) of an enemy operative."]
+                        },
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Executioner shotgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 1,
+                                    "specialRules": ["Heavy","Silent","Lethal 5+"],
+                                    "criticalEffects": ["MW3"],
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Repression baton",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Arbites Revelatum",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        },
+                        {
+                            "name": "First in the Field",
+                            "description": [
+                                "At the end of the Initiative phase of the first Turning Point, if this operative is wholly within your drop zone, it can perform a free Normal Move action as if it can FLY."
+                            ]
+                        },
+                    ],
+                    "actions": [
+                        {
+                            "name": "Soulguilt Scan",
+                            "cost": 1,
+                            "description": ["Select one enemy operative Visible to and within ((6)) of this operative. Until the end of the Turning Point, friendly EXACTION SQUAD operatives Visible to and within ((3)) of this operative treat that enemy operative as if it has an Engage order."]
+                        },
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Scoped shotpistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 1,
+                                    "specialRules": ["Lethal 5+"],
+                                    "criticalEffects": ["MW2"],
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Repression baton",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Arbites Subductor",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        3,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        },
+                        {
+                            "name": "*Repress",
+                            "description": [
+                                "Each time this operative fights in combat with this weapon, you are the Attacker (i.e. even if this operative is not the active operative). If both operatives have this special rule, it has no effect."
+                            ]
+                        },
+                        {
+                            "name": "*Shield",
+                            "description": ["Each time this operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, each time it parries, two of your opponent's successful hits are discarded (instead of one)."]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((M))",
+                            "name": "Shock maul & assault shield",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4,
+                                    "specialRules": ["Repress*", "Shield*"],
+                                    "criticalEffects": ["Stun"],
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Arbites Vigilant",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Combat shotgun",
+                            "profiles": [
+                                {
+                                    "name": "Close range",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                },
+                                {
+                                    "name": "Long range",
+                                    "attacks": 4,
+                                    "skill": 5,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Repression baton",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Arbites Vox-signifier",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Ruthless Efficiency"
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Precinct Vox-relay",
+                            "cost": 1,
+                            "description": ["Select one friendly EXACTION SQUAD operative (excluding R-VR CYBER-MASTIFF operatives) Visible to this operative. Add 1 to its APL. This operative cannot perform this action while within Engagement Range of an enemy operative."]
+                        },
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Combat shotgun",
+                            "profiles": [
+                                {
+                                    "name": "Close range",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                },
+                                {
+                                    "name": "Long range",
+                                    "attacks": 4,
+                                    "skill": 5,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Repression baton",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

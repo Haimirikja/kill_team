@@ -57,6 +57,7 @@ function replaceMarkup(string) {
         { key: '((6))', value: { tagName: "img", attr: { "src": "assets/image/dist6.png", "class": "inline-image" } } },
         { key: '((R))', value: { tagName: "img", attr: { "src": "assets/image/ranged.png", "class": "inline-image" } } },
         { key: '((M))', value: { tagName: "img", attr: { "src": "assets/image/melee.png", "class": "inline-image" } } },
+        { key: '((-))', value: "•" },
     ];
     const container = document.createElement("span");
     let parts = [string];
@@ -69,13 +70,17 @@ function replaceMarkup(string) {
             }
             element.split(markup.key).forEach((part, i) => {
                 if (i > 0) {
-                    const replacement = document.createElement(markup.value.tagName);
-                    for (const attr in markup.value.attr) {
-                        replacement.setAttribute(attr, markup.value.attr[attr]);
+                    let replacement;
+                    if (typeof markup.value === 'string') replacement = markup.value;
+                    else {
+                        replacement = document.createElement(markup.value.tagName);
+                        for (const attr in markup.value.attr) {
+                            replacement.setAttribute(attr, markup.value.attr[attr]);
+                        }
                     }
                     temp.push(replacement);
                 }
-                temp.push(part);
+                if (part !== "") temp.push(part);
             });
         });
         parts = temp;

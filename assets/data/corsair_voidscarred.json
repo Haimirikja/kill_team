@@ -60,8 +60,8 @@ const CORSAIR_VOIDSCARRED = {
             "description": [
                 "Each time a friendly operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, if you retain any critical hits, subtract 1 from the target's APL.",
                 "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat:",
-                "- The first time you strike with a critical hit, select one of your opponent's normal hits from that combat to be discarded.",
-                "- The second time you strike with a critical hit, subtract 1 from the target's APL."
+                "• The first time you strike with a critical hit, select one of your opponent's normal hits from that combat to be discarded.",
+                "• The second time you strike with a critical hit, subtract 1 from the target's APL."
             ]
         }
     ],
@@ -351,55 +351,57 @@ const CORSAIR_VOIDSCARRED = {
             ]
         }
     ],
+    "psychicPowers": [
+        {
+            "name": "LIGHTNING STRIKE",
+            "description": [
+                "Perform a free Shoot action using the following ranged weapon:"
+            ],
+            "weapons": [
+                {
+                    "type": "((R))",
+                    "name": "Lightning strike",
+                    "profiles": [
+                        {
+                            "attacks": 4,
+                            "skill": 3,
+                            "damageNorm": 4,
+                            "damageCrit": 5,
+                            "specialRules": ["AP1"]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "WARDING SHIELD",
+            "description": [
+                "Select one friendly CORSAIR VOIDSCARRED operative Visible to and within ((6)) of this operative",
+                "Until the end of the Turning Point, that operative has a 3+ invulnerable save."
+            ]
+        },
+        {
+            "name": "FREEZING GRASP",
+            "description": [
+                "Select one enemy operative Visible to this operative",
+                "Until the end of the Turning Point, subtract ((2)) from that enemy operative's Movement characteristic and it cannot perform the Dash action."
+            ]
+        },
+        {
+            "name": "WARP FOLD",
+            "description": [
+                "Select one other friendly CORSAIR VOIDSCARRED operative Visible to and within ((6)) of this operative.",
+                "That friendly operative and this operative both drop any objective markers they are carrying.",
+                "That friendly operative then swaps positions with this operative; remove both operatives from the killzone and set them back up in their new positions."
+            ]
+        }
+    ],
     "fireTeams": [
         {
-            "name": "CORSAIR VOIDSCARRED",
-            "psychicPowers": {
-                "list": [
-                    {
-                        "name": "LIGHTNING STRIKE",
-                        "description": [
-                            "Perform a free Shoot action using the following ranged weapon:"
-                        ],
-                        "weapons": [
-                            {
-                                "type": "((R))",
-                                "name": "Lightning strike",
-                                "attacks": 4,
-                                "skill": 3,
-                                "damageNorm": 4,
-                                "damageCrit": 5,
-                                "specialRules": ["AP1"]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "WARDING SHIELD",
-                        "description": [
-                            "Select one friendly CORSAIR VOIDSCARRED operative Visible to and within ((6)) of this operative",
-                            "Until the end of the Turning Point, that operative has a 3+ invulnerable save."
-                        ]
-                    },
-                    {
-                        "name": "FREEZING GRASP",
-                        "description": [
-                            "Select one enemy operative Visible to this operative",
-                            "Until the end of the Turning Point, subtract ((2)) from that enemy operative's Movement characteristic and it cannot perform the Dash action."
-                        ]
-                    },
-                    {
-                        "name": "WARP FOLD",
-                        "description": [
-                            "Select one other friendly CORSAIR VOIDSCARRED operative Visible to and within ((6)) of this operative.",
-                            "That friendly operative and this operative both drop any objective markers they are carrying.",
-                            "That friendly operative then swaps positions with this operative; remove both operatives from the killzone and set them back up in their new positions."
-                        ]
-                    }
-                ]
-            },
+            "name": "Corsair Voidscarred",
             "operatives": [
                 {
-                    "name": "VOIDSCARRED FELARCH",
+                    "name": "Voidscarred Felarch",
                     "stats": [6, 2, 1, 3, 4, 9],
                     "abilities": [
                         {
@@ -482,7 +484,7 @@ const CORSAIR_VOIDSCARRED = {
                     ]
                 },
                 {
-                    "name": "VOIDSCARRED GUNNER",
+                    "name": "Voidscarred Gunner",
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -546,7 +548,7 @@ const CORSAIR_VOIDSCARRED = {
                     ]
                 },
                 {
-                    "name": "VOIDSCARRED HEAVY GUNNER",
+                    "name": "Voidscarred Heavy Gunner",
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -611,7 +613,7 @@ const CORSAIR_VOIDSCARRED = {
                     ]
                 },
                 {
-                    "name": "VOIDSCARRED STARSTORM DUELLIST",
+                    "name": "Voidscarred Starstorm Duellist",
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -680,7 +682,7 @@ const CORSAIR_VOIDSCARRED = {
                     ]
                 },
                 {
-                    "name": "VOIDSCARRED KURNITE HUNTER",
+                    "name": "Voidscarred Kurnite Hunter",
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -693,9 +695,9 @@ const CORSAIR_VOIDSCARRED = {
                             "cost": 1,
                             "description": [
                                 "Select one enemy operative with a Conceal order that is Visible to this operative and roll one D6, adding 1 to the result for each of the following:",
-                                "- That enemy operative is within ((6)) of this operative.",
-                                "- That enemy operative is not ready.",
-                                "- That enemy operative is not within ((1)) of Heavy terrain.",
+                                "• That enemy operative is within ((6)) of this operative.",
+                                "• That enemy operative is not ready.",
+                                "• That enemy operative is not within ((1)) of Heavy terrain.",
                                 "On a 6+, until the end of the Turning Point, friendly CORSAIR VOIDSCARRED operatives treat that enemy operative as if it has an Engage order.",
                                 "This operative cannot perform this action if it is within Engagement Range of an enemy operative."
                             ]
@@ -732,7 +734,7 @@ const CORSAIR_VOIDSCARRED = {
                     ]
                 },
                 {
-                    "name": "VOIDSCARRED SHADE RUNNER",
+                    "name": "Voidscarred Shade Runner",
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -796,7 +798,7 @@ const CORSAIR_VOIDSCARRED = {
                     ]
                 },
                 {
-                    "name": "VOIDSCARRED KURNATHI",
+                    "name": "Voidscarred Kurnathi",
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -841,7 +843,7 @@ const CORSAIR_VOIDSCARRED = {
                     ]
                 },
                 {
-                    "name": "VOIDSCARRED FATE DEALER",
+                    "name": "Voidscarred Fate Dealer",
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -908,7 +910,7 @@ const CORSAIR_VOIDSCARRED = {
                     ]
                 },
                 {
-                    "name": "VOIDSCARRED WAY SEEKER",
+                    "name": "Voidscarred Way Seeker",
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -957,7 +959,7 @@ const CORSAIR_VOIDSCARRED = {
                     ]
                 },
                 {
-                    "name": "VOIDSCARRED SOUL WEAVER",
+                    "name": "Voidscarred Soul Weaver",
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -1017,7 +1019,7 @@ const CORSAIR_VOIDSCARRED = {
                     ]
                 },
                 {
-                    "name": "VOIDSCARRED WARRIOR",
+                    "name": "Voidscarred Warrior",
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {

@@ -1,3 +1,9 @@
+const PloyType = {
+    NONE: "Generic",
+    STRATEGIC: "Strategic",
+    TACTICAL: "Tactical",
+}
+
 const Specialism = {
     NONE: "None",
     COMBAT: "Combat",
@@ -15,13 +21,17 @@ const Rank = {
 }
 
 class KillTeam {
-    constructor(name = "", faction = "", fireTeams = []) {
+    constructor(name = "", faction = "", abilities = [], strategicPloy = [], tacticalPloy = [], psychicPowers = [], fireTeams = []) {
         Object.defineProperty(this, "addOperative", { enumerable: false });
         Object.defineProperty(this, "removeOperative", { enumerable: false });
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
         this.faction = faction && typeof faction === 'string' ? faction : "";
+        this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
+        this.strategicPloy = Array.isArray(strategicPloy) ? strategicPloy.filter(x => x instanceof StrategicPloy) : [];
+        this.tacticalPloy = Array.isArray(tacticalPloy) ? tacticalPloy.filter(x => x instanceof TacticalPloy) : [];
+        this.psychicPowers = Array.isArray(psychicPowers) ? psychicPowers.filter(x => x instanceof PsychicPower) : [];
         this.fireTeams = Array.isArray(fireTeams) ? fireTeams.filter(x => x instanceof FireTeam) : [];
     }
 
@@ -41,6 +51,10 @@ class KillTeam {
         return new KillTeam(
             object.name,
             object.faction,
+            object.abilities?.map(x => Ability.parse(x)),
+            object.strategicPloy?.map(x => StrategicPloy.parse(x)),
+            object.tacticalPloy?.map(x => TacticalPloy.parse(x)),
+            object.psychicPowers?.map(x => PsychicPower.parse(x)),
             object.fireTeams?.map(x => FireTeam.parse(x)),
         )
     }
@@ -48,26 +62,61 @@ class KillTeam {
     toString = () => JSON.stringify({
         name: this.name,
         faction: this.faction,
+        abilities: this.abilities,
+        psychicPowers: this.psychicPowers,
         fireTeams: this.fireTeams
     });
 
     toHTML = () => {
         const killTeamElement = document.createElement("div");
         const killTeamName = document.createElement("h1");
-        killTeamName.innerText = this.name + (this.faction ? ` (${this.faction})` : "");
+        killTeamName.classList.add("title");
+        killTeamName.innerText = `${this.name} Kill Team`+(this.faction ? ` (${this.faction})` : "");
         killTeamElement.appendChild(killTeamName);
         const fireTeamsList = document.createElement("div");
-        //["flex", "column", "nowrap", "gap"].forEach(cls => fireTeamsList.classList.add(cls));
         fireTeamsList.classList.add("legend");
         const fireTeamsBlock = document.createElement("div");
         this.fireTeams.forEach(fireTeam => {
             const fireTeamLink = document.createElement("a");
             fireTeamLink.setAttribute("href", `#${new Id(fireTeam.name).key}`);
-            fireTeamLink.innerText = fireTeam.name;
+            fireTeamLink.innerText = `${fireTeam.name} Fire Team`;
             fireTeamsList.appendChild(fireTeamLink);
             fireTeamsBlock.appendChild(fireTeam.toHTML());
         });
         killTeamElement.appendChild(fireTeamsList);
+        if (this.abilities) {
+            const killTeamAbilities = document.createElement("div");
+            const killTeamAbilitiesTitle = document.createElement("h2");
+            killTeamAbilitiesTitle.classList.add("title");
+            const killTeamAbilitiesSubTitle = document.createElement("div");
+            if (this.abilities.length === 1) {
+                killTeamAbilitiesTitle.innerText = "ABILITY";
+                killTeamAbilitiesSubTitle.innerText = `Below, you will find common abilities of the ${this.name} kill team.`;
+            } else {
+                killTeamAbilitiesTitle.innerText = "ABILITIES";
+                killTeamAbilitiesSubTitle.innerText = `Below, you will find common abilities of the ${this.name} kill team.`;
+            }
+            killTeamAbilities.appendChild(killTeamAbilitiesTitle);
+            killTeamAbilities.appendChild(killTeamAbilitiesSubTitle);
+            this.abilities.forEach(ability => {
+                killTeamAbilities.appendChild(ability.toHTML(true));
+            });
+            killTeamElement.appendChild(killTeamAbilities);
+        }
+        if (this.psychicPowers) {
+            const killTeamPsychicPowers = document.createElement("div");
+            const killTeamPsychicPowersTitle = document.createElement("h2");
+            killTeamPsychicPowersTitle.classList.add("title");
+            killTeamPsychicPowersTitle.innerText = "PSYCHIC POWERS";
+            killTeamPsychicPowers.appendChild(killTeamPsychicPowersTitle);
+            const killTeamPsychicPowersSubtitle = document.createElement("div");
+            killTeamPsychicPowersSubtitle.innerText = `Each time a friendly ${this.name} operative performs the Manifest Psychic Power action, select one psychic power from the list below to be resolved. You can only select each psychic power a maximum of once per Turning Point.`
+            killTeamPsychicPowers.appendChild(killTeamPsychicPowersSubtitle);
+            this.psychicPowers.forEach(psychicPower => {
+                killTeamPsychicPowers.appendChild(psychicPower.toHTML());
+            });
+            killTeamElement.appendChild(killTeamPsychicPowers);
+        }
         killTeamElement.appendChild(fireTeamsBlock);
         return killTeamElement;
     }
@@ -115,7 +164,8 @@ class FireTeam {
         fireTeamElement.classList.add("kill-team-fire-team");
         fireTeamElement.id = new Id(this.name).key;
         const fireTeamName = document.createElement("h2");
-        fireTeamName.innerText = this.name;
+        fireTeamName.classList.add("title");
+        fireTeamName.innerText = `${this.name} Fire Team`;
         fireTeamElement.appendChild(fireTeamName);
         const operativeList = document.createElement("div");
         //["flex", "column", "nowrap", "gap"].forEach(cls => operativeList.classList.add(cls));
@@ -314,14 +364,50 @@ class Operative {
 
 }
 
+class Ploy {
+    constructor(name = "", cost = 0, description = []) {
+        Object.defineProperty(this, "toString", { enumerable: false });
+        Object.defineProperty(this, "equals", { enumerable: false });
+        Object.defineProperty(this, "toHTML", { enumerable: false });
+        this.name = name && typeof name === 'string' ? name : "";
+        cost = parseInt(cost);
+        this.cost = !isNaN(cost) && isFinite(cost) && cost > 0 ? cost : 0;
+        this.description = Array.isArray(description) ? description.filter(x => typeof x === 'string') : [];
+    }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new Ploy(
+            object.name,
+            object.cost,
+            object.description,
+        );
+    }
+}
+
+class StrategicPloy extends Ploy {
+    constructor(name = "", cost = 0, description = []) {
+        super(name, cost, description);
+        this.type = PloyType.STRATEGIC;
+    }
+}
+
+class TacticalPloy extends Ploy {
+    constructor(name = "", cost = 0, description = []) {
+        super(name, cost, description);
+        this.type = PloyType.TACTICAL;
+    }
+}
+
 class Ability {
-    constructor(name, description = []) {
+    constructor(name, description = [], table = null) {
         Object.defineProperty(this, "toString", { enumrable: false });
         Object.defineProperty(this, "equals", { enumrable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
         if (!Array.isArray(description)) description = [description];
         this.description = description.filter(x => typeof x === 'string');
+        this.table = table;
     }
 
     static parse = (object) => {
@@ -329,12 +415,14 @@ class Ability {
         return new Ability(
             object.name,
             object.description,
+            object.table,
         );
     }
 
     toString = () => JSON.stringify({
         name: this.name,
         description: this.description,
+        table: this.table,
     });
 
     equals = (ability) => {
@@ -342,16 +430,51 @@ class Ability {
         return this.toString() === ability.toString();
     }
 
-    toHTML = () => {
+    toHTML = (headedTitle = false) => {
         const abilityElement = document.createElement("div");
         abilityElement.classList.add("kill-team-ability");
-        const abilityName = document.createElement("b");
-        abilityName.innerText = this.description.length ? `${this.name}: ` : this.name;
-        abilityElement.appendChild(abilityName);
-        this.description.forEach((row, i) => {
-            if (i > 0) abilityElement.appendChild(document.createElement("br"));
-            abilityElement.appendChild(replaceMarkup(row));
-        });
+        if (headedTitle) {
+            const abilityName = document.createElement("h3");
+            abilityName.classList.add("title");
+            abilityName.innerText = this.name;
+            abilityElement.appendChild(abilityName);
+            const abilityDescription = document.createElement("div");
+            this.description.forEach((row, i) => {
+                if (i > 0) abilityDescription.appendChild(document.createElement("br"));
+                abilityDescription.appendChild(replaceMarkup(row));
+            });
+            abilityElement.appendChild(abilityDescription);
+            if (this.table) {
+                const abilityTable = document.createElement("table");
+                abilityTable.classList.add("ability-table");
+                const abilityTableHeader = document.createElement("thead");
+                const abilityTableContent = document.createElement("tbody");
+                let rowElement;
+                let cellElement;
+                this.table.rows.forEach((row, i) => {
+                    rowElement = document.createElement("tr");
+                    row.cells.forEach(cell => {
+                        cellElement = document.createElement(i === 0 ? "th" : "td");
+                        cellElement.appendChild(replaceMarkup(cell));
+                        rowElement.appendChild(cellElement);
+                    });
+                    if (i === 0) abilityTableHeader.appendChild(rowElement);
+                    else abilityTableContent.appendChild(rowElement);
+                });
+                abilityTable.appendChild(abilityTableHeader);
+                abilityTable.appendChild(abilityTableContent);
+                abilityElement.appendChild(abilityTable);
+            }
+        } else {
+            const abilityName = document.createElement("b");
+            abilityName.innerText = this.description.length ? `${this.name}: ` : this.name;
+            abilityElement.appendChild(abilityName);
+            this.description.forEach((row, i) => {
+                if (i > 0) abilityElement.appendChild(document.createElement("br"));
+                abilityElement.appendChild(replaceMarkup(row));
+            });
+        }
+        
         return abilityElement;
     }
 }
@@ -400,6 +523,60 @@ class Action {
         });
         return actionElement;
     }
+}
+
+class PsychicPower {
+    constructor(name, description = [], { weapons = [] } = {}) {
+        Object.defineProperty(this, "toString", { enumerable: false });
+        Object.defineProperty(this, "equals", { enumerable: false });
+        Object.defineProperty(this, "toHTML", { enumerable: false });
+        this.name = name && typeof name === 'string' ? name : "";
+        this.description = Array.isArray(description) ? description.filter(x => typeof x === 'string') : [];
+        this.weapons = Array.isArray(weapons) ? weapons.filter(x => x instanceof Weapon) : [];
+    }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new PsychicPower(
+            object.name,
+            object.description,
+            {
+                weapons: object.weapons?.map(x => Weapon.parse(x)),
+            }
+        );
+    }
+    
+    toString = () => JSON.stringify({
+        name: this.name,
+        description: this.description,
+        weapons: this.weapons,
+    });
+
+    equals = (psychicPower) => {
+        if (!(psychicPower instanceof PsychicPower)) psychicPower = PsychicPower.parse(psychicPower);
+        return this.toString() === psychicPower.toString();
+    }
+
+    toHTML = () => {
+        const psychicPowerElement = document.createElement("div");
+        psychicPowerElement.classList.add("kill-team-psychic-power");
+        const psychicPowerTitle = document.createElement("header");
+        const psychicPowerName = document.createElement("span");
+        const psychicPowerContent = document.createElement("div");
+        psychicPowerName.innerText = this.name;
+        psychicPowerTitle.appendChild(psychicPowerName);
+        psychicPowerElement.appendChild(psychicPowerTitle);
+        this.description.forEach((row, i) => {
+            if (i > 0) psychicPowerContent.appendChild(document.createElement("br"));
+            psychicPowerContent.appendChild(replaceMarkup(row));
+        });
+        this.weapons.forEach(weapon => {
+            psychicPowerContent.appendChild(weapon.toHTML({tableWrapper: true}));
+        });
+        psychicPowerElement.appendChild(psychicPowerContent);
+        return psychicPowerElement;
+    }
+
 }
 
 class Equipment {

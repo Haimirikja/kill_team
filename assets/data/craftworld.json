@@ -80,7 +80,7 @@ const CRAFTWORLD = {
     ],
     "fireTeams": [
         {
-            "name": "GUARDIAN DEFENDER",
+            "name": "Guardian Defender",
             "operatives": [
                 {
                     "name": "Guardian Defender (Warrior)",
@@ -330,7 +330,124 @@ const CRAFTWORLD = {
             ]
         },
         {
-            "name": "RANGER",
+            "name": "Storm Guardian",
+            "operatives": [
+                {
+                    "name": "Storm Guardian (Warrior)",
+                    "stats": [6,2,1,3,4,8],
+                    "weapons":[
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Storm Guardian blades",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Storm Guardian (Gunner)",
+                    "stats": [6,2,1,3,4,8],
+                    "weapons":[
+                        {
+                            "type": "((R))",
+                            "name": "Flamer",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 6,
+                                    "specialRules": ["Torrent ((2))"],
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Fusion gun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 6,
+                                    "damageCrit": 3,
+                                    "range": 6,
+                                    "specialRules": ["AP2"],
+                                    "criticalEffects": ["MW4"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Storm Guardian (Leader)",
+                    "stats": [6,2,1,3,4,9],
+                    "weapons":[
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Storm Guardian blades",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Ranger",
             "operatives": [
                 {
                     "name": "Ranger (Warrior)",
@@ -463,6 +580,190 @@ const CRAFTWORLD = {
                                     "skill": 3,
                                     "damageNorm": 2,
                                     "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Dire Avenger",
+            "operatives": [
+                {
+                    "name": "Dire Avenger (Warrior)",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        8
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Defence Tactics",
+                            "description": [
+                                "Each time this operative performs an Overwatch action, for that action's shooting attack, do not worsen the Ballistic Skill characteristic of its ranged weapons as a result of performing an Overwatch action."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Avenger shuriken catapult",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": [
+                                        "Balanced"
+                                    ],
+                                    "criticalEffects": [
+                                        "Rending"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Dire Avenger Exarch",
+                    "stats": [
+                        6,
+                        2,
+                        1,
+                        3,
+                        4,
+                        9
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Defence Tactics",
+                            "description": [
+                                "Each time this operative performs an Overwatch action, for that action's shooting attack, do not worsen the Ballistic Skill characteristic of its ranged weapons as a result of performing an Overwatch action."
+                            ]
+                        },
+                        {
+                            "name": "Shimmershield",
+                            "description": [
+                                "If this operative is equipped with a shimmershield, while a friendly DIRE AVENGER operative is within ((2)) of it, that operative has a 5+ invulnerable save."
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Shuriken Storm",
+                            "cost": 2,
+                            "description": [
+                                "Make two shooting attacks with this operative's twin avenger shuriken catapult. When making those shooting attacks, ignore the weapon's Relentless special rule.",
+                                "This action is treated as a Shoot action. This operative can only perform this action if it is equipped with a twin avenger shuriken catapult."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Avenger shuriken catapult",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": [
+                                        "Balanced"
+                                    ],
+                                    "criticalEffects": [
+                                        "Rending"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Shuriken pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6,
+                                    "criticalEffects": [
+                                        "Rending"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Twin avenger shuriken catapult",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": [
+                                        "Relentless"
+                                    ],
+                                    "criticalEffects": [
+                                        "Rending"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Diresword",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3,
+                                    "specialRules": ["Lethal 5+"],
+                                    "criticalEffects": ["Rending"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power weapon",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "specialRules": ["Lethal 5+"]
                                 }
                             ]
                         }

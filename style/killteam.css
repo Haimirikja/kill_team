@@ -43,6 +43,8 @@ table{width:100%;border-collapse:collapse;}
 a{text-decoration-style:dotted;color:inherit;}
 
 img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
+.title{text-transform:uppercase;color:var(--orange);}
+
 .flex{display:flex;align-items:flex-start;}
 .flex.row{flex-direction:row;}
 .flex.column{flex-direction:column;}
@@ -160,6 +162,30 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .kill-team-item .kill-team-actions,
 .kill-team-item .kill-team-weaponList{margin:1em 0;}
 
+.kill-team-ability .ability-table{margin:1em 0;}
+.kill-team-ability .ability-table th,
+.kill-team-ability .ability-table td{padding:4px;}
+.kill-team-ability .ability-table thead {
+    background-color: var(--black);
+    color: var(--white);
+    text-align: left;
+}
+.kill-team-ability .ability-table tbody tr:nth-child(even) {
+    background-color: var(--light-gray);
+}
+
+.kill-team-psychic-power{margin:1em 0;}
+.kill-team-psychic-power header {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 2px 4px;
+    margin-bottom: 2px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
 .kill-team-weaponList tbody:nth-child(odd){background-color:var(--light-gray);}
 .kill-team-weaponList tr th,
 .kill-team-weaponList tr td{padding-right:3px;padding-left:3px;}
@@ -189,7 +215,14 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     align-items: stretch;
 }
 .kill-team-operative header > *{width:50%}
-.kill-team-operative .operative-name{background-color:var(--black);color:var(--white);padding:3px;border:1px solid var(--orange);padding-bottom:1em;}
+.kill-team-operative .operative-name {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 3px;
+    border: 1px solid var(--orange);
+    padding-bottom: 1em;
+    text-transform: uppercase;
+}
 .kill-team-operative .operative-stats{border:1px solid var(--orange);}
 .kill-team-operative .operative-stats th{background-color:var(--orange);padding:3px;}
 .kill-team-operative .operative-stats td{padding:3px;}
@@ -213,7 +246,7 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     align-items: stretch;
 }
 
-.kill-team-operative .operative-info .title{font-size:1.15em;font-weight:bold;text-transform:uppercase;padding:3px;background-color:var(--gray);}
+.kill-team-operative .operative-info .title{font-size:1.15em;font-weight:bold;padding:3px;color:inherit;background-color:var(--gray);}
 .kill-team-operative .operative-info .content {
     flex-grow: 1;
     padding: 6px;
@@ -228,4 +261,7 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 @media (max-width: 576px) {
     .kill-team-operative header{flex-direction:column;}
     .kill-team-operative header > *{width:100%}
+    .kill-team-operative .operative-info{flex-direction:column;}
+    .kill-team-operative .operative-info .operative-abilities,
+    .kill-team-operative .operative-info .operative-actions{width:100%;}
 }
