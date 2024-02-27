@@ -137,12 +137,19 @@ class BattleManager {
         targetVP.innerHTML = "";
         let dices = Math.floor(this.victoryPoints / 6);
         const lastDieFace = this.victoryPoints % 6;
-        for (; dices >= 0; dices--) {
-            if (dices > 0 || lastDieFace > 0) {
-                const dice = document.createElement("div");
-                dice.classList.add("dice");
-                dice.classList.add(`d6-${dices === 0 ? lastDieFace : 6}`);
-                targetVP.appendChild(dice);
+        if (this.victoryPoints === 0) {
+            const dice = document.createElement("div");
+            dice.classList.add("dice");
+            dice.classList.add("d6-0");
+            targetVP.appendChild(dice);
+        } else {
+            for (; dices >= 0; dices--) {
+                if (dices > 0 || lastDieFace > 0) {
+                    const dice = document.createElement("div");
+                    dice.classList.add("dice");
+                    dice.classList.add(`d6-${dices === 0 ? lastDieFace : 6}`);
+                    targetVP.appendChild(dice);
+                }
             }
         }
         if (saveAfterUpdate) this.save();

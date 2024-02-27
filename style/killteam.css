@@ -8,6 +8,7 @@
     --dark-gray: #515a5c;
     --mid-gray: #676767;
     --font: #dadada;
+    --d6-0: url('../assets/image/d6-0.png');
     --d6-1: url('../assets/image/d6-1.png');
     --d6-2: url('../assets/image/d6-2.png');
     --d6-3: url('../assets/image/d6-3.png');
@@ -125,6 +126,7 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     height: 64px;
     background-size: contain;
 }
+.kill-team-battle-manager .points-manager .dice.d6-0{background-image:var(--d6-0);}
 .kill-team-battle-manager .points-manager .dice.d6-1{background-image:var(--d6-1);}
 .kill-team-battle-manager .points-manager .dice.d6-2{background-image:var(--d6-2);}
 .kill-team-battle-manager .points-manager .dice.d6-3{background-image:var(--d6-3);}
