@@ -110,7 +110,8 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     padding: 1em;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 1em;
 }
@@ -120,8 +121,8 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     background: var(--faction-generic);
 }
 .kill-team-battle-manager .points-manager .dice {
-    width: 32px;
-    height: 32px;
+    width: 64px;
+    height: 64px;
     background-size: contain;
 }
 .kill-team-battle-manager .points-manager .dice.d6-1{background-image:var(--d6-1);}
