@@ -1,9 +1,3 @@
-const PloyType = {
-    NONE: "Generic",
-    STRATEGIC: "Strategic",
-    TACTICAL: "Tactical",
-}
-
 const Specialism = {
     NONE: "None",
     COMBAT: "Combat",
@@ -21,7 +15,7 @@ const Rank = {
 }
 
 class KillTeam {
-    constructor(name = "", faction = "", abilities = [], strategicPloy = [], tacticalPloy = [], psychicPowers = [], fireTeams = []) {
+    constructor(name = "", faction = "", abilities = [], strategicPloys = [], tacticalPloys = [], psychicPowers = [], fireTeams = []) {
         Object.defineProperty(this, "addOperative", { enumerable: false });
         Object.defineProperty(this, "removeOperative", { enumerable: false });
         Object.defineProperty(this, "toString", { enumerable: false });
@@ -29,13 +23,12 @@ class KillTeam {
         this.name = name && typeof name === 'string' ? name : "";
         this.faction = faction && typeof faction === 'string' ? faction : "";
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
-        this.strategicPloy = Array.isArray(strategicPloy) ? strategicPloy.filter(x => x instanceof StrategicPloy) : [];
-        this.tacticalPloy = Array.isArray(tacticalPloy) ? tacticalPloy.filter(x => x instanceof TacticalPloy) : [];
+        this.strategicPloys = Array.isArray(strategicPloys) ? strategicPloys.filter(x => x instanceof Ploy) : [];
+        this.tacticalPloys = Array.isArray(tacticalPloys) ? tacticalPloys.filter(x => x instanceof Ploy) : [];
         this.psychicPowers = Array.isArray(psychicPowers) ? psychicPowers.filter(x => x instanceof PsychicPower) : [];
         this.fireTeams = Array.isArray(fireTeams) ? fireTeams.filter(x => x instanceof FireTeam) : [];
     }
 
-    
     addFireTeam = (fireTeam) => {
         if (fireTeam instanceof FireTeam) this.fireTeams.push(fireTeam);
         return this.fireTeams;
@@ -52,8 +45,8 @@ class KillTeam {
             object.name,
             object.faction,
             object.abilities?.map(x => Ability.parse(x)),
-            object.strategicPloy?.map(x => StrategicPloy.parse(x)),
-            object.tacticalPloy?.map(x => TacticalPloy.parse(x)),
+            object.strategicPloys?.map(x => Ploy.parse(x)),
+            object.tacticalPloys?.map(x => Ploy.parse(x)),
             object.psychicPowers?.map(x => PsychicPower.parse(x)),
             object.fireTeams?.map(x => FireTeam.parse(x)),
         )
@@ -63,6 +56,8 @@ class KillTeam {
         name: this.name,
         faction: this.faction,
         abilities: this.abilities,
+        strategicPloy: this.strategicPloys,
+        tacticalPloy: this.tacticalPloys,
         psychicPowers: this.psychicPowers,
         fireTeams: this.fireTeams
     });
@@ -102,6 +97,20 @@ class KillTeam {
                 killTeamAbilities.appendChild(ability.toHTML(true));
             });
             killTeamElement.appendChild(killTeamAbilities);
+        }
+        if (this.strategicPloys) {
+            const killTeamStrategic = document.createElement("div");
+            this.strategicPloys.forEach(ploy => {
+                killTeamStrategic.appendChild(ploy.toHTML());
+            });
+            killTeamElement.appendChild(killTeamStrategic);
+        }
+        if (this.tacticalPloys) {
+            const killTeamTactical = document.createElement("div");
+            this.tacticalPloys.forEach(ploy => {
+                killTeamTactical.appendChild(ploy.toHTML());
+            });
+            killTeamElement.appendChild(killTeamTactical);
         }
         if (this.psychicPowers) {
             const killTeamPsychicPowers = document.createElement("div");
@@ -168,7 +177,6 @@ class FireTeam {
         fireTeamName.innerText = `${this.name} Fire Team`;
         fireTeamElement.appendChild(fireTeamName);
         const operativeList = document.createElement("div");
-        //["flex", "column", "nowrap", "gap"].forEach(cls => operativeList.classList.add(cls));
         operativeList.classList.add("legend");
         const operativeBlock = document.createElement("div");
         operativeBlock.classList.add("datasheet");
@@ -383,19 +391,38 @@ class Ploy {
             object.description,
         );
     }
-}
 
-class StrategicPloy extends Ploy {
-    constructor(name = "", cost = 0, description = []) {
-        super(name, cost, description);
-        this.type = PloyType.STRATEGIC;
+    toString = () => JSON.stringify({
+        name: this.name,
+        cost: this.cost,
+        description: this.description,
+    });
+
+    equals = (ploy) => {
+        if (!(ploy instanceof Ploy)) ploy = Ploy.parse(ploy);
+        return this.toString() === ploy.toString();
     }
-}
 
-class TacticalPloy extends Ploy {
-    constructor(name = "", cost = 0, description = []) {
-        super(name, cost, description);
-        this.type = PloyType.TACTICAL;
+    toHTML = () => {
+        const ployElement = document.createElement("div");
+        const ployElementHeader = document.createElement("header");
+        const ployElementName = document.createElement("span");
+        ployElementName.innerText = this.name;
+        const ployElementCost = document.createElement("span");
+        ployElementCost.innerText = `${this.cost}CP`;
+        ployElementHeader.appendChild(ployElementName);
+        ployElementHeader.appendChild(ployElementCost);
+        ployElement.appendChild(ployElementHeader);
+        const ployElementType = document.createElement("div");
+        ployElementType.innerText = "Strategic / Tactical";
+        ployElement.appendChild(ployElementType);
+        const ployElementContent = document.createElement("div");
+        this.description.forEach((row, i) => {
+            if (i > 0) ployElementContent.appendChild(document.createElement("br"));
+            ployElementContent.appendChild(replaceMarkup(row));
+        })
+        ployElement.appendChild(ployElementContent);
+        return ployElement;
     }
 }
 
