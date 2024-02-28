@@ -232,9 +232,9 @@ class Operative {
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
         this.stats = Array.isArray(stats) && stats.length === 6 ? stats : [];
+        this.weapons = Array.isArray(weapons) ? weapons.filter(x => x instanceof Weapon) : [];
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
         this.actions = Array.isArray(actions) ? actions.filter(x => x instanceof Action) : [];
-        this.weapons = Array.isArray(weapons) ? weapons.filter(x => x instanceof Weapon) : [];
         this.mandatory = typeof mandatory === 'boolean' ? mandatory : false;
         limitNum = parseInt(limitNum);
         this.limitNum = !isNaN(limitNum) && isFinite(limitNum) && limitNum > 0 ? limitNum : 0,
