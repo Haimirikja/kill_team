@@ -107,8 +107,10 @@ class BattleManager {
     }
 
     removeCommandPoint = () => {
-        if (this.commandPoints > 0) this.commandPoints -= 1;
-        this.updateCommandPoints();
+        if (this.commandPoints > 0) {
+            this.commandPoints -= 1;
+            this.updateCommandPoints();
+        }
     }
 
     addVictoryPoint = () => {
@@ -117,8 +119,10 @@ class BattleManager {
     }
 
     removeVictoryPoint = () => {
-        if (this.victoryPoints > 0) this.victoryPoints -= 1;
-        this.updateVictoryPoints();
+        if (this.victoryPoints > 0) {
+            this.victoryPoints -= 1;
+            this.updateVictoryPoints();
+        }
     }
     
     updateCommandPoints = (saveAfterUpdate = true) => {
@@ -135,17 +139,17 @@ class BattleManager {
     updateVictoryPoints = (saveAfterUpdate = true) => {
         const targetVP = document.getElementById(this.#BattleManagerRefList.BattleManager.VictoryPoints.id);
         targetVP.innerHTML = "";
-        let dices = Math.floor(this.victoryPoints / 6);
-        const lastDieFace = this.victoryPoints % 6;
+        let dice;
         if (this.victoryPoints === 0) {
-            const dice = document.createElement("div");
+            dice = document.createElement("div");
             dice.classList.add("dice");
-            dice.classList.add("d6-0");
             targetVP.appendChild(dice);
         } else {
+            let dices = Math.floor(this.victoryPoints / 6);
+            const lastDieFace = this.victoryPoints % 6;
             for (; dices >= 0; dices--) {
                 if (dices > 0 || lastDieFace > 0) {
-                    const dice = document.createElement("div");
+                    dice = document.createElement("div");
                     dice.classList.add("dice");
                     dice.classList.add(`d6-${dices === 0 ? lastDieFace : 6}`);
                     targetVP.appendChild(dice);
