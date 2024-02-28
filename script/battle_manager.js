@@ -176,7 +176,7 @@ class BattleManager {
                 isActive: true,
                 commandPoints: this.commandPoints,
                 victoryPoints: this.victoryPoints,
-                //fireTeams: this.fireTeame,
+                //fireTeams: this.fireTeams,
             });
         }
         localStorage.setItem("BattleManager", JSON.stringify(storage));

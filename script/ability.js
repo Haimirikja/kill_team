@@ -1,0 +1,80 @@
+
+class Ability {
+    constructor(name, description = [], table = null) {
+        Object.defineProperty(this, "toString", { enumrable: false });
+        Object.defineProperty(this, "equals", { enumrable: false });
+        Object.defineProperty(this, "toHTML", { enumerable: false });
+        this.name = name && typeof name === 'string' ? name : "";
+        if (!Array.isArray(description)) description = [description];
+        this.description = description.filter(x => typeof x === 'string');
+        this.table = table;
+    }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new Ability(
+            object.name,
+            object.description,
+            object.table,
+        );
+    }
+
+    toString = () => JSON.stringify({
+        name: this.name,
+        description: this.description,
+        table: this.table,
+    });
+
+    equals = (ability) => {
+        if (!(ability instanceof Ability)) ability = Ability.parse(ability);
+        return this.toString() === ability.toString();
+    }
+
+    toHTML = (headedTitle = false) => {
+        const abilityElement = document.createElement("div");
+        abilityElement.classList.add("kill-team-ability");
+        if (headedTitle) {
+            const abilityName = document.createElement("h3");
+            abilityName.classList.add("title");
+            abilityName.innerText = this.name;
+            abilityElement.appendChild(abilityName);
+            const abilityDescription = document.createElement("div");
+            this.description.forEach((row, i) => {
+                if (i > 0) abilityDescription.appendChild(document.createElement("br"));
+                abilityDescription.appendChild(replaceMarkup(row));
+            });
+            abilityElement.appendChild(abilityDescription);
+            if (this.table) {
+                const abilityTable = document.createElement("table");
+                abilityTable.classList.add("ability-table");
+                const abilityTableHeader = document.createElement("thead");
+                const abilityTableContent = document.createElement("tbody");
+                let rowElement;
+                let cellElement;
+                this.table.rows.forEach((row, i) => {
+                    rowElement = document.createElement("tr");
+                    row.cells.forEach(cell => {
+                        cellElement = document.createElement(i === 0 ? "th" : "td");
+                        cellElement.appendChild(replaceMarkup(cell));
+                        rowElement.appendChild(cellElement);
+                    });
+                    if (i === 0) abilityTableHeader.appendChild(rowElement);
+                    else abilityTableContent.appendChild(rowElement);
+                });
+                abilityTable.appendChild(abilityTableHeader);
+                abilityTable.appendChild(abilityTableContent);
+                abilityElement.appendChild(abilityTable);
+            }
+        } else {
+            const abilityName = document.createElement("b");
+            abilityName.innerText = this.description.length ? `${this.name}: ` : this.name;
+            abilityElement.appendChild(abilityName);
+            this.description.forEach((row, i) => {
+                if (i > 0) abilityElement.appendChild(document.createElement("br"));
+                abilityElement.appendChild(replaceMarkup(row));
+            });
+        }
+        
+        return abilityElement;
+    }
+}
