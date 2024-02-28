@@ -1,0 +1,860 @@
+const VETERAN_GUARDSMAN = {
+    "name": "VETERAN GUARDSMAN",
+    "faction": "IMPERIUM",
+    "abilities": [
+        {
+            "name": "Guardsmen Orders",
+            "description": [
+                "Once in each Strategy phase, when it is your turn to use a Strategic Ploy, if this operative is in the killzone, it can issue a Guardsmen Order. If it does, all friendly VETERAN GUARDSMAN operatives within ((6)) of and Visible to it are issued a Guardsmen Order.",
+                "",
+                "Each time a friendly operative issues a Guardsmen Order, select one Guardsmen Order below to take effect until the end of the Turning Point. If more than one Guardsmen Order could be issued by your kill team during the Turning Point, e.g. the Inspirational Leadership Tactical Ploy, they must be different Guardsmen Orders."
+            ],
+            "effects": [
+                {
+                    "name": "Move! Move! Move!",
+                    "description": [
+                        "Add ((1)) to the Movement characteristic of each friendly operative that was issued this order."
+                    ]
+                },
+                {
+                    "name": "Take Aim!",
+                    "description": [
+                        "Each time a friendly operative that was issued this order makes a shooting attack, in the Roll Attack Dice step of that shooting attack, you can re-roll any or all of your attack dice results of 1. This order has no effect on shooting attacks made with the mortar barrage and remote mine ranged weapons, or attacks made with tactical assets."
+                    ]
+                },
+                {
+                    "name": "Hold Position!",
+                    "description": [
+                        "Each time a shooting attack is made against a friendly operative that was issued this order, in the Roll Defence Dice step of that shooting attack, if that operative is in Cover, you can re-roll any or all of your defence dice results of 1. Friendly operatives that were issued this order cannot perform Dash or Charge actions."
+                    ]
+                },
+                {
+                    "name": "Fix Bayonets!",
+                    "description": [
+                        "Each time a friendly operative that was issued this order fights in combat, in the Roll Attack Dice step of that combat, you can re-roll any or all of your attack dice results of 1."
+                    ]
+                }
+            ]
+        }
+    ],
+    "strategicPloys": [
+        {
+            "name": "OVERCHARGE LASGUNS",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, change the profile of lasguns that friendly VETERAN GUARDSMAN operatives are equipped with to the following:"
+            ],
+            "weapons": [
+                {
+                    "type": "((R))",
+                    "name": "Overcharge Lasguns",
+                    "profiles": [
+                        {
+                            "name": "Standard",
+                            "attacks": 4,
+                            "skill": 4,
+                            "damageNorm": 2,
+                            "damageCrit": 3
+                        },
+                        {
+                            "name": "Overcharge",
+                            "attacks": 4,
+                            "skill": 4,
+                            "damageNorm": 2,
+                            "damageCrit": 3,
+                            "specialRules": ["AP1","Hot"]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "TAKE COVER",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a shooting attack is made against a friendly VETERAN GUARDSMAN operative, if it is in Cover, improve its Save characteristic by 1 for that shooting attack."
+            ]
+        },
+        {
+            "name": "INTO THE BREACH",
+            "cost": 1,
+            "description": [
+                "Each friendly VETERAN GUARDSMAN operative within your drop zone can perform a free Dash action, but must finish that move closer to the enemy's drop zone."
+            ]
+        },
+        {
+            "name": "CLEAR THE LINE",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a friendly VETERAN GUARDSMAN operative fights in combat, before rolling your attack dice for that combat, you can retain one as a successful normal hit without rolling it."
+            ]
+        }
+    ],
+    "tacticalPloys": [
+        {
+            "name": "INSPIRATIONAL LEADERSHIP",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy during a VETERAN GUARDSMAN LEADER operative's activation. That operative issues a Guardsmen Order to all friendly VETERAN GUARDSMAN operatives within  of and Visible to it."
+            ]
+        },
+        {
+            "name": "IN DEATH, ATONEMENT",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy when a ready friendly VETERAN GUARDSMAN operative is incapacitated. That operative is not removed from the killzone until the end of your next activation or the end of the battle (whichever comes first) and does not count as being injured."
+            ]
+        },
+        {
+            "name": "COMBINED ARMS",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy after rolling your attack dice for a shooting attack made by a friendly VETERAN GUARDSMAN operative. If the target of that attack is an enemy operative that was targeted by another friendly VETERAN GUARDSMAN operative with a shooting attack during that Turning Point, you can re-roll any or all of your attack dice for that shooting attack."
+            ]
+        }
+    ],
+    "fireTeams": [
+        {
+            "name": "Veteran Guardsman",
+            "operatives": [
+                {
+                    "name": "Sergeant Veteran",
+                    "mandatory": true,
+                    "limitNum": 1,
+                    "stats": [6,2,1,3,5,8],
+                    "abilities": [{"name":"Guardsmen Orders"}],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Bolt pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Boltgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Las pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3,
+                                    "range": 6
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Plasma pistol",
+                            "profiles": [
+                                {
+                                    "name": "Standard",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "range": 6,
+                                    "specialRules": ["AP1"]
+                                },
+                                {
+                                    "name": "Supercharge",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "range": 6,
+                                    "specialRules": ["AP2","Hot"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Chainsword",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": ["Balanced"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power weapon",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "specialRules": ["Lethal 5+"]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Confidant Veteran",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [6,2,1,3,5,7],
+                    "abilities": [
+                        {
+                            "name": "Second in Command",
+                            "description": [
+                                "If a friendly SERGEANT VETERAN operative is incapacitated and removed from the killzone, you can nominate this operative for command. If you do, until the end of the battle, it gains the LEADER keyword and the Guardsmen Orders ability."
+                            ]
+                        },
+                        {
+                            "name": "Directive",
+                            "description": [
+                                "Each time this operative is activated, if it has not been nominated for command, you can select one other ready friendly VETERAN GUARDSMAN operative within ((6)) of and Visible to it. After this operative's activation ends, activate that operative, and treat its Group Activation characteristic as 1 for that activation."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Bolt pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Boltgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Las pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3,
+                                    "range": 6
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Lasgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Chainsword",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": ["Balanced"]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Comms Veteran",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [6,2,1,3,5,7],
+                    "abilities": [
+                        {
+                            "name": "Relay Orders",
+                            "description": [
+                                "Once in each Turning Point, when this operative is issued a GUARDSMEN Order, it can relay it. If an order is relayed, subtract 1 from this operative's APL and all friendly VETERAN GUARDSMAN operatives in the Killzone are issued that order."
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Signal",
+                            "cost": 1,
+                            "description": [
+                                "Select one friendly VETERAN GUARDSMAN operative within ((6)) of and Visible to this operative. Add 1 to its APL. This operative cannot perform this action if it is within Engagement Range of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Lasgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Medic Veteran",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [6,2,1,3,5,7],
+                    "actions":[
+                        {
+                            "name": "Medic!",
+                            "description": [
+                                "Once per Turning Point, the first time another friendly VETERAN GUARDSMAN operative would be incapacitated while Visible to and within ((3)) of this operative and not within Engagement Range of an enemy operative, if this operative is not within Engagement Range of an enemy operative, this operative can revive it. That operative is not incapacitated, has 1 wound remaining, and if it was a shooting attack, any remaining attack dice are discarded. That other friendly operative can then perform a free Dash action, but must finish that move within ((1)) of this operative. Subtract 1 from both operatives' APL."
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Medikit",
+                            "description": [
+                                "Select one friendly VETERAN GUARDSMAN operative within ((1)) of and Visible to this operative. That operative regains 2D3 lost wounds. An operative cannot be selected for this if it was revived using the Medic! ability during the same Turning Point. This operative cannot perform this action if it is within Engagement Range of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Lasgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Spotter Veteran",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [6,2,1,3,5,7],
+                    "actions": [
+                        {
+                            "name": "Spotter",
+                            "cost": 2,
+                            "description": [
+                                "Select one enemy operative Visible to this operative, then select one other ready friendly VETERAN GUARDSMAN operative with a Group Activation characteristic of 1 within ((2)) of and Visible to this operative. After this activation ends, you can activate that other friendly operative, and during its next activation, it treats that enemy operative as if it has an Engage order. This operative cannot perform this action if it is within Engagement Range of an enemy operative."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Lasgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Mortar barrage",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3,
+                                    "specialRules": ["Barrage", "Unwieldy", "Blast ((2))", "Silent"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Gunner Veteran",
+                    "mandatory": false,
+                    "limitNum": 4,
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Flamer",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 6,
+                                    "specialRules": ["Torrent ((2))"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Grenade launcher",
+                            "profiles": [
+                                {
+                                    "name": "Frag",
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 4,
+                                    "specialRules": ["Blast ((2))"]
+                                },
+                                {
+                                    "name": "Krak",
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["AP1"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Meltagun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 6,
+                                    "damageCrit": 3,
+                                    "range": 6,
+                                    "specialRules": ["AP2"],
+                                    "criticalEffects": ["MW4"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Plasma gun",
+                            "profiles": [
+                                {
+                                    "name": "Standard",
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["AP1"]
+                                },
+                                {
+                                    "name": "Supercharge",
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["AP2", "Hot"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Sniper Veteran",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [6,2,1,3,5,7],
+                    "abilities": [
+                        {
+                            "name": "Sniper",
+                            "description": [
+                                "Each time this operative is activated, so long as it does not perform a Normal Move, Charge or Fall Back action during that activation, its long-las gains the Silent special rule for that activation."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Long-las",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 3,
+                                    "criticalEffects": ["MW3"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Demolition Veteran",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [6,2,1,3,5,7],
+                    "abilities": [
+                        {
+                            "name": "*Detonate",
+                            "description": [
+                                "Each time this operative makes a Shoot action using its remote mine, make a shooting attack against each operative within ((3)) of the centre of its Mine token with that weapon. When making those shooting attacks, each operative (friendly and enemy) within ((3)) is a valid target, but when determining if it is in Cover, treat this operative's Mine token as the active operative. Then remove this operative's Mine token. An operative cannot make a shooting attack with this weapon by performing an Overwatch action, or if its Mine token is not in the killzone."
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Plant Mine",
+                            "cost": 1,
+                            "description": [
+                                "Place a Mine token in a location Visible to and within ((1)) of this operative, then perform a free Dash action with this operative. This operative cannot perform this action if it is within Engagement Range of an enemy operative, or if this operative's Mine token is in the killzone. If this operative is incapacitated and removed from the killzone, remove its Mine token."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Lasgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Remote mine",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["AP1", "Detonate*", "Silent"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Zealot Veteran",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [6,2,1,3,5,7],
+                    "abilities": [
+                        {
+                            "name":"The Emperor Protects",
+                            "description":[
+                                "Each time a shooting attack is made against this operative, in the Roll Defence Dice step of that shooting attack, you can re-roll any or all of your defence dice."
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "name": "Uplifting Primer",
+                            "cost": 1,
+                            "description": [
+                                "Until the end of the Turning Point, while a friendly VETERAN GUARDSMAN operative is within ((3)) of this operative, that friendly operative is uplifted. While an operative is uplifted, each time it fights in combat or makes a shooting attack, in the Roll Attack Dice step of that combat or shooting attack, you can select one of your results of 5+ to be retained as a critical hit."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Lasgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Bruiser Veteran",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [6,2,1,3,5,7],
+                    "abilities": [
+                        {
+                            "name": "Bruiser",
+                            "description": [
+                                "Once per Turning Point, when this operative fights in combat, in the resolve successful hits step of that combat, you can ignore the damage inflicted on it from one normal hit."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Lasgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Trench club",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 3,
+                                    "criticalEffects": ["Stun"]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Hardened Veteran",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [6,2,1,3,5,7],
+                    "abilities": [
+                        {
+                            "name": "Hardned by War",
+                            "description": [
+                                "Each time this operative would lose a wound, roll one D6: on a 5+, that wound is not lost. You can ignore any or all modifiers to this operative's APL."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Lasgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bionic arm",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Trooper Veteran",
+                    "mandatory": false,
+                    "limitNum": 9,
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Lasgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Bayonet",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 4,
+                                    "damageNorm": 2,
+                                    "damageCrit": 3
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+}

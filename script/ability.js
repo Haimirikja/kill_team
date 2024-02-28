@@ -1,13 +1,14 @@
 
 class Ability {
-    constructor(name, description = [], table = null) {
+    constructor(name, description = [], table = null, effects = []) {
         Object.defineProperty(this, "toString", { enumrable: false });
         Object.defineProperty(this, "equals", { enumrable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
         if (!Array.isArray(description)) description = [description];
         this.description = description.filter(x => typeof x === 'string');
-        this.table = table;
+        this.table = table instanceof Table ? table : null;
+        this.effects = Array.isArray(effects) ? effects.filter(x => x instanceof Ploy) : [];
     }
 
     static parse = (object) => {
@@ -15,7 +16,8 @@ class Ability {
         return new Ability(
             object.name,
             object.description,
-            object.table,
+            Table.parse(object.table),
+            object.effects?.map(x => x = Ploy.parse(x))
         );
     }
 
@@ -23,6 +25,7 @@ class Ability {
         name: this.name,
         description: this.description,
         table: this.table,
+        effects: this.effects,
     });
 
     equals = (ability) => {
@@ -55,7 +58,7 @@ class Ability {
                     rowElement = document.createElement("tr");
                     row.cells.forEach(cell => {
                         cellElement = document.createElement(i === 0 ? "th" : "td");
-                        cellElement.appendChild(replaceMarkup(cell));
+                        cellElement.appendChild(replaceMarkup(cell.text));
                         rowElement.appendChild(cellElement);
                     });
                     if (i === 0) abilityTableHeader.appendChild(rowElement);
@@ -64,6 +67,11 @@ class Ability {
                 abilityTable.appendChild(abilityTableHeader);
                 abilityTable.appendChild(abilityTableContent);
                 abilityElement.appendChild(abilityTable);
+            }
+            if (this.effects.length) {
+                this.effects.forEach(effect => {
+                    abilityElement.appendChild(effect.toHTML());
+                })
             }
         } else {
             const abilityName = document.createElement("b");

@@ -1,11 +1,12 @@
 class BattleManager {
     #RegisteredKillTeams = [
-        "corsair_voidscarred",
-        "craftworld",
-        "void-dancer_troupe",
-        "fleet_hive",
-        "legionary",
-        "exaction",
+        { id: "corsair_voidscarred", debugRef: CORSAIR_VOIDSCARRED, fileName: "corsair_voidscarred.json"},
+        { id: "craftworld", debugRef: CRAFTWORLD, fileName: "craftworld.json"},
+        { id: "exaction", debugRef: EXACTION, fileName: "exaction.json"},
+        { id: "fleet_hive", debugRef: null, fileName: null},
+        { id: "legionary", debugRef: null, fileName: null},
+        { id: "veteran_guardsman", debugRef: VETERAN_GUARDSMAN, fileName: "veteran_guardsman.json"},
+        { id: "void-dancer_troupe", debugRef: VOID_DANCER_TROUPE, fileName: "void-dancer_troupe.json"},
     ];
     
     #BattleManagerRefList = {
@@ -66,29 +67,14 @@ class BattleManager {
     
     loadKillTeamRules = ({id = "", mode = "debug"}) => {
         let rules;
-        if (mode === "debug") {
-            switch(id) {
-                case "corsair_voidscarred":
-                    rules = CORSAIR_VOIDSCARRED;
-                    break;
-                case "craftworld":
-                    rules = CRAFTWORLD;
-                    break;
-                case "void-dancer_troupe":
-                    rules = VOID_DANCER_TROUPE;
-                    break;
-                case "exaction":
-                    rules = EXACTION;
-                    break;
-                default: return undefined;
-            }
-            rules = KillTeam.parse(rules);
-        } else {
-            const selectedIndex = registeredKillTeams.indexOf(id);
-            fetch(`../assets/data/${this.#RegisteredKillTeams[selectedIndex]}.json`)
+        if (mode === "debug") rules = KillTeam.parse(this.#RegisteredKillTeams.find(x => x.id === id)?.debugRef);
+        else {
+            const fileName = this.#RegisteredKillTeams.find(x => x.id === id)?.fileName;
+            if (!fileName) return undefined;
+            fetch(`../assets/data/${fileName}.json`)
                 .then(response => {
-                    if (!response.ok) throw response
-                    return response.json()
+                    if (!response.ok) throw response;
+                    return response.json();
                 })
                 .then(json => rules = KillTeam.parse(json))
                 .catch(e => console.error(e));

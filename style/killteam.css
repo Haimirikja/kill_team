@@ -194,12 +194,14 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     gap: 0.5em;
 }
 .ploy header {
-    padding: 2px 4px;
+    font-weight: bold;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
 }
+.kill-team-strategic-ploys .ploy header,
+.kill-team-tactical-ploys .ploy header{padding: 2px 4px;}
 .kill-team-strategic-ploys .ploy header{background-color:var(--dark-gray);color:var(--white);}
 .kill-team-tactical-ploys .ploy header{background-color:var(--black);color:var(--white);}
 

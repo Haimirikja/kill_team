@@ -39,7 +39,8 @@ class Operative {
         Object.defineProperty(this, "equals", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
-        this.stats = Array.isArray(stats) && stats.length === 6 ? stats : [];
+        this.stats = new Array(6).fill("");
+        if (Array.isArray(stats)) stats.forEach((x, i) => this.stats[i] = x);
         this.weapons = Array.isArray(weapons) ? weapons.filter(x => x instanceof Weapon) : [];
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
         this.actions = Array.isArray(actions) ? actions.filter(x => x instanceof Action) : [];
@@ -145,7 +146,7 @@ class Operative {
         tableRow = document.createElement("tr");
         this.stats.forEach((stat, i) => {
             tableCell = document.createElement("td");
-            tableCell.innerText = i === 4 ? `${stat}+` : stat;
+            if (stat) tableCell.innerText = i === 4 ? `${stat}+` : stat;
             tableRow.appendChild(tableCell);
         });
         operativeStats.appendChild(tableRow);

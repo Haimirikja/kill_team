@@ -1,3 +1,43 @@
+
+class Table {
+    constructor(rows = []) {
+        this.rows = Array.isArray(rows) ? rows.filter(x => x instanceof TableRow) : [];
+    }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new Table(
+            object.rows?.map(x => TableRow.parse(x))
+        );
+    }
+}
+class TableRow {
+    constructor(cells = []) {
+        this.cells = Array.isArray(cells) ? cells.filter(x => x instanceof TableCell) : [];
+    }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new TableRow(
+            object.cells?.map(x => TableCell.parse(x))
+        );
+    }
+}
+class TableCell {
+    constructor(text) {
+        this.text = typeof text === 'string' ? text : "";
+    }
+
+    static parse = (text) => new TableCell(text);
+    // static parse = (object) => {
+    //     console.log("TableCell", object);
+    //     if (!(object instanceof Object)) return undefined;
+    //     return new TableCell(
+    //         object
+    //     );
+    // }
+}
+
 class Id {
     key = null;
     context = null;

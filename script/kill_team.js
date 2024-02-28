@@ -65,7 +65,7 @@ class KillTeam {
             fireTeamsBlock.appendChild(fireTeam.toHTML());
         });
         killTeamElement.appendChild(fireTeamsList);
-        if (this.abilities) {
+        if (this.abilities.length) {
             const abilitiesElement = document.createElement("div");
             const abilitiesTitle = document.createElement("h2");
             abilitiesTitle.classList.add("title");
