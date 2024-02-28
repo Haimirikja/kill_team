@@ -158,7 +158,7 @@ const EXACTION = {
                                     "attacks": 3,
                                     "skill": 4,
                                     "damageNorm": 2,
-                                    "damageCrit": 2,
+                                    "damageCrit": 2
                                 }
                             ]
                         },
@@ -357,7 +357,9 @@ const EXACTION = {
                                     "skill": 4,
                                     "damageNorm": 4,
                                     "damageCrit": 6,
-                                    "specialRules": ["AP1"]
+                                    "specialRules": [
+                                        "AP1"
+                                    ]
                                 }
                             ]
                         },
@@ -370,7 +372,11 @@ const EXACTION = {
                                     "skill": 4,
                                     "damageNorm": 3,
                                     "damageCrit": 4,
-                                    "specialRules": ["Ceaseless","Fusillade","Heavy"]
+                                    "specialRules": [
+                                        "Ceaseless",
+                                        "Fusillade",
+                                        "Heavy"
+                                    ]
                                 }
                             ]
                         },
@@ -384,8 +390,12 @@ const EXACTION = {
                                     "damageNorm": 2,
                                     "damageCrit": 2,
                                     "range": 6,
-                                    "specialRules": ["Lethal 5+"],
-                                    "criticalEffects": ["Stun"]
+                                    "specialRules": [
+                                        "Lethal 5+"
+                                    ],
+                                    "criticalEffects": [
+                                        "Stun"
+                                    ]
                                 }
                             ]
                         },
@@ -495,14 +505,18 @@ const EXACTION = {
                     "abilities": [
                         {
                             "name": "Beast",
-                            "description": ["Other than the Gather Evidence mission action, this operative cannot perform mission actions and cannot be equipped with equipment."]
+                            "description": [
+                                "Other than the Gather Evidence mission action, this operative cannot perform mission actions and cannot be equipped with equipment."
+                            ]
                         }
                     ],
                     "actions": [
                         {
                             "name": "Apprehend",
                             "cost": 1,
-                            "description": ["Select one enemy operative within this operative's Engagement Range. That enemy operative suffers D3 mortal wounds, and until it's no longer within this operative's Engagement Range, it's apprehended. Each time an apprehended enemy operative would perform a Fall Back action, your opponent must roll one D6, adding 1 to the result for each wound it has remaining that's greater than this operative's remaining wounds. If the result is less than this operative's remaining wounds, that enemy operative cannot perform that action (the action points are refunded)."]
+                            "description": [
+                                "Select one enemy operative within this operative's Engagement Range. That enemy operative suffers D3 mortal wounds, and until it's no longer within this operative's Engagement Range, it's apprehended. Each time an apprehended enemy operative would perform a Fall Back action, your opponent must roll one D6, adding 1 to the result for each wound it has remaining that's greater than this operative's remaining wounds. If the result is less than this operative's remaining wounds, that enemy operative cannot perform that action (the action points are refunded)."
+                            ]
                         }
                     ],
                     "weapons": [
@@ -515,7 +529,9 @@ const EXACTION = {
                                     "skill": 4,
                                     "damageNorm": 3,
                                     "damageCrit": 5,
-                                    "specialRules": ["Lethal 5+"]
+                                    "specialRules": [
+                                        "Lethal 5+"
+                                    ]
                                 }
                             ]
                         }
@@ -539,14 +555,18 @@ const EXACTION = {
                         },
                         {
                             "name": "Acute Focus",
-                            "description": ["Once per Turning Point, during this operative's activation, it can perform a mission action or the Pick Up action for one less action point (to a minimum of 0AP)."]
+                            "description": [
+                                "Once per Turning Point, during this operative's activation, it can perform a mission action or the Pick Up action for one less action point (to a minimum of 0AP)."
+                            ]
                         }
                     ],
                     "actions": [
                         {
                             "name": "Veriscant",
                             "cost": 1,
-                            "description": ["Select one enemy operative in this operative's Line of Sight. Until the end of the Turning Point, each time a friendly EXACTION SQUAD operative fights in combat or makes a shooting attack against that enemy operative, in the Roll Attack Dice step of that combat or shooting attack, you can retain one of your successful normal hits as a critical hit instead. This operative cannot perform this action while within Engagement Range of an enemy operative."]
+                            "description": [
+                                "Select one enemy operative in this operative's Line of Sight. Until the end of the Turning Point, each time a friendly EXACTION SQUAD operative fights in combat or makes a shooting attack against that enemy operative, in the Roll Attack Dice step of that combat or shooting attack, you can retain one of your successful normal hits as a critical hit instead. This operative cannot perform this action while within Engagement Range of an enemy operative."
+                            ]
                         }
                     ],
                     "weapons": [
@@ -606,8 +626,10 @@ const EXACTION = {
                         {
                             "name": "Take Aim",
                             "cost": 1,
-                            "description": ["Until the end of the activation, the executioner shotgun this operative is equipped with gains the Balanced and No Cover special rules. This operative cannot perform this action while within ((3)) of an enemy operative."]
-                        },
+                            "description": [
+                                "Until the end of the activation, the executioner shotgun this operative is equipped with gains the Balanced and No Cover special rules. This operative cannot perform this action while within ((3)) of an enemy operative."
+                            ]
+                        }
                     ],
                     "weapons": [
                         {
@@ -619,8 +641,14 @@ const EXACTION = {
                                     "skill": 3,
                                     "damageNorm": 4,
                                     "damageCrit": 1,
-                                    "specialRules": ["Heavy","Silent","Lethal 5+"],
-                                    "criticalEffects": ["MW3"],
+                                    "specialRules": [
+                                        "Heavy",
+                                        "Silent",
+                                        "Lethal 5+"
+                                    ],
+                                    "criticalEffects": [
+                                        "MW3"
+                                    ]
                                 }
                             ]
                         },
@@ -659,14 +687,16 @@ const EXACTION = {
                             "description": [
                                 "At the end of the Initiative phase of the first Turning Point, if this operative is wholly within your drop zone, it can perform a free Normal Move action as if it can FLY."
                             ]
-                        },
+                        }
                     ],
                     "actions": [
                         {
                             "name": "Soulguilt Scan",
                             "cost": 1,
-                            "description": ["Select one enemy operative Visible to and within ((6)) of this operative. Until the end of the Turning Point, friendly EXACTION SQUAD operatives Visible to and within ((3)) of this operative treat that enemy operative as if it has an Engage order."]
-                        },
+                            "description": [
+                                "Select one enemy operative Visible to and within ((6)) of this operative. Until the end of the Turning Point, friendly EXACTION SQUAD operatives Visible to and within ((3)) of this operative treat that enemy operative as if it has an Engage order."
+                            ]
+                        }
                     ],
                     "weapons": [
                         {
@@ -678,8 +708,12 @@ const EXACTION = {
                                     "skill": 3,
                                     "damageNorm": 3,
                                     "damageCrit": 1,
-                                    "specialRules": ["Lethal 5+"],
-                                    "criticalEffects": ["MW2"],
+                                    "specialRules": [
+                                        "Lethal 5+"
+                                    ],
+                                    "criticalEffects": [
+                                        "MW2"
+                                    ]
                                 }
                             ]
                         },
@@ -721,7 +755,9 @@ const EXACTION = {
                         },
                         {
                             "name": "*Shield",
-                            "description": ["Each time this operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, each time it parries, two of your opponent's successful hits are discarded (instead of one)."]
+                            "description": [
+                                "Each time this operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, each time it parries, two of your opponent's successful hits are discarded (instead of one)."
+                            ]
                         }
                     ],
                     "weapons": [
@@ -734,8 +770,13 @@ const EXACTION = {
                                     "skill": 4,
                                     "damageNorm": 4,
                                     "damageCrit": 4,
-                                    "specialRules": ["Repress*", "Shield*"],
-                                    "criticalEffects": ["Stun"],
+                                    "specialRules": [
+                                        "Repress*",
+                                        "Shield*"
+                                    ],
+                                    "criticalEffects": [
+                                        "Stun"
+                                    ]
                                 }
                             ]
                         }
@@ -813,8 +854,10 @@ const EXACTION = {
                         {
                             "name": "Precinct Vox-relay",
                             "cost": 1,
-                            "description": ["Select one friendly EXACTION SQUAD operative (excluding R-VR CYBER-MASTIFF operatives) Visible to this operative. Add 1 to its APL. This operative cannot perform this action while within Engagement Range of an enemy operative."]
-                        },
+                            "description": [
+                                "Select one friendly EXACTION SQUAD operative (excluding R-VR CYBER-MASTIFF operatives) Visible to this operative. Add 1 to its APL. This operative cannot perform this action while within Engagement Range of an enemy operative."
+                            ]
+                        }
                     ],
                     "weapons": [
                         {

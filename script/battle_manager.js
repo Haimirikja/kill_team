@@ -67,23 +67,34 @@ class BattleManager {
     
     loadKillTeamRules = ({id = "", mode = "debug"}) => {
         let rules;
-        if (mode === "debug") rules = KillTeam.parse(this.#RegisteredKillTeams.find(x => x.id === id)?.debugRef);
+        if (mode === "debug") {
+            rules = KillTeam.parse(this.#RegisteredKillTeams.find(x => x.id === id)?.debugRef);
+            if (rules && rules instanceof KillTeam) {
+                Id.cleanContext();
+                this.faction = rules.faction.toLowerCase();
+                document.getElementById(this.#BattleManagerRefList.BattleManager.id).setAttribute("for", this.faction);
+                document.getElementById("Content").appendChild(rules.toHTML());
+            }
+        }
         else {
             const fileName = this.#RegisteredKillTeams.find(x => x.id === id)?.fileName;
             if (!fileName) return undefined;
-            fetch(`../assets/data/${fileName}.json`)
+            fetch(`assets/data/${fileName}`)
                 .then(response => {
                     if (!response.ok) throw response;
                     return response.json();
                 })
-                .then(json => rules = KillTeam.parse(json))
+                .then(json => {
+                    console.log(json);
+                    rules = KillTeam.parse(json);
+                    if (rules && rules instanceof KillTeam) {
+                        Id.cleanContext();
+                        this.faction = rules.faction.toLowerCase();
+                        document.getElementById(this.#BattleManagerRefList.BattleManager.id).setAttribute("for", this.faction);
+                        document.getElementById("Content").appendChild(rules.toHTML());
+                    }
+                })
                 .catch(e => console.error(e));
-        }
-        if (rules && rules instanceof KillTeam) {
-            Id.cleanContext();
-            this.faction = rules.faction.toLowerCase();
-            document.getElementById(this.#BattleManagerRefList.BattleManager.id).setAttribute("for", this.faction);
-            document.getElementById("Content").appendChild(rules.toHTML());
         }
     }
 

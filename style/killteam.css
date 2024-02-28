@@ -84,6 +84,8 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 }
 
 .kill-team-overview {
+    max-width: 900px;
+    margin: 0 auto;
     padding: 1em;
     display: flex;
     flex-direction: column;
