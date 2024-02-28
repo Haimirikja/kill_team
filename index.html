@@ -16,7 +16,7 @@
     <script type="application/javascript" src="script/main.js"></script>
 </head>
 <body>
-    <div class="kill-team">
+    <div class="kill-team-overview">
         <div class="kill-team-phases">
             <div><h2>1. DETERMINE MISSION</h2></div>
             <div><h2>2. READ MISSION BRIEFING</h2></div>
@@ -89,22 +89,22 @@
 
         <div id="BattleManagerArea" class="kill-team-battle-manager">
             <div class="points-manager">
+                <div id="CommandPointActions" class="actions">
+                    <div id="CommandPointRemove" class="elevatedButton">−</div>
+                    <div id="CommandPointAdd" class="elevatedButton">+</div>
+                </div>
                 <div id="CommandPointsList" class="points-area">
                     <div class="point"></div>
                     <div class="point"></div>
                     <div class="point"></div>
                 </div>
-                <div id="CommandPointActions" class="actions">
-                    <div id="CommandPointRemove" class="elevatedButton">−</div>
-                    <div id="CommandPointAdd" class="elevatedButton">+</div>
-                </div>
             </div>
             <div class="points-manager">
-                <div id="VictoryPointsList" class="points-area"></div>
                 <div id="VictoryPointActions" class="actions">
                     <div id="VictoryPointRemove" class="elevatedButton">−</div>
                     <div id="VictoryPointAdd" class="elevatedButton">+</div>
                 </div>
+                <div id="VictoryPointsList" class="points-area"></div>
             </div>
         </div>
 

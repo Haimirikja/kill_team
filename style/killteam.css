@@ -8,13 +8,8 @@
     --dark-gray: #515a5c;
     --mid-gray: #676767;
     --font: #dadada;
-    --d6-0: url('../assets/image/d6-0.png');
-    --d6-1: url('../assets/image/d6-1.png');
-    --d6-2: url('../assets/image/d6-2.png');
-    --d6-3: url('../assets/image/d6-3.png');
-    --d6-4: url('../assets/image/d6-4.png');
-    --d6-5: url('../assets/image/d6-5.png');
-    --d6-6: url('../assets/image/d6-6.png');
+    --icon-size: 48px;
+    --icon-size-small: 32px;
 }
 :root{
     --faction-generic: url('../assets/faction/generic.png');
@@ -27,6 +22,13 @@
     --faction-tau: url('../assets/faction/tau.png');
     --faction-tyranid: url('../assets/faction/tyranid.png');
     --faction-votann: url('../assets/faction/votann.png');
+    --d6-0: url('../assets/image/d6-0.png');
+    --d6-1: url('../assets/image/d6-1.png');
+    --d6-2: url('../assets/image/d6-2.png');
+    --d6-3: url('../assets/image/d6-3.png');
+    --d6-4: url('../assets/image/d6-4.png');
+    --d6-5: url('../assets/image/d6-5.png');
+    --d6-6: url('../assets/image/d6-6.png');
 }
 *,*::before,*::after{box-sizing:border-box;min-width:0;}
 html {
@@ -42,6 +44,7 @@ body {
 }
 table{width:100%;border-collapse:collapse;}
 a{text-decoration-style:dotted;color:inherit;}
+input,select{font-family:inherit;}
 
 img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .title{text-transform:uppercase;color:var(--orange);}
@@ -80,7 +83,7 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     user-select: none;
 }
 
-.kill-team {
+.kill-team-overview {
     padding: 1em;
     display: flex;
     flex-direction: column;
@@ -107,7 +110,7 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     align-items: center;
 }
 .kill-team-battle-manager .points-manager .points-area {
-    min-height: calc(64px + 2em);
+    min-height: calc(var(--icon-size) + 2em);
     padding: 1em;
     display: flex;
     flex-direction: row;
@@ -117,16 +120,17 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     gap: 1em;
 }
 .kill-team-battle-manager .points-manager .point {
-    width: 64px;
-    height: 64px;
-    background: var(--faction-generic);
-}
-.kill-team-battle-manager .points-manager .dice {
-    width: 64px;
-    height: 64px;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    background-image: var(--faction-generic);
     background-size: contain;
 }
-.kill-team-battle-manager .points-manager .dice.d6-0{background-image:var(--d6-0);}
+.kill-team-battle-manager .points-manager .dice {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    background-image: var(--d6-0);
+    background-size: contain;
+}
 .kill-team-battle-manager .points-manager .dice.d6-1{background-image:var(--d6-1);}
 .kill-team-battle-manager .points-manager .dice.d6-2{background-image:var(--d6-2);}
 .kill-team-battle-manager .points-manager .dice.d6-3{background-image:var(--d6-3);}
@@ -163,9 +167,9 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .kill-team-item .title{font-size:1.4em;}
 .kill-team-item .kill-team-ability,
 .kill-team-item .kill-team-actions,
-.kill-team-item .kill-team-weaponList{margin:1em 0;}
+.kill-team-item .kill-team-weapons{margin:1em 0;}
 
-.kill-team-ability .ability-table{margin:1em 0;}
+.kill-team-ability .ability-table{margin:1em 0;border:1px solid var(--black);}
 .kill-team-ability .ability-table th,
 .kill-team-ability .ability-table td{padding:4px;}
 .kill-team-ability .ability-table thead {
@@ -176,6 +180,28 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .kill-team-ability .ability-table tbody tr:nth-child(even) {
     background-color: var(--light-gray);
 }
+.kill-team-ability .ability-table thead th:nth-child(1),
+.kill-team-ability .ability-table tbody td:nth-child(1) {
+    text-align: center;
+    font-weight: bold;
+}
+
+.ploy {
+    margin:1em 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.5em;
+}
+.ploy header {
+    padding: 2px 4px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.kill-team-strategic-ploys .ploy header{background-color:var(--dark-gray);color:var(--white);}
+.kill-team-tactical-ploys .ploy header{background-color:var(--black);color:var(--white);}
 
 .kill-team-psychic-power{margin:1em 0;}
 .kill-team-psychic-power header {
@@ -189,15 +215,15 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     justify-content: space-between;
 }
 
-.kill-team-weaponList tbody:nth-child(odd){background-color:var(--light-gray);}
-.kill-team-weaponList tr th,
-.kill-team-weaponList tr td{padding-right:3px;padding-left:3px;}
-.kill-team-weaponList thead{background-color:var(--gray);}
-.kill-team-weaponList tbody{text-align:center;}
-.kill-team-weaponList tr th:nth-child(1){width:1%;}
-.kill-team-weaponList tr th:nth-child(2),
-.kill-team-weaponList tr td:nth-child(2),
-.kill-team-weaponList tr td[colspan]{text-align:left;}
+.kill-team-weapons tbody:nth-child(odd){background-color:var(--light-gray);}
+.kill-team-weapons tr th,
+.kill-team-weapons tr td{padding-right:3px;padding-left:3px;}
+.kill-team-weapons thead{background-color:var(--gray);}
+.kill-team-weapons tbody{text-align:center;}
+.kill-team-weapons tr th:nth-child(1){width:1%;}
+.kill-team-weapons tr th:nth-child(2),
+.kill-team-weapons tr td:nth-child(2),
+.kill-team-weapons tr td[colspan]{text-align:left;}
 
 .kill-team-fire-team{margin-top:1em;}
 .kill-team-fire-team .datasheet {
@@ -230,7 +256,7 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .kill-team-operative .operative-stats th{background-color:var(--orange);padding:3px;}
 .kill-team-operative .operative-stats td{padding:3px;}
 
-.kill-team-operative .kill-team-weaponList{margin:0.5em 0;}
+.kill-team-operative .kill-team-weapons{margin:0.5em 0;}
 
 .kill-team-operative .operative-info {
     display: flex;
@@ -262,6 +288,8 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 }
 
 @media (max-width: 576px) {
+    html{font-size:10px;}
+    :root{--icon-size: var(--icon-size-small);}
     .kill-team-operative header{flex-direction:column;}
     .kill-team-operative header > *{width:100%}
     .kill-team-operative .operative-info{flex-direction:column;}

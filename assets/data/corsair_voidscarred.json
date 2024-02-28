@@ -70,7 +70,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "DIURNAL MANTLE",
             "rare": false,
             "value": [2],
-            "limit": false,
+            "limitNum": false,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],
             "ability": {
@@ -84,7 +84,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "PLASMA GRANADE",
             "rare": false,
             "value": [3],
-            "limit": false,
+            "limitNum": false,
             "dedicated": null,
             "description": ["The operative is equipped with the following ranged weapon for the battle:"],
             "ability": null,
@@ -109,7 +109,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "CORSAIR BLADE",
             "rare": false,
             "value": [1],
-            "limit": false,
+            "limitNum": false,
             "dedicated": null,
             "description": ["The operative is equipped with the following melee weapon for the battle:"],
             "ability": null,
@@ -134,7 +134,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "OCULAR SCANNER",
             "rare": false,
             "value": [2],
-            "limit": true,
+            "limitNum": true,
             "dedicated": null,
             "description": ["The operative can perform the following action during the battle:"],
             "ability": null,
@@ -149,7 +149,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "RUNES OF PROTECTION",
             "rare": false,
             "value": [2],
-            "limit": false,
+            "limitNum": false,
             "dedicated": null,
             "description": ["The operative gains the following ability for the battle:"],
             "ability": {
@@ -163,7 +163,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "MISTFIELD",
             "rare": false,
             "value": [3],
-            "limit": true,
+            "limitNum": true,
             "dedicated": "voidscarred_felarch",
             "description": ["VOIDSCARRED FELARCH operative only. The operative gains the following ability for the battle:"],
             "ability": {
@@ -177,7 +177,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "LODESTAR HELM",
             "rare": false,
             "value": [2],
-            "limit": true,
+            "limitNum": true,
             "dedicated": "voidscarred_way_seeker",
             "description": ["VOIDSCARRED WAY SEEKER operative only. The operative gains the following ability for the battle:"],
             "ability": {
@@ -191,7 +191,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "PATHFINDER CLOAK",
             "rare": false,
             "value": [2],
-            "limit": true,
+            "limitNum": true,
             "dedicated": "voidscarred_fate_dealer",
             "description": ["VOIDSCARRED FATE DEALER operative only. The operative gains the following ability for the battle:"],
             "ability": {
@@ -205,7 +205,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "LONG-SIGHT HELM",
             "rare": true,
             "value": [3],
-            "limit": true,
+            "limitNum": true,
             "dedicated": null,
             "description": ["Ranged weapons the operative is equipped with gain the Ceaseless special rule for the battle."],
             "ability": null,
@@ -216,7 +216,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "FLIP BELT",
             "rare": true,
             "value": [2],
-            "limit": true,
+            "limitNum": true,
             "dedicated": null,
             "description": ["The operative gains the FLY keyword for the battle."],
             "ability": null,
@@ -227,7 +227,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "SPIRIT STONE",
             "rare": true,
             "value": [4],
-            "limit": true,
+            "limitNum": true,
             "dedicated": "voidscarred_soul_weaver",
             "description": ["VOIDSCARRED SOUL WEAVER operative only. The operative gains the following ability for the battle:"],
             "ability": {
@@ -241,7 +241,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "PSYCHOREACTIVE ARMOUR",
             "rare": true,
             "value": [3],
-            "limit": true,
+            "limitNum": true,
             "dedicated": null,
             "description": ["Change the operative's Save characteristic to 3+ for the battle."],
             "ability": null,
@@ -252,7 +252,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "RELIC POWER WEAPON",
             "rare": true,
             "value": [2],
-            "limit": true,
+            "limitNum": true,
             "dedicated": null,
             "description": ["Operative equipped with a power weapon only. The power weapon this operative is equipped with gains the Balanced special rule for the battle."],
             "ability": null,
@@ -263,7 +263,7 @@ const CORSAIR_VOIDSCARRED = {
             "name": "RELIC WITCH STAFF",
             "rare": true,
             "value": [2],
-            "limit": true,
+            "limitNum": true,
             "dedicated": "voidscarred_way_seeker",
             "description": ["VOIDSCARRED WAY SEEKER operative only. The operative gains the following ability for the battle:"],
             "ability": {
@@ -399,9 +399,12 @@ const CORSAIR_VOIDSCARRED = {
     "fireTeams": [
         {
             "name": "Corsair Voidscarred",
+            "size": 9,
             "operatives": [
                 {
                     "name": "Voidscarred Felarch",
+                    "mandatory": true,
+                    "limitNum": 1,
                     "stats": [6, 2, 1, 3, 4, 9],
                     "abilities": [
                         {
@@ -485,6 +488,8 @@ const CORSAIR_VOIDSCARRED = {
                 },
                 {
                     "name": "Voidscarred Gunner",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -549,6 +554,8 @@ const CORSAIR_VOIDSCARRED = {
                 },
                 {
                     "name": "Voidscarred Heavy Gunner",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -614,6 +621,8 @@ const CORSAIR_VOIDSCARRED = {
                 },
                 {
                     "name": "Voidscarred Starstorm Duellist",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -683,6 +692,8 @@ const CORSAIR_VOIDSCARRED = {
                 },
                 {
                     "name": "Voidscarred Kurnite Hunter",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -735,6 +746,8 @@ const CORSAIR_VOIDSCARRED = {
                 },
                 {
                     "name": "Voidscarred Shade Runner",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -799,6 +812,8 @@ const CORSAIR_VOIDSCARRED = {
                 },
                 {
                     "name": "Voidscarred Kurnathi",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -844,6 +859,8 @@ const CORSAIR_VOIDSCARRED = {
                 },
                 {
                     "name": "Voidscarred Fate Dealer",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -911,6 +928,8 @@ const CORSAIR_VOIDSCARRED = {
                 },
                 {
                     "name": "Voidscarred Way Seeker",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -960,6 +979,8 @@ const CORSAIR_VOIDSCARRED = {
                 },
                 {
                     "name": "Voidscarred Soul Weaver",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {
@@ -1020,6 +1041,8 @@ const CORSAIR_VOIDSCARRED = {
                 },
                 {
                     "name": "Voidscarred Warrior",
+                    "mandatory": false,
+                    "limitNum": 0,
                     "stats": [6, 2, 1, 3, 4, 8],
                     "abilities": [
                         {

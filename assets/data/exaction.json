@@ -6,16 +6,80 @@ const EXACTION = {
             "name": "RUTHLESS EFFICIENCY",
             "description": [
                 "Each time a friendly operative with this ability makes a shooting attack with a weapon that doesn't have the Blast special rule or the word 'grenade' in its name, in the Select Valid Target step of that shooting attack, enemy operatives within ((6)) of it can have other friendly operatives within Engagement Range and still be selected as a valid target (they must still be a valid target by all other means).",
+                "",
                 "Each time a friendly operative with this ability makes a shooting attack with a weapon that doesn't have the Blast special rule or the word 'grenade' in its name, if the target is within ((2)) of another friendly EXACTION SQUAD operative, that ranged weapon has the P1 critical hit rule for that shooting attack."
+            ]
+        }
+    ],
+    "strategicPloys": [
+        {
+            "name": "GUILT REVEALS ITSELF",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a friendly EXACTION SQUAD operative makes a shooting attack, enemy operatives must be more than 2((2)) (instead of ((2))) from it to be in Cover."
+            ]
+        },
+        {
+            "name": "INVIOLATE JURISDICTION",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a shooting attack is made against a friendly EXACTION SQUAD operative that's within ((2)) of an objective marker or enemy operative, in the Roll Defence Dice step of that shooting attack, you can re-roll one of your defence dice."
+            ]
+        },
+        {
+            "name": "DISPENSE JUSTICE",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a friendly EXACTION SQUAD operative fights in combat in an activation (including an enemy activation) in which it has not moved more than its Movement characteristic, in the Roll Attack Dice step of that combat, you can re-roll one of your attack dice."
+            ]
+        },
+        {
+            "name": "TERMINAL DECREE",
+            "cost": 1,
+            "description": [
+                "Until the end of the Turning Point, each time a friendly EXACTION SQUAD operative makes a shooting attack against an enemy operative within 2((2)) of it, in the Roll Attack Dice step of that shooting attack, you can re-roll one of your attack dice."
+            ]
+        }
+    ],
+    "tacticalPloys": [
+        {
+            "name": "LONG ARM OF THE EMPEROR'S LAW",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy in the Scouting step, when your opponent reveals their selection. They cannot resolve that selection. Initiative is still determined as normal, and this Tactical Ploy has no effect on additional or different scouting options your opponent could perform (e.g. Pursuers, HUNTER CLADE)."
+            ]
+        },
+        {
+            "name": "EXACT PUNISHMENT",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy after an enemy operative fights in combat or makes a shooting attack against a friendly EXACTION SQUAD operative within ((3)) of it, and that friendly operative is not incapacitated as a result. That friendly operative can immediately perform a free Fight or Overwatch action, but can only target that enemy operative, and only if it's a valid target."
+            ]
+        },
+        {
+            "name": "BRUTAL BACKUP",
+            "cost": 1,
+            "description": [
+                "Use this Tactical Ploy after a friendly EXACTION SQUAD operative performs a Fight action with combat support. One of the friendly EXACTION SQUAD operatives that provided combat support can immediately perform a free Fight action, but can only target the enemy operative from that previous Fight action, and only if it's a valid target."
+            ]
+        },
+        {
+            "name": "EXECUTION ORDER",
+            "cost": 0,
+            "description": [
+                "Use this Tactical Ploy when a friendly PROCTOR-EXACTANT operative is activated. Select one enemy operative in its Line of Sight. Until the end of the battle, each time a friendly EXACTION SQUAD operative fights in combat or makes a shooting attack against that enemy operative, in the Roll Attack Dice step of that combat or shooting attack, you can re-roll any or all of your attack dice. Costing 1 additional Command point for each previous time you've used it during the battle."
             ]
         }
     ],
     "fireTeams": [
         {
             "name": "Exaction",
+            "size": 11,
             "operatives": [
                 {
                     "name": "Arbites Proctor-exactant",
+                    "mandatory": true,
+                    "limitNum": 1,
                     "stats": [
                         6,
                         2,
@@ -49,6 +113,7 @@ const EXACTION = {
                         {
                             "name": "Nuncio-aquila",
                             "description": [
+                                "",
                                 "• Each time an enemy operative would perform a mission action or the Pick Up action, if that enemy operative is within ((3)) of your Nuncio-aquila token (or this operative if that token has not been placed), one additional action point must be subtracted to perform that action. See the Deploy Nuncio-aquila action below for how that token is placed.",
                                 "• When determining control of an objective marker your Nuncio-aquila token (or this operative if that token has not been placed) is within ((3)) of, treat enemy operatives' total APL as being 1 less. Note that this is not a modifier."
                             ]
@@ -121,6 +186,8 @@ const EXACTION = {
                 },
                 {
                     "name": "Arbites Castigator",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [
                         6,
                         2,
@@ -197,6 +264,8 @@ const EXACTION = {
                 },
                 {
                     "name": "Arbites Chirurgant",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [
                         6,
                         2,
@@ -263,6 +332,8 @@ const EXACTION = {
                 },
                 {
                     "name": "Arbites Gunner",
+                    "mandatory": false,
+                    "limitNum": 2,
                     "stats": [
                         6,
                         2,
@@ -334,6 +405,8 @@ const EXACTION = {
                 },
                 {
                     "name": "Arbites Leashmaster",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [
                         6,
                         2,
@@ -409,6 +482,8 @@ const EXACTION = {
                 },
                 {
                     "name": "R-VR Cyber-mastiff",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [
                         6,
                         2,
@@ -448,6 +523,8 @@ const EXACTION = {
                 },
                 {
                     "name": "Arbites Malocator",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [
                         6,
                         2,
@@ -510,6 +587,8 @@ const EXACTION = {
                 },
                 {
                     "name": "Arbites Marksman",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [
                         6,
                         2,
@@ -561,6 +640,8 @@ const EXACTION = {
                 },
                 {
                     "name": "Arbites Revelatum",
+                    "mandatory": false,
+                    "limitNum": 1,
                     "stats": [
                         6,
                         2,
@@ -618,6 +699,8 @@ const EXACTION = {
                 },
                 {
                     "name": "Arbites Subductor",
+                    "mandatory": false,
+                    "limitNum": 4,
                     "stats": [
                         6,
                         2,
@@ -660,6 +743,8 @@ const EXACTION = {
                 },
                 {
                     "name": "Arbites Vigilant",
+                    "mandatory": false,
+                    "limitNum": 0,
                     "stats": [
                         6,
                         2,

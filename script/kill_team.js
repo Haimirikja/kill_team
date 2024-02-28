@@ -23,8 +23,8 @@ class KillTeam {
         this.name = name && typeof name === 'string' ? name : "";
         this.faction = faction && typeof faction === 'string' ? faction : "";
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
-        this.strategicPloys = Array.isArray(strategicPloys) ? strategicPloys.filter(x => x instanceof Ploy) : [];
-        this.tacticalPloys = Array.isArray(tacticalPloys) ? tacticalPloys.filter(x => x instanceof Ploy) : [];
+        this.strategicPloys = Array.isArray(strategicPloys) ? strategicPloys.filter(x => x instanceof StrategicPloy) : [];
+        this.tacticalPloys = Array.isArray(tacticalPloys) ? tacticalPloys.filter(x => x instanceof TacticalPloy) : [];
         this.psychicPowers = Array.isArray(psychicPowers) ? psychicPowers.filter(x => x instanceof PsychicPower) : [];
         this.fireTeams = Array.isArray(fireTeams) ? fireTeams.filter(x => x instanceof FireTeam) : [];
     }
@@ -45,8 +45,8 @@ class KillTeam {
             object.name,
             object.faction,
             object.abilities?.map(x => Ability.parse(x)),
-            object.strategicPloys?.map(x => Ploy.parse(x)),
-            object.tacticalPloys?.map(x => Ploy.parse(x)),
+            object.strategicPloys?.map(x => StrategicPloy.parse(x)),
+            object.tacticalPloys?.map(x => TacticalPloy.parse(x)),
             object.psychicPowers?.map(x => PsychicPower.parse(x)),
             object.fireTeams?.map(x => FireTeam.parse(x)),
         )
@@ -64,6 +64,7 @@ class KillTeam {
 
     toHTML = () => {
         const killTeamElement = document.createElement("div");
+        killTeamElement.classList.add("kill-team");
         const killTeamName = document.createElement("h1");
         killTeamName.classList.add("title");
         killTeamName.innerText = `${this.name} Kill Team`+(this.faction ? ` (${this.faction})` : "");
@@ -80,39 +81,51 @@ class KillTeam {
         });
         killTeamElement.appendChild(fireTeamsList);
         if (this.abilities) {
-            const killTeamAbilities = document.createElement("div");
-            const killTeamAbilitiesTitle = document.createElement("h2");
-            killTeamAbilitiesTitle.classList.add("title");
-            const killTeamAbilitiesSubTitle = document.createElement("div");
+            const abilitiesElement = document.createElement("div");
+            const abilitiesTitle = document.createElement("h2");
+            abilitiesTitle.classList.add("title");
+            const abilitiesSubtitle = document.createElement("div");
             if (this.abilities.length === 1) {
-                killTeamAbilitiesTitle.innerText = "ABILITY";
-                killTeamAbilitiesSubTitle.innerText = `Below, you will find common abilities of the ${this.name} kill team.`;
+                abilitiesTitle.innerText = "ABILITY";
+                abilitiesSubtitle.innerText = `Below, you will find common abilities of the ${this.name} kill team.`;
             } else {
-                killTeamAbilitiesTitle.innerText = "ABILITIES";
-                killTeamAbilitiesSubTitle.innerText = `Below, you will find common abilities of the ${this.name} kill team.`;
+                abilitiesTitle.innerText = "ABILITIES";
+                abilitiesSubtitle.innerText = `Below, you will find common abilities of the ${this.name} kill team.`;
             }
-            killTeamAbilities.appendChild(killTeamAbilitiesTitle);
-            killTeamAbilities.appendChild(killTeamAbilitiesSubTitle);
+            abilitiesElement.appendChild(abilitiesTitle);
+            abilitiesElement.appendChild(abilitiesSubtitle);
             this.abilities.forEach(ability => {
-                killTeamAbilities.appendChild(ability.toHTML(true));
+                abilitiesElement.appendChild(ability.toHTML(true));
             });
-            killTeamElement.appendChild(killTeamAbilities);
+            killTeamElement.appendChild(abilitiesElement);
         }
-        if (this.strategicPloys) {
-            const killTeamStrategic = document.createElement("div");
+        let ploysElement;
+        let ploysTitle;
+        if (this.strategicPloys.length) {
+            ploysElement = document.createElement("div");
+            ploysElement.classList.add("kill-team-strategic-ploys");
+            ploysTitle = document.createElement("h2");
+            ploysTitle.classList.add("title");
+            ploysTitle.innerText = "STRATEGIC PLOYS";
+            ploysElement.appendChild(ploysTitle);
             this.strategicPloys.forEach(ploy => {
-                killTeamStrategic.appendChild(ploy.toHTML());
+                ploysElement.appendChild(ploy.toHTML());
             });
-            killTeamElement.appendChild(killTeamStrategic);
+            killTeamElement.appendChild(ploysElement);
         }
-        if (this.tacticalPloys) {
-            const killTeamTactical = document.createElement("div");
+        if (this.tacticalPloys.length) {
+            ploysElement = document.createElement("div");
+            ploysElement.classList.add("kill-team-tactical-ploys");
+            ploysTitle = document.createElement("h2");
+            ploysTitle.classList.add("title");
+            ploysTitle.innerText = "TACTICAL PLOYS";
+            ploysElement.appendChild(ploysTitle);
             this.tacticalPloys.forEach(ploy => {
-                killTeamTactical.appendChild(ploy.toHTML());
+                ploysElement.appendChild(ploy.toHTML());
             });
-            killTeamElement.appendChild(killTeamTactical);
+            killTeamElement.appendChild(ploysElement);
         }
-        if (this.psychicPowers) {
+        if (this.psychicPowers.length) {
             const killTeamPsychicPowers = document.createElement("div");
             const killTeamPsychicPowersTitle = document.createElement("h2");
             killTeamPsychicPowersTitle.classList.add("title");
@@ -201,7 +214,8 @@ class Operative {
         abilities = [],
         actions = [],
         {
-            unique = false,
+            mandatory = false,
+            limitNum = 0,
             limitTag = [],
             equipment = [],
             battleHonour = [],
@@ -221,7 +235,9 @@ class Operative {
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
         this.actions = Array.isArray(actions) ? actions.filter(x => x instanceof Action) : [];
         this.weapons = Array.isArray(weapons) ? weapons.filter(x => x instanceof Weapon) : [];
-        this.unique = typeof unique === 'boolean' ? unique : false;
+        this.mandatory = typeof mandatory === 'boolean' ? mandatory : false;
+        limitNum = parseInt(limitNum);
+        this.limitNum = !isNaN(limitNum) && isFinite(limitNum) && limitNum > 0 ? limitNum : 0,
         this.limitTag = Array.isArray(limitTag) ? limitTag.filter(x => typeof x === 'string') : [];
         this.equipment = Array.isArray(equipment) ? equipment.filter(x => x instanceof Equipment) : [];
         this.battleHonour = Array.isArray(battleHonour) ? battleHonour.filter(x => typeof x === 'string') : [];
@@ -265,7 +281,8 @@ class Operative {
             object.abilities?.map(x => Ability.parse(x)),
             object.actions?.map(x => Action.parse(x)),
             {
-                unique: object.unique,
+                mandatory: object.mandatory,
+                limitNum: object.limitNum,
                 limitTag: object.limitTag,
                 equipment: object.equipment?.map(x => Equipment.parse(x)),
                 battleHonour: object.battleHonour,
@@ -282,7 +299,8 @@ class Operative {
         weapons: this.weapons,
         abilities: this.abilities,
         actions: this.actions,
-        unique: this.unique,
+        mandatory: this.mandatory,
+        limitNum: this.limitNum,
         limitTag: this.limitTag,
         equipment: this.equipment,
         battleHonour: this.battleHonour,
@@ -405,24 +423,62 @@ class Ploy {
 
     toHTML = () => {
         const ployElement = document.createElement("div");
-        const ployElementHeader = document.createElement("header");
-        const ployElementName = document.createElement("span");
-        ployElementName.innerText = this.name;
-        const ployElementCost = document.createElement("span");
-        ployElementCost.innerText = `${this.cost}CP`;
-        ployElementHeader.appendChild(ployElementName);
-        ployElementHeader.appendChild(ployElementCost);
-        ployElement.appendChild(ployElementHeader);
-        const ployElementType = document.createElement("div");
-        ployElementType.innerText = "Strategic / Tactical";
-        ployElement.appendChild(ployElementType);
-        const ployElementContent = document.createElement("div");
+        ployElement.classList.add("ploy");
+        const ployHeader = document.createElement("header");
+        const ployName = document.createElement("span");
+        ployName.innerText = this.name;
+        const ployCost = document.createElement("span");
+        ployCost.innerText = `${this.cost}CP`;
+        ployHeader.appendChild(ployName);
+        ployHeader.appendChild(ployCost);
+        ployElement.appendChild(ployHeader);
+        if (this.type) {
+            const ployType = document.createElement("div");
+            const ployTypeText = document.createElement("i");
+            ployTypeText.innerText = `${this.type} Ploy`;
+            ployType.appendChild(ployTypeText);
+            ployElement.appendChild(ployType);
+        }
+        const ployContent = document.createElement("div");
+        ployContent.classList.add("content");
         this.description.forEach((row, i) => {
-            if (i > 0) ployElementContent.appendChild(document.createElement("br"));
-            ployElementContent.appendChild(replaceMarkup(row));
+            if (i > 0) ployContent.appendChild(document.createElement("br"));
+            ployContent.appendChild(replaceMarkup(row));
         })
-        ployElement.appendChild(ployElementContent);
+        ployElement.appendChild(ployContent);
         return ployElement;
+    }
+}
+
+class StrategicPloy extends Ploy {
+    constructor(name = "", cost = 0, description = []) {
+        super(name, cost, description);
+        this.type = "Strategic";
+    }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new StrategicPloy(
+            object.name,
+            object.cost,
+            object.description,
+        );
+    }
+}
+
+class TacticalPloy extends Ploy {
+    constructor(name = "", cost = 0, description = []) {
+        super(name, cost, description);
+        this.type = "Tactical";
+    }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new TacticalPloy(
+            object.name,
+            object.cost,
+            object.description,
+        );
     }
 }
 
@@ -699,7 +755,7 @@ class Weapon {
 
     static get tableHTMLWrapper() {
         const table = document.createElement("table");
-        table.classList.add("kill-team-weaponList");
+        table.classList.add("kill-team-weapons");
         return table;
     }
 
