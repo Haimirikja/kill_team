@@ -58,13 +58,13 @@ class BattleManager {
             this.killTeam = lastKillTeam.killTeam;
             document.getElementById("KillTeamSelect").value = this.killTeam;
         }
-        this.loadKillTeamRules({id: this.killTeam, mode: "debug"});
+        this.loadKillTeamRules(this.killTeam, { mode: location.origin === 'file://' ? "debug" : "default" });
         this.updateCommandPoints(false);
         this.updateVictoryPoints(false);
         if (typeof id !== 'undefined') this.save();
     }
     
-    loadKillTeamRules = ({id = "", mode = "debug"}) => {
+    loadKillTeamRules = (id = "", { mode = "default" }) => {
         let rules;
         if (mode === "debug") {
             rules = KillTeam.parse(this.#RegisteredKillTeams.find(x => x.id === id)?.debugRef);
@@ -84,12 +84,11 @@ class BattleManager {
                     return response.json();
                 })
                 .then(json => {
-                    console.log(json);
                     rules = KillTeam.parse(json);
                     if (rules && rules instanceof KillTeam) {
                         Id.cleanContext();
                         this.faction = rules.faction.toLowerCase();
-                        document.getElementById(this.#BattleManagerRefList.BattleManager.id).setAttribute("for", this.faction);
+                        document.getElementById(this.#BattleManagerRefList.BattleManager.id).setAttribute("for", new Id(this.faction).key);
                         document.getElementById("Content").appendChild(rules.toHTML());
                     }
                 })
