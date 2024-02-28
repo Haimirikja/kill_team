@@ -1,12 +1,11 @@
 class BattleManager {
     #RegisteredKillTeams = [
-        { id: "corsair_voidscarred", debugRef: CORSAIR_VOIDSCARRED, fileName: "corsair_voidscarred.json"},
-        { id: "craftworld", debugRef: CRAFTWORLD, fileName: "craftworld.json"},
-        { id: "exaction", debugRef: EXACTION, fileName: "exaction.json"},
-        { id: "fleet_hive", debugRef: null, fileName: null},
-        { id: "legionary", debugRef: null, fileName: null},
-        { id: "veteran_guardsman", debugRef: VETERAN_GUARDSMAN, fileName: "veteran_guardsman.json"},
-        { id: "void-dancer_troupe", debugRef: VOID_DANCER_TROUPE, fileName: "void-dancer_troupe.json"},
+        { id: "corsair_voidscarred", debugRef: CORSAIR_VOIDSCARRED, fileName: "corsair_voidscarred.json" },
+        { id: "craftworld", debugRef: CRAFTWORLD, fileName: "craftworld.json" },
+        { id: "exaction", debugRef: EXACTION, fileName: "exaction.json" },
+        { id: "veteran_guardsman", debugRef: VETERAN_GUARDSMAN, fileName: "veteran_guardsman.json" },
+        { id: "void-dancer_troupe", debugRef: VOID_DANCER_TROUPE, fileName: "void-dancer_troupe.json" },
+        { id: "wyrmblade", debugRef: WYRMBLADE, fileName: "wyrmblade.json" },
     ];
     
     #BattleManagerRefList = {
@@ -72,7 +71,7 @@ class BattleManager {
             if (rules && rules instanceof KillTeam) {
                 Id.cleanContext();
                 this.faction = rules.faction.toLowerCase();
-                document.getElementById(this.#BattleManagerRefList.BattleManager.id).setAttribute("for", this.faction);
+                document.getElementById(this.#BattleManagerRefList.BattleManager.id).setAttribute("for", new Id(this.faction).key);
                 document.getElementById("Content").appendChild(rules.toHTML());
             }
         }

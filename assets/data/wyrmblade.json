@@ -1,0 +1,6 @@
+const WYRMBLADE = {
+    "name": "WYRMBLADE",
+    "faction": "GENESTEALER CULTS",
+    "abilities": [],
+    "fireTeams": [],
+}

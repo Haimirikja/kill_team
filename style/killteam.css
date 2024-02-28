@@ -15,6 +15,7 @@
     --faction-generic: url('../assets/faction/generic.png');
     --faction-aeldari: url('../assets/faction/aeldari.png');
     --faction-chaos: url('../assets/faction/chaos.png');
+    --faction-genestealer: url('../assets/faction/genestealer_cults.png');
     --faction-imperium: url('../assets/faction/imperium.png');
     --faction-necron: url('../assets/faction/necron.png');
     --faction-ork: url('../assets/faction/ork.png');
@@ -141,6 +142,7 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .kill-team-battle-manager .points-manager .dice.d6-6{background-image:var(--d6-6);}
 .kill-team-battle-manager[for=aeldari] .points-manager .point{background-image:var(--faction-aeldari);}
 .kill-team-battle-manager[for=chaos] .points-manager .point{background-image:var(--faction-chaos);}
+.kill-team-battle-manager[for=genestealer_cults] .points-manager .point{background-image:var(--faction-genestealer);}
 .kill-team-battle-manager[for=imperium] .points-manager .point{background-image:var(--faction-imperium);}
 .kill-team-battle-manager[for=necron] .points-manager .point{background-image:var(--faction-necron);}
 .kill-team-battle-manager[for=ork] .points-manager .point{background-image:var(--faction-ork);}
