@@ -53,8 +53,8 @@ class BattleManager {
         if (lastKillTeam) {
             const commandPoints = parseInt(lastKillTeam.commandPoints);
             const victoryPoints = parseInt(lastKillTeam.victoryPoints);
-            if (!isNaN(commandPoints) && isFinite(commandPoints) && commandPoints >= 0) this.commandPoints = commandPoints;
-            if (!isNaN(victoryPoints) && isFinite(victoryPoints) && victoryPoints >= 0) this.victoryPoints = victoryPoints;
+            if (isFinitePositive(commandPoints)) this.commandPoints = commandPoints;
+            if (isFinitePositive(victoryPoints)) this.victoryPoints = victoryPoints;
             this.killTeam = lastKillTeam.killTeam;
             document.getElementById("KillTeamSelect").value = this.killTeam;
         }

@@ -6,7 +6,7 @@ class Equipment {
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
         this.rare = typeof rare === 'boolean' ? rare : false;
-        this.value = Array.isArray(value) ? value.filter(x => typeof x === 'number' && isFinite(x) && x >= 0) : [];
+        this.value = Array.isArray(value) ? value.filter(x => isFinitePositive(x)) : [];
         this.limit = typeof limit === 'boolean' ? limit : false;
         this.dedicated = dedicated instanceof Id ? dedicated.key : null;
         this.description = Array.isArray(description) ? description.filter(x => typeof x === 'string') : [];

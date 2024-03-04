@@ -1,19 +1,3 @@
-const Specialism = {
-    NONE: "None",
-    COMBAT: "Combat",
-    STAUNCH: "Staunch",
-    MARKSMAN: "Marksman",
-    SCOUT: "Scout",
-};
-
-const Rank = {
-    0: "Adept",
-    6: "Veteran",
-    16: "Ace",
-    31: "Grizzled",
-    51: "Revered",
-}
-
 class Operative {
     constructor(
         name = "",
@@ -25,16 +9,8 @@ class Operative {
             mandatory = false,
             limitNum = 0,
             limitTag = [],
-            equipment = [],
-            battleHonour = [],
-            battleScars = [],
-            specialism = Specialism.NONE,
-            experiencePoints = 0
         } = {}
     ) {
-        Object.defineProperty(this, "addExperience", { enumerable: false });
-        Object.defineProperty(this, "addEquipment", { enumerable: false });
-        Object.defineProperty(this, "removeEquipment", { enumerable: false });
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "equals", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
@@ -46,39 +22,8 @@ class Operative {
         this.actions = Array.isArray(actions) ? actions.filter(x => x instanceof Action) : [];
         this.mandatory = typeof mandatory === 'boolean' ? mandatory : false;
         limitNum = parseInt(limitNum);
-        this.limitNum = !isNaN(limitNum) && isFinite(limitNum) && limitNum > 0 ? limitNum : 0,
+        this.limitNum = isFinitePositive(limitNum) ? limitNum : 0;
         this.limitTag = Array.isArray(limitTag) ? limitTag.filter(x => typeof x === 'string') : [];
-        this.equipment = Array.isArray(equipment) ? equipment.filter(x => x instanceof Equipment) : [];
-        this.battleHonour = Array.isArray(battleHonour) ? battleHonour.filter(x => typeof x === 'string') : [];
-        this.battleScars = Array.isArray(battleScars) ? battleScars.filter(x => typeof x === 'string') : [];
-        this.specialism = Object.values(Specialism).find(x => x === specialism).length ? specialism : Specialism.NONE;
-        this.experiencePoints = experiencePoints < 0 ? 0 : experiencePoints;
-        this.rank = this.#getRank(experiencePoints);
-    }
-
-    #getRank = () => {
-        let currentRank = Rank[0];
-        for (const rank in Rank) {
-            if (this.experiencePoints < rank) break;
-            currentRank = Rank[rank];
-        }
-        return currentRank;
-    }
-
-    addExperience = (experience) => {
-        this.experiencePoints += experience;
-        this.rank = this.#getRank();
-        return this.experiencePoints;
-    }
-
-    addEquipment = (equipment) => {
-        if (equipment instanceof Equipment) this.equipment.push(equipment);
-        return this.equipment;
-    }
-
-    removeEquipment = (equipment) => {
-        if (equipment instanceof Equipment) this.equipment.splice(this.equipment.indexOf(this.equipment.find(x => x.equals(equipment))));
-        return this.equipment;
     }
 
     static parse = (object) => {
@@ -93,11 +38,6 @@ class Operative {
                 mandatory: object.mandatory,
                 limitNum: object.limitNum,
                 limitTag: object.limitTag,
-                equipment: object.equipment?.map(x => Equipment.parse(x)),
-                battleHonour: object.battleHonour,
-                battleScars: object.battleScars,
-                specialism: object.specialism,
-                experiencePoints: object.experiencePoints,
             }
         );
     }
@@ -111,11 +51,6 @@ class Operative {
         mandatory: this.mandatory,
         limitNum: this.limitNum,
         limitTag: this.limitTag,
-        equipment: this.equipment,
-        battleHonour: this.battleHonour,
-        battleScars: this.battleScars,
-        specialism: this.specialism,
-        experiencePoints: this.experiencePoints,
     });
 
     equals = (operative) => {

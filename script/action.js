@@ -6,7 +6,7 @@ class Action {
         Object.defineProperty(this, "toHTML", { enumerable: false });
         cost = parseInt(cost);
         this.name = name && typeof name === 'string' ? name : "";
-        this.cost = !isNaN(cost) && isFinite(cost) && cost >= 0 ? cost : 1;
+        this.cost = isFinitePositive(cost) ? cost : 1;
         if (!Array.isArray(description)) description = [description];
         this.description = description.filter(x => typeof x === 'string');
     }

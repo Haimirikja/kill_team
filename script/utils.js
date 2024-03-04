@@ -88,6 +88,10 @@ class Id {
     }
 }
 
+function isFinitePositive(int) {
+    return typeof int === 'number' && !isNaN(int) && isFinite(int) && int >= 0;
+}
+
 //NEED REFACTORY...
 function replaceMarkup(string) {
     const markupList = [

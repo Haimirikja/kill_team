@@ -6,7 +6,7 @@ class Ploy {
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
         cost = parseInt(cost);
-        this.cost = !isNaN(cost) && isFinite(cost) && cost > 0 ? cost : null;
+        this.cost = isFinitePositive(cost) && cost > 0 ? cost : null;
         this.description = Array.isArray(description) ? description.filter(x => typeof x === 'string') : [];
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
         this.actions = Array.isArray(actions) ? actions.filter(x => x instanceof Action) : [];

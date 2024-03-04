@@ -96,10 +96,10 @@ class WeaponProfile {
         damageCrit = parseInt(damageCrit);
         range = parseInt(range);
         this.name = name && typeof name === 'string' ? name : "";
-        this.attacks = !isNaN(attacks) && isFinite(attacks) && attacks > 0 ? attacks : 1;
+        this.attacks = isFinitePositive(attacks) ? attacks : 1;
         this.skill = !isNaN(skill) && skill > 1 && skill <= 6 ? skill : 6;
-        this.damageNorm = !isNaN(damageNorm) && isFinite(damageNorm) && damageNorm >= 0 ? damageNorm : 0;
-        this.damageCrit = !isNaN(damageCrit) && isFinite(damageCrit) && damageCrit >= 0 ? damageCrit : 0;
+        this.damageNorm = isFinitePositive(damageNorm) ? damageNorm : 0;
+        this.damageCrit = isFinitePositive(damageCrit) ? damageCrit : 0;
         this.range = !isNaN(range) && range > 0 ? range : Infinity;
         this.specialRules = Array.isArray(specialRules) ? specialRules.filter(x => typeof x === 'string') : [];
         this.criticalEffects = Array.isArray(criticalEffects) ? criticalEffects.filter(x => typeof x === 'string') : [];
