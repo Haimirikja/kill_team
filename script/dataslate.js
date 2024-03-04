@@ -13,8 +13,9 @@ class Dataslate {
             specOpsLog = [],
             stash = [],
             strategicAssets = [],
-            notes = []
-        } = {}
+            notes = [],
+            datacards = [],
+        } = {},
     ) {
         this.name = typeof name === 'string' ? name : "";
         this.player = typeof player === 'string' ? player : "";
@@ -31,6 +32,29 @@ class Dataslate {
         this.stash = Array.isArray(stash) ? stash.filter(x => x instanceof Equipment) : [];
         this.strategicAssets = Array.isArray(strategicAssets) ? strategicAssets.filter(x => typeof x === 'string') : [];
         this.notes = Array.isArray(notes) ? notes.filter(x => typeof x === 'string') : [];
+        this.datacards = Array.isArray(datacards) ? datacards.filter(x => x instanceof Datacard) : [];
+    }
+
+    static parse = (object) => {
+        if (!(object instanceof Object)) return undefined;
+        return new Dataslate(
+            object.name,
+            object.player,
+            object.faction,
+            object.keywords,
+            object.base,
+            object.assets,//object.assets?.map(x => Assets.parse(x)),
+            object.quirks,
+            {
+                requisitionPoints: object.requisitionPoints,
+                assetCapacity: object.assetCapacity,
+                specOpsLog: object.specOpsLog,//specOpsLog: object.specOpsLog?.map(x => SpecOp.parse(x)),
+                stash: object.stash?.map(x => Equipment.parse(x)),
+                strategicAssets: object.strategicAssets,
+                notes: object.notes,
+                datacards: object.datacards?.map(x => Datacard.parse(x)),
+            },
+        );
     }
 
 }

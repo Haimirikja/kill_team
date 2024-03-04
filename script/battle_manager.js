@@ -8,29 +8,27 @@ class BattleManager {
         { id: "wyrmblade", debugRef: WYRMBLADE, fileName: "wyrmblade.json" },
     ];
     
-    #BattleManagerRefList = {
-        BattleManager: {
-            id: "BattleManagerArea",
-            changeKillTeam: "KillTeamSelect",
-            CommandPoints: {
-                id: "CommandPointsList",
-                add: "CommandPointAdd",
-                remove: "CommandPointRemove",
-            },
-            VictoryPoints: {
-                id: "VictoryPointsList",
-                add: "VictoryPointAdd",
-                remove: "VictoryPointRemove",
-            }
+    #BattleManagerIdRef = {
+        id: "BattleManagerArea",
+        changeKillTeam: "KillTeamSelect",
+        CommandPoints: {
+            id: "CommandPointsList",
+            add: "CommandPointAdd",
+            remove: "CommandPointRemove",
+        },
+        VictoryPoints: {
+            id: "VictoryPointsList",
+            add: "VictoryPointAdd",
+            remove: "VictoryPointRemove",
         }
     }
 
     constructor() {
-        document.getElementById(this.#BattleManagerRefList.BattleManager.changeKillTeam).addEventListener('change', (e) => this.load(e.currentTarget.value));
-        document.getElementById(this.#BattleManagerRefList.BattleManager.CommandPoints.add).addEventListener('click', this.addCommandPoint);
-        document.getElementById(this.#BattleManagerRefList.BattleManager.CommandPoints.remove).addEventListener('click', this.removeCommandPoint);
-        document.getElementById(this.#BattleManagerRefList.BattleManager.VictoryPoints.add).addEventListener('click', this.addVictoryPoint);
-        document.getElementById(this.#BattleManagerRefList.BattleManager.VictoryPoints.remove).addEventListener('click', this.removeVictoryPoint);
+        document.getElementById(this.#BattleManagerIdRef.changeKillTeam).addEventListener('change', (e) => this.load(e.currentTarget.value));
+        document.getElementById(this.#BattleManagerIdRef.CommandPoints.add).addEventListener('click', this.addCommandPoint);
+        document.getElementById(this.#BattleManagerIdRef.CommandPoints.remove).addEventListener('click', this.removeCommandPoint);
+        document.getElementById(this.#BattleManagerIdRef.VictoryPoints.add).addEventListener('click', this.addVictoryPoint);
+        document.getElementById(this.#BattleManagerIdRef.VictoryPoints.remove).addEventListener('click', this.removeVictoryPoint);
         this.load();
     }
 
@@ -39,14 +37,14 @@ class BattleManager {
         this.victoryPoints = 0;
         this.killTeam = null;
         this.faction = null;
-        document.getElementById(this.#BattleManagerRefList.BattleManager.id).removeAttribute("for");
+        this.dataslate = null;
+        document.getElementById(this.#BattleManagerIdRef.id).removeAttribute("for");
         document.getElementById("Content").innerHTML = "";
     }
     
     load = (id) => {
         this.#reset();
         this.killTeam = typeof id !== 'undefined' && typeof id === 'string' ? id : null;
-        this.faction = null;
         if (!localStorage) return;
         const storage = JSON.parse(localStorage.getItem("BattleManager") ?? null);
         const lastKillTeam = storage?.find(x => this.killTeam ? x.killTeam === this.killTeam : x.isActive);
@@ -71,7 +69,7 @@ class BattleManager {
             if (rules && rules instanceof KillTeam) {
                 Id.cleanContext();
                 this.faction = rules.faction.toLowerCase();
-                document.getElementById(this.#BattleManagerRefList.BattleManager.id).setAttribute("for", new Id(this.faction).key);
+                document.getElementById(this.#BattleManagerIdRef.id).setAttribute("for", new Id(this.faction).key);
                 document.getElementById("Content").appendChild(rules.toHTML());
             }
         }
@@ -88,7 +86,7 @@ class BattleManager {
                     if (rules && rules instanceof KillTeam) {
                         Id.cleanContext();
                         this.faction = rules.faction.toLowerCase();
-                        document.getElementById(this.#BattleManagerRefList.BattleManager.id).setAttribute("for", new Id(this.faction).key);
+                        document.getElementById(this.#BattleManagerIdRef.id).setAttribute("for", new Id(this.faction).key);
                         document.getElementById("Content").appendChild(rules.toHTML());
                     }
                 })
@@ -121,7 +119,7 @@ class BattleManager {
     }
     
     updateCommandPoints = (saveAfterUpdate = true) => {
-        const targetCP = document.getElementById(this.#BattleManagerRefList.BattleManager.CommandPoints.id);
+        const targetCP = document.getElementById(this.#BattleManagerIdRef.CommandPoints.id);
         targetCP.innerHTML = "";
         for (let i = 0; i < this.commandPoints; i++) {
             const point = document.createElement("div");
@@ -132,7 +130,7 @@ class BattleManager {
     }
 
     updateVictoryPoints = (saveAfterUpdate = true) => {
-        const targetVP = document.getElementById(this.#BattleManagerRefList.BattleManager.VictoryPoints.id);
+        const targetVP = document.getElementById(this.#BattleManagerIdRef.VictoryPoints.id);
         targetVP.innerHTML = "";
         let dice;
         if (this.victoryPoints === 0) {
@@ -164,14 +162,14 @@ class BattleManager {
             lastKillTeam.commandPoints = this.commandPoints;
             lastKillTeam.victoryPoints = this.victoryPoints;
             lastKillTeam.faction = this.faction;
-            //lastKillTeam.fireTeams = this.fireTeams;
+            //lastKillTeam.dataslate = this.dataslate;
         } else {
             storage.push({
                 killTeam: this.killTeam,
                 isActive: true,
                 commandPoints: this.commandPoints,
                 victoryPoints: this.victoryPoints,
-                //fireTeams: this.fireTeams,
+                //dataslate: this.dataslate,
             });
         }
         localStorage.setItem("BattleManager", JSON.stringify(storage));
