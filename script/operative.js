@@ -129,14 +129,17 @@ class Operative {
         blockElement.appendChild(blockContent);
         operativeInfo.appendChild(blockElement);
         operativeElement.appendChild(operativeInfo);
+        const operativeInteractionsElement = document.createElement("div");
+        operativeInteractionsElement.classList.add("operative-interactions");
         if (goBackRef instanceof HTMLElement && goBackRef.id){
             const goToElement = document.createElement("a");
             goToElement.classList.add("button");
             goToElement.classList.add("orange");
             goToElement.setAttribute("href", `#${goBackRef.id}`);
             goToElement.innerText = "⯅ Back";
-            operativeElement.appendChild(goToElement);
+            operativeInteractionsElement.appendChild(goToElement);
         }
+        operativeElement.appendChild(operativeInteractionsElement);
         return operativeElement;
     }
 

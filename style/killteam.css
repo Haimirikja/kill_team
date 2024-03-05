@@ -292,7 +292,15 @@ a.button{text-decoration:none;}
     gap: 1em;
 }
 
-.kill-team-operative{width:100%;padding:0.5em;border:1px solid var(--orange);}
+.kill-team-operative {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid var(--orange);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.5em;
+}
 .kill-team-operative header {
     text-align: center;
     display: flex;
@@ -313,8 +321,6 @@ a.button{text-decoration:none;}
 .kill-team-operative .operative-stats{border:1px solid var(--orange);}
 .kill-team-operative .operative-stats th{background-color:var(--orange);padding:3px;}
 .kill-team-operative .operative-stats td{padding:3px;}
-
-.kill-team-operative .kill-team-weapons{margin:0.5em 0;}
 
 .kill-team-operative .operative-info {
     display: flex;

@@ -42,18 +42,14 @@ class FireTeam {
         fireTeamElement.classList.add("kill-team-fire-team");
         const fireTeamName = document.createElement("h2");
         fireTeamName.classList.add("title");
-        //fireTeamName.innerText = `${this.name} Fire Team`;
         fireTeamName.appendChild(document.createTextNode(`${this.name} Fire Team`));
-        if (goBackRef instanceof HTMLElement && goBackRef.id){
-            const goToElement = document.createElement("a");
-            goToElement.classList.add("button");
-            goToElement.setAttribute("href", `#${goBackRef.id}`);
-            goToElement.innerText = "⯅";
-            fireTeamName.appendChild(goToElement);
-        }
         fireTeamElement.appendChild(fireTeamName);
         const operativeList = document.createElement("div");
         operativeList.classList.add("legend");
+        const operativeListTitle = document.createElement("h3");
+        operativeListTitle.classList.add("title");
+        operativeListTitle.innerText = "Operatives";
+        operativeList.appendChild(operativeListTitle);
         const operativeBlock = document.createElement("div");
         operativeBlock.classList.add("datasheet");
         this.operatives.forEach(operative => {
@@ -63,6 +59,12 @@ class FireTeam {
             operativeList.appendChild(operativeLink);
             operativeBlock.appendChild(operative.toHTML({ goBackRef: fireTeamElement }));
         });
+        if (goBackRef instanceof HTMLElement && goBackRef.id){
+            const goToElement = document.createElement("a");
+            goToElement.setAttribute("href", `#${goBackRef.id}`);
+            goToElement.innerText = "⯅ Back";
+            fireTeamElement.appendChild(goToElement);
+        }
         fireTeamElement.appendChild(operativeList);
         fireTeamElement.appendChild(operativeBlock);
         return fireTeamElement;
