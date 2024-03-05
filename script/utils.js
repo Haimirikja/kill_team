@@ -29,6 +29,7 @@ class TableCell {
     }
 
     static parse = (text) => new TableCell(text);
+    /* OPEN THIS WHEN TABLECELL WILL HAVE MORE ATTRIBUTES */
     // static parse = (object) => {
     //     console.log("TableCell", object);
     //     if (!(object instanceof Object)) return undefined;
@@ -39,11 +40,11 @@ class TableCell {
 }
 
 class Id {
-    key = null;
-    context = null;
+    #key = null;
+    //#context = null;
     static logIdList = [];
 
-    constructor(string, context = null) {
+    constructor(string, context = null, { forceDuplicateError = false } = {}) {
         Object.defineProperty(this, "equals", { enumerable: false });
         try {
             if (typeof string !== 'string') throw `invalid parameter passed`;
@@ -52,11 +53,12 @@ class Id {
             string = string.toLowerCase();
             if (context !== null && (typeof context !== 'string' || context.length === 0)) context = null;
             if (context) {
-                if (Id.isDuplicate(string, context)) throw `duplicate value ${string}.`;
+                if (forceDuplicateError && Id.isDuplicate(string, context)) throw `duplicate value ${string}.`;
+                //if (Id.isDuplicate(string, context)) string = `${string}_${Id.nextId(string, context)}`;
                 Id.logId(string, context);
             }
-            this.key = string;
-            this.context = context;
+            this.#key = string;
+            //this.#context = context;
             return this;
         } catch(e) {
             console.error(e);
@@ -64,23 +66,36 @@ class Id {
         }
     }
 
-    toName = () => this.key.replace(/_+/ig," ").replace(/(?<=^| )\w/ig, c => c.toUpperCase());
+    get value() {
+        //if (this.#context) return `${this.#context}_${this.#key}`;
+        return this.#key;
+    }
 
-    equals = (id) => id.key === this.key;
+    toName = () => this.#key.replace(/_+/ig," ").replace(/(?<=^| )\w/ig, c => c.toUpperCase());
 
-    static logId = (key, context) => {
-        if (!key || !context || Id.isDuplicate(key, context)) return false;
+    equals = (id) => id.string === this.#key;
+
+    static logId = (string, context) => {
+        if (!string || !context) return false;
         const contextElement = this.logIdList.find(e => e.context === context);
         if (contextElement) {
-            if (contextElement.list) contextElement.list.push(key);
-            else contextElement.list = [key];
+            if (contextElement.list) contextElement.list.push(string);
+            else contextElement.list = [string];
         }
-        else this.logIdList.push({ context: context, list: [key] });
+        else this.logIdList.push({ context: context, list: [string] });
         return true;
     }
-    static isDuplicate = (key, context) => {
-        if (!key || !context) return false;
-        return (this.logIdList.find(e => e.context === context && e.list?.includes(key)) ? true : false);
+
+    static nextId = (string, context) => {
+        if (!string || !context) return 0;
+        const contextList = this.logIdList.find(e => e.context === context);
+        if (!contextList || !contextList.list) return 0;
+        return contextList.list.filter(e => e.indexOf(string) >= 0).length;
+    }
+
+    static isDuplicate = (string, context) => {
+        if (!string || !context) return false;
+        return this.logIdList.find(e => e.context === context && e.list?.includes(string)) ? true : false;
     }
 
     static cleanContext = (context) => {

@@ -60,8 +60,8 @@ class Operative {
 
     toHTML = ({ goBackRef = null } = {}) => {
         const operativeElement = document.createElement("div");
+        operativeElement.id = new Id(this.name, "operative").value;
         operativeElement.classList.add("kill-team-operative");
-        operativeElement.id = new Id(this.name, "operative").key;
         const operativeHeader = document.createElement("header");
         const operativeName = document.createElement("div");
         operativeName.classList.add("operative-name");
@@ -132,8 +132,9 @@ class Operative {
         if (goBackRef instanceof HTMLElement && goBackRef.id){
             const goToElement = document.createElement("a");
             goToElement.classList.add("button");
+            goToElement.classList.add("orange");
             goToElement.setAttribute("href", `#${goBackRef.id}`);
-            goToElement.innerText = "BACK";
+            goToElement.innerText = "⯅ Back";
             operativeElement.appendChild(goToElement);
         }
         return operativeElement;

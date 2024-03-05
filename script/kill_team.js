@@ -49,7 +49,7 @@ class KillTeam {
 
     toHTML = () => {
         const killTeamElement = document.createElement("div");
-        killTeamElement.id = new Id(this.name).key;
+        killTeamElement.id = new Id(`${this.name} kill team`, "kill_team").value;
         killTeamElement.classList.add("kill-team");
         const killTeamName = document.createElement("h1");
         killTeamName.classList.add("title");
@@ -60,7 +60,7 @@ class KillTeam {
         const fireTeamsBlock = document.createElement("div");
         this.fireTeams.forEach(fireTeam => {
             const fireTeamLink = document.createElement("a");
-            fireTeamLink.setAttribute("href", `#${new Id(`${fireTeam.name} fire team`).key}`);
+            fireTeamLink.setAttribute("href", `#${new Id(fireTeam.name, "fire_team").value}`);
             fireTeamLink.innerText = `${fireTeam.name} Fire Team`;
             fireTeamsList.appendChild(fireTeamLink);
             fireTeamsBlock.appendChild(fireTeam.toHTML({ goBackRef: killTeamElement }));

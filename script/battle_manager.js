@@ -114,7 +114,7 @@ class BattleManager {
             if (rules && rules instanceof KillTeam) {
                 Id.cleanContext();
                 this.faction = rules.faction.toLowerCase();
-                document.getElementById(this.#BattleManagerIdRef.id).setAttribute("for", new Id(this.faction).key);
+                document.getElementById(this.#BattleManagerIdRef.id).setAttribute("for", new Id(this.faction).value);
                 document.getElementById("Content").appendChild(rules.toHTML());
             }
         }
@@ -131,7 +131,7 @@ class BattleManager {
                     if (rules && rules instanceof KillTeam) {
                         Id.cleanContext();
                         this.faction = rules.faction.toLowerCase();
-                        document.getElementById(this.#BattleManagerIdRef.id).setAttribute("for", new Id(this.faction).key);
+                        document.getElementById(this.#BattleManagerIdRef.id).setAttribute("for", new Id(this.faction).value);
                         document.getElementById("Content").appendChild(rules.toHTML());
                     }
                 })

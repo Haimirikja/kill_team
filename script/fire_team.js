@@ -38,8 +38,8 @@ class FireTeam {
 
     toHTML = ({ goBackRef = null } = {}) => {
         const fireTeamElement = document.createElement("div");
+        fireTeamElement.id = new Id(this.name, "fire_team").value;
         fireTeamElement.classList.add("kill-team-fire-team");
-        fireTeamElement.id = new Id(`${this.name} fire team`).key;
         const fireTeamName = document.createElement("h2");
         fireTeamName.classList.add("title");
         //fireTeamName.innerText = `${this.name} Fire Team`;
@@ -48,7 +48,7 @@ class FireTeam {
             const goToElement = document.createElement("a");
             goToElement.classList.add("button");
             goToElement.setAttribute("href", `#${goBackRef.id}`);
-            goToElement.innerText = "BACK";
+            goToElement.innerText = "⯅";
             fireTeamName.appendChild(goToElement);
         }
         fireTeamElement.appendChild(fireTeamName);
@@ -58,10 +58,10 @@ class FireTeam {
         operativeBlock.classList.add("datasheet");
         this.operatives.forEach(operative => {
             const operativeLink = document.createElement("a");
-            operativeLink.setAttribute("href", `#${new Id(operative.name).key}`);
+            operativeLink.setAttribute("href", `#${new Id(operative.name).value}`);
             operativeLink.innerText = operative.name;
             operativeList.appendChild(operativeLink);
-            operativeBlock.appendChild(operative.toHTML());
+            operativeBlock.appendChild(operative.toHTML({ goBackRef: fireTeamElement }));
         });
         fireTeamElement.appendChild(operativeList);
         fireTeamElement.appendChild(operativeBlock);

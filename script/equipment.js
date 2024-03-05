@@ -8,7 +8,7 @@ class Equipment {
         this.rare = typeof rare === 'boolean' ? rare : false;
         this.value = Array.isArray(value) ? value.filter(x => isFinitePositive(x)) : [];
         this.limit = typeof limit === 'boolean' ? limit : false;
-        this.dedicated = dedicated instanceof Id ? dedicated.key : null;
+        this.dedicated = dedicated instanceof Id ? dedicated.value : null;
         this.description = Array.isArray(description) ? description.filter(x => typeof x === 'string') : [];
         this.ability = ability instanceof Ability ? ability : null;
         this.action = action instanceof Action ? action : null;
@@ -52,8 +52,8 @@ class Equipment {
     toHTML = () => {
         const itemElement = document.createElement("div");
         itemElement.classList.add("kill-team-item");
-        itemElement.id = new Id(this.name, "equipment").key;
-        if (this.dedicated) itemElement.setAttribute("for", new Id(this.dedicated).key);
+        itemElement.id = new Id(this.name, "equipment").value;
+        if (this.dedicated) itemElement.setAttribute("for", new Id(this.dedicated).value);
         const itemHeader = document.createElement("header");
         const itemName = document.createElement("div");
         itemName.classList.add("title");
