@@ -48,7 +48,7 @@ class Weapon {
 
     equals = (weapon) => {
         if (!(weapon instanceof Weapon)) weapon = Weapon.parse(weapon);
-        return this.toString() === weapon.toString();
+        return weapon && weapon.toString() === this.toString();
     }
 
     toHTML = ({ tableWrapper = false } = {}) => {

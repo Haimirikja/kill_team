@@ -47,20 +47,30 @@ table{width:100%;border-collapse:collapse;}
 a{text-decoration-style:dotted;color:inherit;}
 input,select{font-family:inherit;}
 
-img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
+.rotate-cw-90 {
+    rotate: 90deg;
+}
+.inline-icon,
+.inline-image{display:inline-block;max-height:1em;line-height:1em;margin:0 2px;vertical-align:middle;}
 .title{text-transform:uppercase;color:var(--orange);}
+.title .button{background:var(--orange);color:var(--white);border:0;}
 
 .flex{display:flex;align-items:flex-start;}
 .flex.row{flex-direction:row;}
 .flex.column{flex-direction:column;}
 .flex.nowrap{flex-wrap:nowrap;}
 .flex.gap{gap:1em;}
+.flex.stretch{align-items:stretch;}
+.flex.center{align-items:center;justify-content:center;}
+.flex.extendsChildren > *{flex-grow:1;}
 
+.interactable{cursor:pointer;}
 .button{
     display: inline-block;
     text-align: center;
     line-height: 1em;
     padding: 0.5em 0.75em;
+    margin: 0 0.25em;
     border: 1px solid var(--dark-gray);
     border-radius: 1em;
     cursor: pointer;
@@ -68,20 +78,44 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
     -ms-user-select: none;
     user-select: none;
 }
+a.button{text-decoration:none;}
+
 .elevatedButton {
     display: inline-block;
     font-size: 1.5em;
     text-align: center;
     line-height: 0.75em;
-    width: 2em;
-    height: 2em;
-    padding: 0.5em;
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0.25em;
     border: 1px solid var(--dark-gray);
     border-radius: 50%;
+    box-shadow: 1px 1px 2px 0 var(--dark-gray);
     cursor: pointer;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+.elevatedButton:hover{box-shadow:0 0 0 0 transparent;}
+.elevatedButton:active{box-shadow:inset 1px 1px 2px 0 var(--dark-gray);}
+
+.textAsInput {
+    width: 100%;
+    min-height: calc(1em + 0.25em * 2 + 1px * 2);
+    background-color: var(--white);
+    padding: 0.25em 0.5em;
+    line-height: 1em;
+    border: 1px solid var(--black);
+}
+.textAsInput.textarea{
+    min-height: calc(calc(1em + 0.25em * 2) * 3 + 1px * 2);
+}
+.numberIconAsInput {
+    width: 3em;
+    height: 3em;
+    padding: 1em;
+    line-height: 1em;
+    border: 1px solid var(--black);
 }
 
 .kill-team-overview {
@@ -97,7 +131,20 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .kill-team-phases{text-align:center;}
 .kill-team-phases h2{color:var(--orange);}
 
+.kill-team-dataslate {
+    width: 100%;
+    margin: 1em 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0.5em;
+}
+.kill-team-dataslate .dataslate-update{float:right;background:var(--orange);color:var(--white);border:0;}
+.kill-team-dataslate td{width:50%;vertical-align:top;}
+
 .kill-team-battle-manager {
+    margin: 1em 0;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -152,7 +199,7 @@ img.inline-image{display:inline-block;max-height:1.5em;vertical-align:middle;}
 .kill-team-battle-manager[for=votann] .points-manager .point{background-image:var(--faction-votann);}
 
 .kill-team-battle-manager .points-manager .actions {
-    padding: 1em;
+    /* padding: 1em; */
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

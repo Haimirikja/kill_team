@@ -28,7 +28,7 @@ class PsychicPower {
 
     equals = (psychicPower) => {
         if (!(psychicPower instanceof PsychicPower)) psychicPower = PsychicPower.parse(psychicPower);
-        return this.toString() === psychicPower.toString();
+        return psychicPower && psychicPower.toString() === this.toString();
     }
 
     toHTML = () => {

@@ -2,7 +2,7 @@ class BattleManager {
     #RegisteredKillTeams = [
         { id: "corsair_voidscarred", debugRef: CORSAIR_VOIDSCARRED, fileName: "corsair_voidscarred.json" },
         { id: "craftworld", debugRef: CRAFTWORLD, fileName: "craftworld.json" },
-        { id: "exaction", debugRef: EXACTION, fileName: "exaction.json" },
+        { id: "exaction_squad", debugRef: EXACTION_SQUAD, fileName: "exaction_squad.json" },
         { id: "veteran_guardsman", debugRef: VETERAN_GUARDSMAN, fileName: "veteran_guardsman.json" },
         { id: "void-dancer_troupe", debugRef: VOID_DANCER_TROUPE, fileName: "void-dancer_troupe.json" },
         { id: "wyrmblade", debugRef: WYRMBLADE, fileName: "wyrmblade.json" },
@@ -20,6 +20,18 @@ class BattleManager {
             id: "VictoryPointsList",
             add: "VictoryPointAdd",
             remove: "VictoryPointRemove",
+        },
+        Dataslate: {
+            id: "Dataslate",
+            name: "DS_Name",
+            killTeam: "DS_KillTeam",
+            requisitionPoints: "DS_RP",
+            assetCapacity: "DS_AssetCapacity",
+            specOpsLog: "DS_SpecOpsLog",
+            stash: "DS_Stash",
+            assets: "DS_Assets",
+            datacards: "DS_Datacards",
+            change: "DS_Update",
         }
     }
 
@@ -55,6 +67,39 @@ class BattleManager {
             if (isFinitePositive(victoryPoints)) this.victoryPoints = victoryPoints;
             this.killTeam = lastKillTeam.killTeam;
             document.getElementById("KillTeamSelect").value = this.killTeam;
+            this.dataslate = Dataslate.parse(lastKillTeam.dataslate);
+        } else {
+            this.dataslate = new Dataslate(this.killTeam);
+        }
+        if (this.dataslate) {
+            document.getElementById(this.#BattleManagerIdRef.Dataslate.name).innerText = this.dataslate.name;
+            document.getElementById(this.#BattleManagerIdRef.Dataslate.killTeam).innerText = new Id(this.dataslate.killTeam).toName();
+            document.getElementById(this.#BattleManagerIdRef.Dataslate.requisitionPoints).innerText = this.dataslate.requisitionPoints;
+            document.getElementById(this.#BattleManagerIdRef.Dataslate.assetCapacity).innerText = this.dataslate.assetCapacity;
+            const specOpsLogElement = document.getElementById(this.#BattleManagerIdRef.Dataslate.specOpsLog);
+            let specOpElement;
+            this.dataslate.specOpsLog.forEach(specOp => {
+                specOpElement = document.createElement("div");
+                specOpElement.classList.add("textAsInput");
+                specOpElement.innerText = specOp;
+                specOpsLogElement.appendChild(specOpElement);
+            });
+            const stashElement = document.getElementById(this.#BattleManagerIdRef.Dataslate.stash);
+            let equipmentElement;
+            this.dataslate.stash.forEach((equipment, i) => {
+                equipmentElement = document.createElement("div");
+                equipmentElement.innerText = equipment;
+                if (i > 0) stashElement.appendChild(document.createElemnt("br"));
+                stashElement.appendChild(equipmentElement);
+            });
+            const assetsElement = document.getElementById(this.#BattleManagerIdRef.Dataslate.assets);
+            let assetElement;
+            this.dataslate.strategicAssets.forEach((asset, i) => {
+                assetElement = document.createElement("div");
+                assetElement.innerText = asset;
+                if (i > 0) assetsElement.appendChild(document.createElemnt("br"));
+                assetsElement.appendChild(assetElement);
+            });
         }
         this.loadKillTeamRules(this.killTeam, { mode: location.origin === 'file://' ? "debug" : "default" });
         this.updateCommandPoints(false);
@@ -152,6 +197,31 @@ class BattleManager {
         if (saveAfterUpdate) this.save();
     }
 
+    updateDataslate = () => {
+        document.getElementById(this.#BattleManagerIdRef.Dataslate.name).innerText = this.dataslate.name;
+        document.getElementById(this.#BattleManagerIdRef.Dataslate.killTeam).innerText = this.dataslate.killTeam;
+        document.getElementById(this.#BattleManagerIdRef.Dataslate.requisitionPoints).innerText = this.dataslate.requisitionPoints;
+        document.getElementById(this.#BattleManagerIdRef.Dataslate.assetCapacity).innerText = this.dataslate.assetCapacity;
+        const specOpsLogTarget = document.getElementById(this.#BattleManagerIdRef.Dataslate.assetCapacity);
+        let appendElement;
+        this.dataslate.specOpsLog.forEach(specOp => {
+            appendElement = document.createElement("div");
+            appendElement.classList.add("textAsInput");
+            appendElement.innerText = specOp;//specOp.name;
+            specOpsLogTarget.appendChild(appendElement);
+        });
+        const stashTarget = document.getElementById(this.#BattleManagerIdRef.Dataslate.stash);
+        this.dataslate.stash.forEach((equipment, i) => {
+            if (i > 0) stashTarget.appendChild(document.createElement("br"));
+            stashTarget.appendChild(document.createTextNode(equipment.name));
+        });
+        const assetsTarget = document.getElementById(this.#BattleManagerIdRef.Dataslate.assets);
+        this.dataslate.strategicAssets.forEach((asset, i) => {
+            if (i > 0) assetsTarget.appendChild(document.createElement("br"));
+            assetsTarget.appendChild(document.createTextNode(asset.name));
+        });
+    }
+
     save = () => {
         if (!localStorage) return;
         const storage = JSON.parse(localStorage.getItem("BattleManager") ?? null) ?? [];
@@ -162,14 +232,14 @@ class BattleManager {
             lastKillTeam.commandPoints = this.commandPoints;
             lastKillTeam.victoryPoints = this.victoryPoints;
             lastKillTeam.faction = this.faction;
-            //lastKillTeam.dataslate = this.dataslate;
+            lastKillTeam.dataslate = this.dataslate;
         } else {
             storage.push({
                 killTeam: this.killTeam,
                 isActive: true,
                 commandPoints: this.commandPoints,
                 victoryPoints: this.victoryPoints,
-                //dataslate: this.dataslate,
+                dataslate: this.dataslate,
             });
         }
         localStorage.setItem("BattleManager", JSON.stringify(storage));

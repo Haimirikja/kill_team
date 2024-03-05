@@ -64,6 +64,8 @@ class Id {
         }
     }
 
+    toName = () => this.key.replace(/_+/ig," ").replace(/(?<=^| )\w/ig, c => c.toUpperCase());
+
     equals = (id) => id.key === this.key;
 
     static logId = (key, context) => {

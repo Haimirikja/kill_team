@@ -55,10 +55,10 @@ class Operative {
 
     equals = (operative) => {
         if (!(operative instanceof Operative)) operative = Operative.parse(operative);
-        return this.toString() === operative.toString();
+        return operative && operative.toString() === this.toString();
     }
 
-    toHTML = () => {
+    toHTML = ({ goBackRef = null } = {}) => {
         const operativeElement = document.createElement("div");
         operativeElement.classList.add("kill-team-operative");
         operativeElement.id = new Id(this.name, "operative").key;
@@ -129,6 +129,13 @@ class Operative {
         blockElement.appendChild(blockContent);
         operativeInfo.appendChild(blockElement);
         operativeElement.appendChild(operativeInfo);
+        if (goBackRef instanceof HTMLElement && goBackRef.id){
+            const goToElement = document.createElement("a");
+            goToElement.classList.add("button");
+            goToElement.setAttribute("href", `#${goBackRef.id}`);
+            goToElement.innerText = "BACK";
+            operativeElement.appendChild(goToElement);
+        }
         return operativeElement;
     }
 

@@ -38,7 +38,7 @@ class Ploy {
 
     equals = (ploy) => {
         if (!(ploy instanceof Ploy)) ploy = Ploy.parse(ploy);
-        return this.toString() === ploy.toString();
+        return ploy && ploy.toString() === this.toString();
     }
 
     toHTML = () => {

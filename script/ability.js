@@ -30,7 +30,7 @@ class Ability {
 
     equals = (ability) => {
         if (!(ability instanceof Ability)) ability = Ability.parse(ability);
-        return this.toString() === ability.toString();
+        return ability && ability.toString() === this.toString();
     }
 
     toHTML = (headedTitle = false) => {

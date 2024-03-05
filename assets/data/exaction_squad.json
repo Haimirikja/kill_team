@@ -1,5 +1,5 @@
-const EXACTION = {
-    "name": "EXACTION",
+const EXACTION_SQUAD = {
+    "name": "EXACTION SQUAD",
     "faction": "IMPERIUM",
     "abilities": [
         {
@@ -73,7 +73,7 @@ const EXACTION = {
     ],
     "fireTeams": [
         {
-            "name": "Exaction",
+            "name": "Exaction Squad",
             "size": 11,
             "operatives": [
                 {

@@ -36,13 +36,21 @@ class FireTeam {
 
     equals = (fireTeam) => fireTeam && fireTeam.name && this.name === fireTeam.name;
 
-    toHTML = () => {
+    toHTML = ({ goBackRef = null } = {}) => {
         const fireTeamElement = document.createElement("div");
         fireTeamElement.classList.add("kill-team-fire-team");
-        fireTeamElement.id = new Id(this.name).key;
+        fireTeamElement.id = new Id(`${this.name} fire team`).key;
         const fireTeamName = document.createElement("h2");
         fireTeamName.classList.add("title");
-        fireTeamName.innerText = `${this.name} Fire Team`;
+        //fireTeamName.innerText = `${this.name} Fire Team`;
+        fireTeamName.appendChild(document.createTextNode(`${this.name} Fire Team`));
+        if (goBackRef instanceof HTMLElement && goBackRef.id){
+            const goToElement = document.createElement("a");
+            goToElement.classList.add("button");
+            goToElement.setAttribute("href", `#${goBackRef.id}`);
+            goToElement.innerText = "BACK";
+            fireTeamName.appendChild(goToElement);
+        }
         fireTeamElement.appendChild(fireTeamName);
         const operativeList = document.createElement("div");
         operativeList.classList.add("legend");

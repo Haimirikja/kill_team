@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="style/killteam.css" />
     <script src="assets/data/corsair_voidscarred.json"></script>
     <script src="assets/data/craftworld.json"></script>
-    <script src="assets/data/exaction.json"></script>
+    <script src="assets/data/exaction_squad.json"></script>
     <script src="assets/data/veteran_guardsman.json"></script>
     <script src="assets/data/void-dancer_troupe.json"></script>
     <script src="assets/data/wyrmblade.json"></script>
@@ -38,6 +38,8 @@
     <script type="application/javascript" src="script/action.js"></script>
     <script type="application/javascript" src="script/equipment.js"></script>
     <script type="application/javascript" src="script/dataslate.js"></script>
+    <script type="application/javascript" src="script/asset.js"></script>
+    <script type="application/javascript" src="script/datacard.js"></script>
     <script type="application/javascript" src="script/battle_manager.js"></script>
     <script type="application/javascript" src="script/main.js"></script>
 </head>
@@ -106,7 +108,7 @@
                 <option value="wyrmblade">WYRMBLADE</option>
             </optgroup>
             <optgroup label="Imperium">
-                <option value="exaction">EXACTION</option>
+                <option value="exaction_squad">EXACTION SQUAD</option>
                 <option value="veteran_guardsman">VETERAN GUARDSMAN</option>
             </optgroup>
             <!--<optgroup label="Tyranids">
@@ -119,6 +121,7 @@
 
         <div id="BattleManagerArea" class="kill-team-battle-manager">
             <div class="points-manager">
+                <h3>COMMAND POINTS</h3>
                 <div id="CommandPointActions" class="actions">
                     <div id="CommandPointRemove" class="elevatedButton">−</div>
                     <div id="CommandPointAdd" class="elevatedButton">+</div>
@@ -130,12 +133,58 @@
                 </div>
             </div>
             <div class="points-manager">
+                <h3>VICTORY POINTS</h3>
                 <div id="VictoryPointActions" class="actions">
                     <div id="VictoryPointRemove" class="elevatedButton">−</div>
                     <div id="VictoryPointAdd" class="elevatedButton">+</div>
                 </div>
                 <div id="VictoryPointsList" class="points-area"></div>
             </div>
+        </div>
+        
+        <div id="Dataslate" class="kill-team-dataslate">
+            <table>
+                <tr>
+                    <td>
+                        <div>NAME:</div>
+                        <div id="DS_Name" class="textAsInput"></div>
+                    </td>
+                    <td>
+                        <div>KILL TEAM:</div>
+                        <div id="DS_KillTeam" class="textAsInput"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="flex row nowrap center gap">
+                            <div class="flex column nowrap center">
+                                <div>REQUISTION POINTS:</div>
+                                <div id="DS_RP" class="numberIconAsInput"></div>
+                            </div>
+                            <div class="flex column nowrap center">
+                                <div>ASSET CAPACITY:</div>
+                                <div id="DS_AssetCapacity" class="numberIconAsInput"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>SPEC OPS LOG:</div>
+                        <div id="DS_SpecOpsLog"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>STASH:</div>
+                        <div id="DS_Stash" class="textAsInput textarea"></div>
+                    </td>
+                    <td>
+                        <div>STRATEGIC ASSETS:</div>
+                        <div id="DS_Assets" class="textAsInput textarea"></div>
+                    </td>
+                </tr>
+            </table>
+            <div id="DS_Datacards" class="dataslate-datacards"></div>
+            <div id="DS_Update" class="button dataslate-update">✎ UPDATE</div>
         </div>
 
         <div id="Content"></div>

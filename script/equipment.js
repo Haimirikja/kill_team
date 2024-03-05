@@ -46,7 +46,7 @@ class Equipment {
 
     equals = (equipment) => {
         if (!(equipment instanceof Equipment)) equipment = Equipment.parse(equipment);
-        return this.toString() === equipment.toString();
+        return equipment && equipment.toString() === this.toString();
     }
 
     toHTML = () => {

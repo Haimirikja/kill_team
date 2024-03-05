@@ -28,7 +28,7 @@ class Action {
 
     equals = (action) => {
         if (!(action instanceof Action)) action = Ability.parse(action);
-        return this.toString() === action.toString();
+        return action && action.toString() === this.toString();
     }
 
     toHTML = () => {
