@@ -51,7 +51,7 @@ input,select{font-family:inherit;}
     rotate: 90deg;
 }
 .inline-icon,
-.inline-image{display:inline-block;max-height:1em;line-height:1em;margin:0 2px;vertical-align:middle;}
+.inline-image{display:inline-block;max-height:1.25em;line-height:1.25em;vertical-align:middle;}
 .title{text-transform:uppercase;color:var(--orange);}
 .title .button{background:var(--orange);color:var(--white);border:0;}
 
@@ -122,6 +122,28 @@ a.button{text-decoration:none;}
     line-height: 1em;
     border: 1px solid var(--black);
 }
+
+.toggle-show,.toggle-hide{position:relative;padding-right:3em;cursor:pointer;}
+.toggle-show::before {
+    content: "▲";
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    translate: -1em -50%;
+    color: inherit;
+}
+.toggle-hide::before {
+    content: "▼";
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    translate: -1em -50%;
+    color: inherit;
+}
+
+
 
 .kill-team-overview {
     max-width: 900px;
@@ -349,6 +371,13 @@ a.button{text-decoration:none;}
     flex-wrap: nowrap;
     align-items: flex-start;
     gap: 0.5em;
+}
+
+.kill-team-operative .operative-interactions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
 }
 
 @media (max-width: 576px) {

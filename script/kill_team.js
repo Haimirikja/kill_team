@@ -51,10 +51,15 @@ class KillTeam {
         const killTeamElement = document.createElement("div");
         killTeamElement.id = new Id(`${this.name} kill team`, "kill_team").value;
         killTeamElement.classList.add("kill-team");
+
         const killTeamName = document.createElement("h1");
         killTeamName.classList.add("title");
+        killTeamName.classList.add("toggle-show");
         killTeamName.innerText = `${this.name} Kill Team`+(this.faction ? ` (${this.faction})` : "");
         killTeamElement.appendChild(killTeamName);
+        const killTeamContent = document.createElement("div");
+        killTeamName.addEventListener('click', (e) => slideToggle(killTeamContent, { sender: e.currentTarget }));
+
         const fireTeamsList = document.createElement("div");
         fireTeamsList.classList.add("legend");
         const fireTeamsBlock = document.createElement("div");
@@ -65,7 +70,7 @@ class KillTeam {
             fireTeamsList.appendChild(fireTeamLink);
             fireTeamsBlock.appendChild(fireTeam.toHTML({ goBackRef: killTeamElement }));
         });
-        killTeamElement.appendChild(fireTeamsList);
+        killTeamContent.appendChild(fireTeamsList);
         if (this.abilities.length) {
             const abilitiesElement = document.createElement("div");
             const abilitiesTitle = document.createElement("h2");
@@ -83,7 +88,7 @@ class KillTeam {
             this.abilities.forEach(ability => {
                 abilitiesElement.appendChild(ability.toHTML(true));
             });
-            killTeamElement.appendChild(abilitiesElement);
+            killTeamContent.appendChild(abilitiesElement);
         }
         let ploysElement;
         let ploysTitle;
@@ -97,7 +102,7 @@ class KillTeam {
             this.strategicPloys.forEach(ploy => {
                 ploysElement.appendChild(ploy.toHTML());
             });
-            killTeamElement.appendChild(ploysElement);
+            killTeamContent.appendChild(ploysElement);
         }
         if (this.tacticalPloys.length) {
             ploysElement = document.createElement("div");
@@ -109,7 +114,7 @@ class KillTeam {
             this.tacticalPloys.forEach(ploy => {
                 ploysElement.appendChild(ploy.toHTML());
             });
-            killTeamElement.appendChild(ploysElement);
+            killTeamContent.appendChild(ploysElement);
         }
         if (this.psychicPowers.length) {
             const killTeamPsychicPowers = document.createElement("div");
@@ -123,9 +128,10 @@ class KillTeam {
             this.psychicPowers.forEach(psychicPower => {
                 killTeamPsychicPowers.appendChild(psychicPower.toHTML());
             });
-            killTeamElement.appendChild(killTeamPsychicPowers);
+            killTeamContent.appendChild(killTeamPsychicPowers);
         }
-        killTeamElement.appendChild(fireTeamsBlock);
+        killTeamContent.appendChild(fireTeamsBlock);
+        killTeamElement.appendChild(killTeamContent);
         return killTeamElement;
     }
 }

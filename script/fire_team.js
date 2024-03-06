@@ -42,8 +42,11 @@ class FireTeam {
         fireTeamElement.classList.add("kill-team-fire-team");
         const fireTeamName = document.createElement("h2");
         fireTeamName.classList.add("title");
+        fireTeamName.classList.add("toggle-show");
         fireTeamName.appendChild(document.createTextNode(`${this.name} Fire Team`));
         fireTeamElement.appendChild(fireTeamName);
+        const fireTeamContent = document.createElement("div");
+        fireTeamName.addEventListener('click', (e) => slideToggle(fireTeamContent, { sender: e.currentTarget }));
         const operativeList = document.createElement("div");
         operativeList.classList.add("legend");
         const operativeListTitle = document.createElement("h3");
@@ -63,10 +66,11 @@ class FireTeam {
             const goToElement = document.createElement("a");
             goToElement.setAttribute("href", `#${goBackRef.id}`);
             goToElement.innerText = "⯅ Back";
-            fireTeamElement.appendChild(goToElement);
+            fireTeamContent.appendChild(goToElement);
         }
-        fireTeamElement.appendChild(operativeList);
-        fireTeamElement.appendChild(operativeBlock);
+        fireTeamContent.appendChild(operativeList);
+        fireTeamContent.appendChild(operativeBlock);
+        fireTeamElement.appendChild(fireTeamContent);
         return fireTeamElement;
     }
 }
