@@ -54,7 +54,7 @@ class KillTeam {
 
         const killTeamName = document.createElement("h1");
         killTeamName.classList.add("title");
-        killTeamName.classList.add("toggle-show");
+        killTeamName.classList.add("toggle-hide");
         killTeamName.innerText = `${this.name} Kill Team`+(this.faction ? ` (${this.faction})` : "");
         killTeamElement.appendChild(killTeamName);
         const killTeamContent = document.createElement("div");

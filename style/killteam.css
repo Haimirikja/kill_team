@@ -100,19 +100,19 @@
 .kill-team-item .action,
 .kill-team-item .weapon{margin:1em 0;}
 
-.kill-team-ability .ability-table{margin:1em 0;border:1px solid var(--black);}
-.kill-team-ability .ability-table th,
-.kill-team-ability .ability-table td{padding:4px;}
-.kill-team-ability .ability-table thead {
+.ability .ability-table{margin:1em 0;border:1px solid var(--black);}
+.ability .ability-table th,
+.ability .ability-table td{padding:4px;}
+.ability .ability-table thead {
     background-color: var(--black);
     color: var(--white);
     text-align: left;
 }
-.kill-team-ability .ability-table tbody tr:nth-child(even) {
+.ability .ability-table tbody tr:nth-child(even) {
     background-color: var(--light-gray);
 }
-.kill-team-ability .ability-table thead th:nth-child(1),
-.kill-team-ability .ability-table tbody td:nth-child(1) {
+.ability .ability-table thead th:nth-child(1),
+.ability .ability-table tbody td:nth-child(1) {
     text-align: center;
     font-weight: bold;
 }

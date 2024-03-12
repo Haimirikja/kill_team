@@ -42,7 +42,7 @@ class FireTeam {
         fireTeamElement.classList.add("kill-team-fire-team");
         const fireTeamName = document.createElement("h2");
         fireTeamName.classList.add("title");
-        fireTeamName.classList.add("toggle-show");
+        fireTeamName.classList.add("toggle-hide");
         fireTeamName.appendChild(document.createTextNode(`${this.name} Fire Team`));
         fireTeamElement.appendChild(fireTeamName);
         const fireTeamContent = document.createElement("div");

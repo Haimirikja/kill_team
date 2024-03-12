@@ -37,11 +37,7 @@ class Action {
         actionElement.classList.add("action");
         if (isBlock) {
             const actionTitle = document.createElement("div");
-            actionTitle.classList.add("title");
-            actionTitle.classList.add("flex");
-            actionTitle.classList.add("row");
-            actionTitle.classList.add("nowrap");
-            actionTitle.classList.add("space-between");
+            ["title", "flex", "row", "nowrap", "space-between"].forEach(cls => actionTitle.classList.add(cls));
             const actionName = document.createElement("span");
             actionName.innerText = this.name;
             actionTitle.appendChild(actionName);

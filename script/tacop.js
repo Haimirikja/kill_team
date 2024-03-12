@@ -21,7 +21,6 @@ class TacOp {
 
     static parse = (object) => {
         if (!(object instanceof Object)) return undefined;
-        console.log(object);
         return new TacOp(
             object.name,
             object.category,
@@ -50,19 +49,37 @@ class TacOp {
 
     toHTML = () => {
         const tacOpElement = document.createElement("div");
+        tacOpElement.id = new Id(`${this.name} ${this.category} ${this.killTeam}`, "tacop").value;
         tacOpElement.classList.add("tacop");
-        tacOpElement.setAttribute("data-type", this.type);
-        if (this.killTeam) tacOpElement.setAttribute("data-kill-team", this.killTeam);
+        tacOpElement.setAttribute("for", new Id(this.category).value);
+        if (this.killTeam) tacOpElement.setAttribute("data-kill-team", new Id(this.killTeam).value);
         const tacOpName = document.createElement("div");
         tacOpName.classList.add("title");
         tacOpName.innerText = this.name;
         tacOpElement.appendChild(tacOpName);
         const tacOpContent = document.createElement("div");
         tacOpContent.classList.add("content");
-        tacOpContent.appendChild(document.createTextNode(this.category));
-        tacOpContent.appendChild(document.createTextNode(this.killTeam));
-        this.description.forEach(row => tacOpContent.appendChild(document.createTextNode(row)));
-        this.resolves.forEach(row => tacOpContent.appendChild(document.createTextNode(row)));
+        let genericContainer;
+        genericContainer = document.createElement("div");
+        const tacOpCategory = document.createElement("i");
+        tacOpCategory.innerText = this.category;
+        genericContainer.appendChild(tacOpCategory);
+        tacOpContent.appendChild(genericContainer);
+        //tacOpCategory.appendChild(document.createTextNode(this.killTeam));
+        genericContainer = document.createElement("div");
+        this.description.forEach((row, i) => {
+            if (i > 0) genericContainer.appendChild(document.createElement("br"));
+            genericContainer.appendChild(replaceMarkup(row));
+        });
+        tacOpContent.appendChild(genericContainer);
+        genericContainer = document.createElement("ul");
+        let listElement;
+        this.resolves.forEach(row => {
+            listElement = document.createElement("li");
+            listElement.appendChild(replaceMarkup(row));
+            genericContainer.appendChild(listElement);
+        });
+        tacOpContent.appendChild(genericContainer);
         this.actions.forEach(action => tacOpContent.appendChild(action.toHTML({ isBlock: true })));
         tacOpElement.appendChild(tacOpContent);
         return tacOpElement;

@@ -11,12 +11,8 @@
 *,*::before,*::after{box-sizing:border-box;}
 html{font-family:Verdana;font-size:12px;}
 body{margin:0;padding:0;background:#333;}
-.flex{display:flex;}
-.flex.flex-row{flex-direction:row;flex-wrap:nowrap;}
-.flex.space-between{justify-content:space-between;}
-img.inline-icon{display:inline-block;vertical-align:middle;height:1.25em;}
-.button{cursor:pointer;}
 
+/* 
 .SpecOp{background:#36433c;color:var(--card-white);margin:1em;padding:1em;}
 .SpecOp .title{border:2px solid var(--card-orange);padding:0.25em;}
 .SpecOp .content{padding:0.5em 0;}
@@ -33,7 +29,9 @@ img.inline-icon{display:inline-block;vertical-align:middle;height:1.25em;}
 	margin-left: -0.5em;
 	margin-right: 0.5em;
 }
-.SpecOp a{text-decoration:none;color:inherit;border-bottom:1px dashed var(--card-white);}
+.SpecOp a{text-decoration:none;color:inherit;border-bottom:1px dashed var(--card-white);} */
+
+.category-legend.toggle-show{opacity:0.5;}
 
 .legend {
 	display: flex;
@@ -63,8 +61,14 @@ img.inline-icon{display:inline-block;vertical-align:middle;height:1.25em;}
 }
 .tacop.hide{display:none;}
 .tacop .title{background-color:var(--card-gray);color:#fff;padding:0.25em;}
-.tacop .content{padding:0.25em;}
-.tacop ul {list-style:none;padding:0 1.5em;}
+.tacop > .content {
+	padding: 0.25em;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	gap: 1em;
+}
+.tacop ul {list-style:none;padding:0 1.5em;margin:0;}
 .tacop ul li::before {
 	content: "\2022";
 	color: var(--card-orange);
@@ -74,8 +78,15 @@ img.inline-icon{display:inline-block;vertical-align:middle;height:1.25em;}
 	margin-left: -0.5em;
 	margin-right: 0.5em;
 }
-.tacop .action{border:1px solid var(--card-orange);background-color:var(--card-dark-gray);color:#fff;}
+.tacop .action {
+	border: 1px solid var(--card-orange);
+	background-color: var(--card-dark-gray);
+	color: #fff;
+}
 .tacop .action .title{background-color:var(--card-orange);}
+.tacop .action .content {
+	padding: 0.5em;
+}
 .tacop .button {
 	width: 1.25em;
 	height: 1.25em;
@@ -95,7 +106,6 @@ img.inline-icon{display:inline-block;vertical-align:middle;height:1.25em;}
 	display: block;
 	background: repeating-linear-gradient(-45deg, rgba(255,255,255,0.25), rgba(255,255,255,0.25) 1em, rgba(0,0,0,0.25) 1em, rgba(0,0,0,0.25) 2em);
 }
-
 
 .card {
 	display: inline-block;
