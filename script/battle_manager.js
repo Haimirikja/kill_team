@@ -72,34 +72,7 @@ class BattleManager {
             this.dataslate = new Dataslate(this.killTeam);
         }
         if (this.dataslate) {
-            document.getElementById(this.#BattleManagerIdRef.Dataslate.name).innerText = this.dataslate.name;
-            document.getElementById(this.#BattleManagerIdRef.Dataslate.killTeam).innerText = new Id(this.dataslate.killTeam).toName();
-            document.getElementById(this.#BattleManagerIdRef.Dataslate.requisitionPoints).innerText = this.dataslate.requisitionPoints;
-            document.getElementById(this.#BattleManagerIdRef.Dataslate.assetCapacity).innerText = this.dataslate.assetCapacity;
-            const specOpsLogElement = document.getElementById(this.#BattleManagerIdRef.Dataslate.specOpsLog);
-            let specOpElement;
-            this.dataslate.specOpsLog.forEach(specOp => {
-                specOpElement = document.createElement("div");
-                specOpElement.classList.add("textAsInput");
-                specOpElement.innerText = specOp;
-                specOpsLogElement.appendChild(specOpElement);
-            });
-            const stashElement = document.getElementById(this.#BattleManagerIdRef.Dataslate.stash);
-            let equipmentElement;
-            this.dataslate.stash.forEach((equipment, i) => {
-                equipmentElement = document.createElement("div");
-                equipmentElement.innerText = equipment;
-                if (i > 0) stashElement.appendChild(document.createElemnt("br"));
-                stashElement.appendChild(equipmentElement);
-            });
-            const assetsElement = document.getElementById(this.#BattleManagerIdRef.Dataslate.assets);
-            let assetElement;
-            this.dataslate.strategicAssets.forEach((asset, i) => {
-                assetElement = document.createElement("div");
-                assetElement.innerText = asset;
-                if (i > 0) assetsElement.appendChild(document.createElemnt("br"));
-                assetsElement.appendChild(assetElement);
-            });
+            this.updateDataslate();
         }
         console.log(location.origin);
         this.loadKillTeamRules(this.killTeam, { mode: location.origin === 'file://' ? "debug" : "default" });
@@ -200,7 +173,7 @@ class BattleManager {
 
     updateDataslate = () => {
         document.getElementById(this.#BattleManagerIdRef.Dataslate.name).innerText = this.dataslate.name;
-        document.getElementById(this.#BattleManagerIdRef.Dataslate.killTeam).innerText = this.dataslate.killTeam;
+        document.getElementById(this.#BattleManagerIdRef.Dataslate.killTeam).innerText = new Id(this.dataslate.killTeam).toName();
         document.getElementById(this.#BattleManagerIdRef.Dataslate.requisitionPoints).innerText = this.dataslate.requisitionPoints;
         document.getElementById(this.#BattleManagerIdRef.Dataslate.assetCapacity).innerText = this.dataslate.assetCapacity;
         const specOpsLogTarget = document.getElementById(this.#BattleManagerIdRef.Dataslate.assetCapacity);
