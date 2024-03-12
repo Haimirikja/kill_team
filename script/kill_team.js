@@ -86,7 +86,7 @@ class KillTeam {
             abilitiesElement.appendChild(abilitiesTitle);
             abilitiesElement.appendChild(abilitiesSubtitle);
             this.abilities.forEach(ability => {
-                abilitiesElement.appendChild(ability.toHTML(true));
+                abilitiesElement.appendChild(ability.toHTML({ headedTitle: true }));
             });
             killTeamContent.appendChild(abilitiesElement);
         }

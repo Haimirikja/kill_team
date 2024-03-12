@@ -33,9 +33,9 @@ class Ability {
         return ability && ability.toString() === this.toString();
     }
 
-    toHTML = (headedTitle = false) => {
+    toHTML = ({ headedTitle = false }) => {
         const abilityElement = document.createElement("div");
-        abilityElement.classList.add("kill-team-ability");
+        abilityElement.classList.add("ability");
         if (headedTitle) {
             const abilityName = document.createElement("h3");
             abilityName.classList.add("title");

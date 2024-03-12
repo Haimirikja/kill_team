@@ -96,9 +96,9 @@
 
 /* .kill-team-item{width:400px;} */
 .kill-team-item .title{font-size:1.4em;}
-.kill-team-item .kill-team-ability,
-.kill-team-item .kill-team-actions,
-.kill-team-item .kill-team-weapons{margin:1em 0;}
+.kill-team-item .ability,
+.kill-team-item .action,
+.kill-team-item .weapon{margin:1em 0;}
 
 .kill-team-ability .ability-table{margin:1em 0;border:1px solid var(--black);}
 .kill-team-ability .ability-table th,

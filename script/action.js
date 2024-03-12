@@ -31,16 +31,40 @@ class Action {
         return action && action.toString() === this.toString();
     }
 
-    toHTML = () => {
+    toHTML = ({ isBlock = false } = {}) => {
+        isBlock = typeof isBlock === 'boolean' ? isBlock : false;
         const actionElement = document.createElement("div");
-        actionElement.classList.add("kill-team-action");
-        const actionName = document.createElement("b");
-        actionName.innerText = `${this.name} (${this.cost}AP)${this.description.length ? ": " : ""}`;
-        actionElement.appendChild(actionName);
-        this.description.forEach((row, i) => {
-            if (i > 0) actionElement.appendChild(document.createElement("br"));
-            actionElement.appendChild(replaceMarkup(row));
-        });
+        actionElement.classList.add("action");
+        if (isBlock) {
+            const actionTitle = document.createElement("div");
+            actionTitle.classList.add("title");
+            actionTitle.classList.add("flex");
+            actionTitle.classList.add("row");
+            actionTitle.classList.add("nowrap");
+            actionTitle.classList.add("space-between");
+            const actionName = document.createElement("span");
+            actionName.innerText = this.name;
+            actionTitle.appendChild(actionName);
+            const actionCost = document.createElement("span");
+            actionCost.innerText = `${this.cost}AP`;
+            actionTitle.appendChild(actionCost);
+            actionElement.appendChild(actionTitle);
+            const actionContent = document.createElement("div");
+            actionContent.classList.add("content");
+            this.description.forEach((row, i) => {
+                if (i > 0) actionContent.appendChild(document.createElement("br"));
+                actionContent.appendChild(replaceMarkup(row));
+            });
+            actionElement.appendChild(actionContent);
+        } else {
+            const actionName = document.createElement("b");
+            actionName.innerText = `${this.name} (${this.cost}AP)${this.description.length ? ": " : ""}`;
+            actionElement.appendChild(actionName);
+            this.description.forEach((row, i) => {
+                if (i > 0) actionElement.appendChild(document.createElement("br"));
+                actionElement.appendChild(replaceMarkup(row));
+            });
+        }
         return actionElement;
     }
 }
