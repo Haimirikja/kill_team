@@ -101,6 +101,7 @@ class BattleManager {
                 assetsElement.appendChild(assetElement);
             });
         }
+        console.log(location.origin);
         this.loadKillTeamRules(this.killTeam, { mode: location.origin === 'file://' ? "debug" : "default" });
         this.updateCommandPoints(false);
         this.updateVictoryPoints(false);

@@ -1,0 +1,430 @@
+const TAC_OPS = [
+	{
+		"name": "HEADHUNTER",
+		"category": "Seek & Destroy",
+		"description": [
+			"Reveal this Tac Op when an enemy LEADER operative is incapacitated."
+		],
+		"resolves": [
+			"You score 1VP.",
+			"If it is the first or second Turning Point, you score 1VP."
+		]
+	},
+	{
+		"name": "CHALLENGE",
+		"category": "Seek & Destroy",
+		"description": [
+			"Reveal this Tac Op in the Target Reveal step of the first Turning Point.",
+			"Select one enemy operative and one friendly operative."
+		],
+		"resolves": [
+			"If that enemy operative is incapacitated by that friendly operative, you score 1VP.",
+			"If you achieve the first condition while that enemy operative is within ((6)) of that friendly operative, you score 1VP."
+		]
+	},
+	{
+		"name": "ROUT",
+		"category": "Seek & Destroy",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point."
+		],
+		"resolves": [
+			"If an enemy operative is incapacitated by a friendly operative that is within ((6)) of your opponent's drop zone, you score 1VP.",
+			"If you achieve the first condition in any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "EXECUTION",
+		"category": "Seek & Destroy",
+		"description": [
+			"Reveal this Tac Op at the end of any Turning Point in which more enemy operatives than friendly operatives were incapacitated during that Turning Point."
+		],
+		"resolves": [
+			"At the end of the battle, if more enemy operatives than friendly operatives were incapacitated during two or more Turning Points, you score 1VP.",
+			"At the end of the battle, if more enemy operatives than friendly operatives were incapacitated during three or more Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "DEADLY MARKSMAN",
+		"category": "Seek & Destroy",
+		"description": [
+			"After selecting this Tac Op, secretly select one friendly operative to be your Marksman.",
+			"You can reveal this Tac Op when an enemy operative is incapacitated by a shooting attack made by your Marksman while your Marksman is wholly within ((3)) of your drop zone."
+		],
+		"resolves": [
+			"If any other enemy operatives are incapacitated by another shooting attack made by your Marksman, you score 1VP.",
+			"At the end of the battle, if you achieved the first condition and your Marksman has not been incapacitated, you score 1VP."
+		]
+	},
+	{
+		"name": "ROB AND RANSACK",
+		"category": "Seek & Destroy",
+		"description": [
+			"You can reveal this Tac Op when an enemy operative is incapacitated by a friendly operative within ((1)) of it, and that friendly operative is more than ((3)) from other enemy operatives."
+		],
+		"resolves": [
+			"You score 1VP.",
+			"At the end of the battle, if you achieved the first condition and that friendly operative has not been incapacitated, you score 1VP."
+		]
+	},
+	{
+		"name": "SEIZE GROUND",
+		"category": "Security",
+		"description": [
+			"Reveal this Tac Op in the Target Reveal step of the first Turning Point.",
+			"Select one terrain feature that is more than ((3)) from your drop zone and includes any parts with the Heavy trait."
+		],
+		"resolves": [
+			"At the end of the battle, if the total APL of friendly operatives within ((1)) of that terrain feature is greater than that of enemy operatives, you score 1VP.",
+			"If you achieve the first condition, there are no enemy operatives on or within ((1)) of that terrain feature, and the total APL of friendly operatives within ((1)) of that terrain feature is 4 or more, you score 1VP."
+		]
+	},
+	{
+		"name": "HOLD THE LINE",
+		"category": "Security",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point after the first."
+		],
+		"resolves": [
+			"At the end of any Turning Point, if there are no enemy operatives within ((6)) of your drop zone, you score 1VP.",
+			"If you achieve the first condition at the end of any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "PROTECT ASSETS",
+		"category": "Security",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point."
+		],
+		"resolves": [
+			"At the end of any Turning Point, if two or more enemy operatives were incapacitated while within ((2)) of an objective marker during that Turning Point, and/or while carrying an objective during that Turning Point, you score 1VP.",
+			"If you achieve the first condition at the end of any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "DAMAGE LIMITATION",
+		"category": "Security",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point after the first."
+		],
+		"resolves": [
+			"At the end of any Turning Point, if no friendly operatives were incapacitated during that Turning Point, you score 1VP.",
+			"If you achieve the first condition at the end of any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "PLANT BANNER",
+		"category": "Security",
+		"description": [
+			"After selecting this Tac Op, secretly select one friendly operative to be carrying your Banner token.",
+			"Reveal this Tac Op when that operative drops your Banner token.",
+			"When you do, until the end of the battle, the Pick Up action can be performed by friendly operatives upon your Banner token."
+		],
+		"resolves": [
+			"At the end of the battle, if your Banner token is within ((6)) of but not wholly within your opponent's drop zone, you score 1VP.",
+			"At the end of the battle, if your Banner token is wholly within your opponent's drop zone, you score 2VP."
+		],
+		"actions": [
+			{
+				"name": "DESTROY THE BANNER",
+				"cost": 1,
+				"description": [
+					"An operative can perform this action while within ((1)) of the centre of an opponent's Banner token.",
+					"Remove that Banner token from the killzone.",
+					"An operative cannot perform this action while within ((2)) of enemy operatives."
+				]
+			}
+		]
+	},
+	{
+		"name": "CENTRAL CONTROL",
+		"category": "Security",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point."
+		],
+		"resolves": [
+			"At the end of any Turning Point, if the total APL of friendly operatives within ((3)) of the centre of the killzone is greater than that of enemy operatives, you score 1VP.",
+			"If you achieve the first condition at the end of any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "CAPTURE HOSTAGE & INFILTRATE",
+		"category": "Infiltration",
+		"description": [
+			"You can reveal this Tac Op when an enemy operative is incapacitated by a friendly operative within ((2)) of it, and that friendly operative is more than ((6)) from other enemy operatives."
+		],
+		"resolves": [
+			"Remove that friendly operative from the killzone and you score 1VP.",
+			"If you achieve the first condition and it is the third or fourth Turning Point, you score 1VP."
+		]
+	},
+	{
+		"name": "BEHIND ENEMY LINES",
+		"category": "Infiltration",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point."
+		],
+		"resolves": [
+			"If one or more friendly operatives are wholly within your opponent's drop zone and more than ((3)) from enemy operatives, you score 1VP.",
+			"If you achieve the first condition at the end of any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "UPLOAD VIRAL CODE",
+		"category": "Infiltration",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point."
+		],
+		"resolves": [
+			"If a friendly operative performs the Upload Viral Code action, you score 1VP.",
+			"If you achieve the first condition in any subsequent Turning Points, you score 1VP."
+		],
+		"actions": [
+			{
+				"name": "UPLOAD VIRAL CODE",
+				"cost": 2,
+				"description": [
+					"An operative can perform this action while within ((6)) of your opponent's drop zone and not within ((2)) of enemy operatives."
+				]
+			}
+		]
+	},
+	{
+		"name": "IMPLANT",
+		"category": "Infiltration",
+		"description": [
+			"You can reveal this Tac Op when you would strike an enemy operative in a combat."
+		],
+		"resolves": [
+			"Instead of inflicting damage on an enemy operative from that strike, you can implant that operative instead.",
+			"That operative does not lose any wounds from that strike and you score 1VP.",
+			"If two other enemy operatives are implanted, you score 1VP."
+		]
+	},
+	{
+		"name": "SABOTAGE",
+		"category": "Infiltration",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point."
+		],
+		"resolves": [
+			"If a terrain feature is sabotaged by friendly operatives, you score 1VP.",
+			"If any other terrain feature is sabotaged by friendly operatives, you score 1VP."
+		],
+		"actions": [
+			{
+				"name": "SABOTAGE",
+				"cost": 2,
+				"description": [
+					"An operative can perform this action while within ((1)) of a terrain feature that includes any parts with the Heavy trait that is wholly within or within ((6)) of your opponent's drop zone that has not been sabotaged by friendly operatives.",
+					"An operative cannot perform this action while within ((2)) of enemy operatives.",
+					"If this action is performed by friendly operatives, that terrain feature has been sabotaged by friendly operatives."
+				]
+			}
+		]
+	},
+	{
+		"name": "INTERLOPER",
+		"category": "Infiltration",
+		"description": [
+			"After selecting this Tac Op, secretly select one friendly operative to be your interloper.",
+			"You must reveal this Tac Op when your interloper performs the Interlope action."
+		],
+		"resolves": [
+			"Remove your interloper from the killzone and score 2VPs."
+		],
+		"actions": [
+			{
+				"name": "INTERLOPE",
+				"cost": 1,
+				"description": [
+					"Perform this action while within ((1)) of an enemy killzone edge and more than ((3)) from enemy operatives."
+				]
+			}
+		]
+	},
+	{
+		"name": "MARK TARGET",
+		"category": "Recon",
+		"description": [
+			"You can reveal this Tac Op when a friendly operative performs a Shoot action."
+		],
+		"resolves": [
+			"When an enemy LEADER operative is selected as the target of a shooting attack for a Shoot action, and no other shooting attacks are made for that action, you can attempt to mark that operative instead.",
+			"Complete the shooting sequence as normal, except that if any damage would be inflicted on that enemy operative, it does not lose any wounds and you score 1VP.",
+			"If you achieve the first condition in any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "TRIANGULATE",
+		"category": "Recon",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point."
+		],
+		"resolves": [
+			"If two killzone edges are triangulated by friendly operatives, you score 1VP.",
+			"If three killzone edges are triangulated by friendly operatives, you score an additional 1VP."
+		],
+		"actions": [
+			{
+				"name": "TRIANGULATE",
+				"cost": 1,
+				"description": [
+					"An operative can perform this action while within ((3)) of a killzone edge that is not your own killzone edge and has not been triangulated by friendly operatives.",
+					"An operative cannot perform this action while within ((2)) of enemy operatives.",
+					"If this action is performed by a friendly operative, that killzone edge has been triangulated by friendly operatives."
+				]
+			}
+		]
+	},
+	{
+		"name": "PLANT SIGNAL BEACON",
+		"category": "Recon",
+		"description": [
+			"You must reveal this Tac Op when a friendly operative performs the Plant Signal Beacon action."
+		],
+		"resolves": [
+			"At the end of the battle, if your signal beacon token is within ((6)) of your opponent's drop zone, you score 2VPs."
+		],
+		"actions": [
+			{
+				"name": "PLANT SIGNAL BEACON",
+				"cost": 2,
+				"description": [
+					"Place a signal beacon token within ((1)) of this operative.",
+					"An operative cannot perform this action while within ((2)) of enemy operatives.",
+					"If any enemy operatives finish a move within ((1)) of the centre of your signal beacon token and more than ((2)) from friendly operatives, remove that signal beacon token."
+				]
+			}
+		]
+	},
+	{
+		"name": "VANTAGE",
+		"category": "Recon",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point."
+		],
+		"resolves": [
+			"If a friendly operative performs the Vantage action, you score 1VP.",
+			"If you achieve the first condition in any subsequent Turning Points, you score 1VP."
+		],
+		"actions": [
+			{
+				"name": "VANTAGE",
+				"cost": 2,
+				"description": [
+					"An operative can perform this action while on a Vantage Point that is not within your drop zone and has not been secured by friendly operatives.",
+					"An operative cannot perform this action while within ((2)) of enemy operatives.",
+					"If this action is performed by friendly operatives, that Vantage Point has been secured by friendly operatives."
+				]
+			}
+		]
+	},
+	{
+		"name": "RETRIEVAL",
+		"category": "Recon",
+		"description": [
+			"Reveal this Tac Op in the Target Reveal step of the first Turning Point.",
+			"Your opponent places your Retrieval token anywhere in the killzone that is not on a Vantage Point and not wholly within or within ((3)) of their drop zone.",
+			"The Pick Up action can be performed by friendly operatives upon your Retrieval token."
+		],
+		"resolves": [
+			"At the end of the battle, if a friendly operative controls your Retrieval token, you score 1VP.",
+			"At the end of the battle, if your Retrieval token is being carried by a friendly operative, you score 1VP."
+		]
+	},
+	{
+		"name": "OVERRUN",
+		"category": "Recon",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point."
+		],
+		"resolves": [
+			"At the end of any Turning Point, if a friendly operative is wholly within each killzone quarter and more than ((3)) from the centre of the killzone, you score 1VP.",
+			"If you achieve the first condition at the end of any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "FLAWLESS RAID",
+		"category": "Faction",
+		"killTeam": "corsair_voidscarred",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point after the second."
+		],
+		"resolves": [
+			"If you had more victory points than your opponent at the start of the Turning Point, you score 1VP.",
+			"If you achieve the first condition at the start of the subsequent Turning Point, you score 1VP."
+		],
+	},
+	{
+		"name": "SOUL GUARD",
+		"category": "Faction",
+		"killTeam": "corsair_voidscarred",
+		"description": [
+			"Reveal this Tac Op in the Target Reveal step of the first Turning Point.",
+			"Each time a friendly CORSAIR VOIDSCARRED operative is incapacitated, before it is removed from the killzone, place one of your Spirit Stone tokens underneath the operative as close as possible to the centre of its base.",
+			"The Pick Up action can be performed upon your Spirit Stone tokens by friendly CORSAIR VOIDSCARRED operatives.",
+			"Operatives can carry any number of Spirit Stone tokens and your Spirit Stone tokens can be picked up by friendly CORSAIR VOIDSCARRED operatives while within Engagement Range of an enemy operative."
+		],
+		"resolves": [
+			"At the end of the battle, if no friendly operatives have been incapacitated, you score 2VPs.",
+			"At the end of the battle, if friendly operatives are carrying at least half of your Spirit Stone tokens, you score 1VP.",
+			"At the end of the battle, if friendly operatives are carrying all of your Spirit Stone tokens, you score 1VP."
+		],
+	},
+	{
+		"name": "OPPORTUNISTS",
+		"category": "Faction",
+		"killTeam": "corsair_voidscarred",
+		"description": [
+			"Reveal this Tac Op in the Target Reveal step of the first Turning Point.",
+			"Select three enemy operatives.",
+			"Each time one of those operatives is incapacitated, before it is removed from the killzone, place one of your Loot tokens underneath the operative as close as possible to the centre of its base.",
+			"The Pick Up action can be performed upon your Loot tokens by friendly operatives.",
+			"Operatives can carry any number of Loot tokens."
+		],
+		"resolves": [
+			"At the end of the battle, if friendly operatives are carrying one or more of your Loot tokens, you score 1 VP.",
+			"At the end of the battle, if friendly operatives are carrying three of your Loot tokens, you score 1VP."
+		],
+	},
+	{
+		"name": "MYTHIC PLAY",
+		"category": "Faction",
+		"killTeam": "void-dancer_troupe",
+		"description": [
+			"If you are using the Saedath ability, reveal this Tac Op in the Target Reveal step of the first Turning Point."
+		],
+		"resolves": [
+			"If your Performance tally is four or more, you score 1VP.",
+			"If your Performance tally is six or more, you score 1VP."
+		],
+	},
+	{
+		"name": "HERO'S PATH",
+		"category": "Faction",
+		"killTeam": "void-dancer_troupe",
+		"description": [
+			"You can reveal this Tac Op when a friendly VOID-DANCER TROUPE operative incapacitates an enemy operative.",
+			"At the end of the battle:"
+		],
+		"resolves": [
+			"If that friendly operative has incapacitated more enemy operatives than each other friendly VOID-DANCER TROUPE operative has during the battle, you score 1VP.",
+			"If that friendly operative is wholly within your opponent's drop zone, you score 1VP."
+		],
+	},
+	{
+		"name": "GRAND ACT",
+		"category": "Faction",
+		"killTeam": "void-dancer_troupe",
+		"description": [
+			"You can reveal this Tac Op in the Target Reveal step of any Turning Point.",
+			"When this Tac Op is revealed, start a Grand Act tally, adding one to the tally the first time each different Performance is completed by any friendly VOID-DANCER TROUPE operative.",
+			"Note that it does not have to be the active Allegory's Performance."
+		],
+		"resolves": [
+			"If your Grand Act tally is five, you score 1VP.",
+			"If you achieve the first condition before the fourth Turning Point, you score 1VP."
+		],
+	}
+];
