@@ -86,6 +86,10 @@ class BattleManager {
             rules = KillTeam.parse(this.#RegisteredKillTeams.find(x => x.id === id)?.debugRef);
             if (rules && rules instanceof KillTeam) {
                 Id.cleanContext();
+                const TacopsManagerLink = document.getElementById("TacopsManagerLink");
+                const tacopsUrl = new URL(TacopsManagerLink.href);
+                tacopsUrl.searchParams.set("kt", id);
+                TacopsManagerLink.href = tacopsUrl;
                 this.faction = rules.faction.toLowerCase();
                 document.getElementById(this.#BattleManagerIdRef.id).setAttribute("for", new Id(this.faction).value);
                 document.getElementById("Content").appendChild(rules.toHTML());
@@ -103,6 +107,10 @@ class BattleManager {
                     rules = KillTeam.parse(json);
                     if (rules && rules instanceof KillTeam) {
                         Id.cleanContext();
+                        const TacopsManagerLink = document.getElementById("TacopsManagerLink");
+                        const tacopsUrl = new URL(TacopsManagerLink.href);
+                        tacopsUrl.searchParams.set("kt", id);
+                        TacopsManagerLink.href = tacopsUrl;
                         this.faction = rules.faction.toLowerCase();
                         document.getElementById(this.#BattleManagerIdRef.id).setAttribute("for", new Id(this.faction).value);
                         document.getElementById("Content").appendChild(rules.toHTML());

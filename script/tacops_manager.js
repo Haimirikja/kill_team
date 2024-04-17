@@ -1,8 +1,14 @@
 
 window.onload = () => {
 
-    const querystring = new URLSearchParams(location.search);
-    const currentKillTeam = querystring.get("kt");
+    load();
+    
+}
+
+function init(currentKillTeam) {
+    document.getElementById("Content").innerHTML = "";
+    document.getElementById("ShuffleBoard").innerHTML = "";
+    document.getElementById("SelectedTacOps").innerHTML = "";
     const target = document.getElementById("Content");
     const categories = [];
     const categoryFilters = document.createElement("div");
@@ -20,15 +26,33 @@ window.onload = () => {
             filterButton.addEventListener('click', filterCategory);
             categoryFilters.appendChild(filterButton);
         }
-        target.appendChild(TacOp.parse(tacOp).toHTML());
+        const currentTacOp = TacOp.parse(tacOp);
+        target.appendChild(currentTacOp.toHTML({ callback_update: updateSelection }));
     });
-    
+    const shuffleButton = document.createElement("div");
+    shuffleButton.id = "ShuffleTacOps";
+    shuffleButton.classList.add("category-legend");
+    shuffleButton.classList.add("button");
+    const shuffleCount = document.createElement("span");
+    shuffleCount.id = "ShuffleCount";
+    shuffleCount.innerText = 0;
+    shuffleButton.appendChild(document.createTextNode("Shuffle "));
+    shuffleButton.appendChild(shuffleCount);
+    shuffleButton.appendChild(document.createTextNode("/6"));
+    shuffleButton.addEventListener('click', _ => {
+        if (TacOp.pickedTacOps.length < 6) alert((6 - TacOp.pickedTacOps.length) + " missing Tac Ops");
+		else {
+			target.innerHTML = "";
+			drawTacOps(currentKillTeam, TacOp.pickedTacOps);
+		}
+    });
+    categoryFilters.appendChild(shuffleButton);
 }
 
 function filterCategory(e) {
     const sender = e.currentTarget;
     const filterValue = sender.id;
-    document.querySelectorAll(".category-legend").forEach(element => {
+    document.querySelectorAll(".category-legend:not(.button)").forEach(element => {
         element.classList.toggle("toggle-hide", false);
         element.classList.toggle("toggle-show", true);
     });
@@ -36,5 +60,59 @@ function filterCategory(e) {
     sender.classList.toggle("toggle-show", false);
     document.querySelectorAll(".tacop").forEach(element => element.classList.toggle("hide", true));
     document.querySelectorAll(".tacop").forEach(element => { if (element.getAttribute("for") === filterValue) element.classList.toggle("hide", false); });
-    document.getElementById("")
+}
+
+function updateSelection() {
+    document.getElementById("ShuffleCount").innerText = TacOp.pickedTacOps.elements.length;
+}
+async function timeout(ms) {
+	return new Promise(result => setTimeout(result, ms));
+}
+async function pickTacOp() {
+	while (choosen === false) await timeout(50);
+}
+async function drawTacOps(currentKillTeam, TacOps) {
+    if (!(TacOps instanceof Deck)) return null;
+    const shuffleBoard = document.getElementById("ShuffleBoard");
+	//document.querySelectorAll(".board").forEach(board => { board.classList.toggle("hidden", false); });
+	choosen = false;
+	if (TacOps.elements.length) {
+		TacOps.shuffle();
+		const draws = TacOps.draw(2, true);
+		const batch = document.createElement("div");
+		batch.classList.add("batch");
+		draws.forEach((tacOp) => {
+			const card = tacOp.toHTML({ mode: "CARD" });
+			batch.appendChild(card);
+			card.addEventListener('click', _ => {
+				const selectedTarget = document.getElementById("SelectedTacOps");
+                tacOp.save(currentKillTeam);
+				selectedTarget.appendChild(tacOp.toHTML({ mode: "CARD" }));
+				const batchTarget = card.closest(".batch");
+				batchTarget.remove();
+				choosen = true;
+			});
+		});
+		shuffleBoard.appendChild(batch);
+		await pickTacOp();
+		drawTacOps(currentKillTeam, TacOps);
+	} else {
+        if (TacOps.elements.length === 0) console.log("COMPLETED");
+		shuffleBoard.closest(".board")?.classList.toggle("hidden", true);
+		return false;
+	}
+}
+
+function load() {
+    if (!localStorage) return;
+    const storage = JSON.parse(localStorage.getItem("TacOpsManager") ?? null) ?? [];
+    const querystring = new URLSearchParams(location.search);
+    const currentKillTeam = querystring.get("kt");
+    const savedKillTeam = storage?.find(x => x.killTeam === currentKillTeam);
+    if (savedKillTeam && savedKillTeam.tacOps.length > 0) {
+        savedKillTeam.tacOps.forEach(tacOp => {
+            const selectedTarget = document.getElementById("SelectedTacOps");
+            selectedTarget.appendChild(TacOp.parse(tacOp).toHTML({ mode: "CARD" }));
+        });
+    } else init(currentKillTeam);
 }
