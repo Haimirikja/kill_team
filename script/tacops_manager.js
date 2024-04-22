@@ -63,7 +63,7 @@ function filterCategory(e) {
 }
 
 function updateSelection() {
-    document.getElementById("ShuffleCount").innerText = TacOp.pickedTacOps.elements.length;
+    document.getElementById("ShuffleCount").innerText = TacOp.pickedTacOps.length;
 }
 async function timeout(ms) {
 	return new Promise(result => setTimeout(result, ms));
@@ -71,14 +71,14 @@ async function timeout(ms) {
 async function pickTacOp() {
 	while (choosen === false) await timeout(50);
 }
-async function drawTacOps(currentKillTeam, TacOps) {
-    if (!(TacOps instanceof Deck)) return null;
+async function drawTacOps(currentKillTeam, TacOpsDeck) {
+    if (!(TacOpsDeck instanceof Deck)) return null;
     const shuffleBoard = document.getElementById("ShuffleBoard");
 	//document.querySelectorAll(".board").forEach(board => { board.classList.toggle("hidden", false); });
 	choosen = false;
-	if (TacOps.elements.length) {
-		TacOps.shuffle();
-		const draws = TacOps.draw(2, true);
+	if (TacOpsDeck.length) {
+		TacOpsDeck.shuffle();
+		const draws = TacOpsDeck.draw(2, true);
 		const batch = document.createElement("div");
 		batch.classList.add("batch");
 		draws.forEach((tacOp) => {
@@ -95,10 +95,10 @@ async function drawTacOps(currentKillTeam, TacOps) {
 		});
 		shuffleBoard.appendChild(batch);
 		await pickTacOp();
-		drawTacOps(currentKillTeam, TacOps);
+		drawTacOps(currentKillTeam, TacOpsDeck);
 	} else {
-        if (TacOps.elements.length === 0) console.log("COMPLETED");
-		shuffleBoard.closest(".board")?.classList.toggle("hidden", true);
+        //if (TacOpsDeck.length === 0) console.log("COMPLETED");
+		//shuffleBoard.closest(".board")?.classList.toggle("hidden", true);
 		return false;
 	}
 }
@@ -110,9 +110,23 @@ function load() {
     const currentKillTeam = querystring.get("kt");
     const savedKillTeam = storage?.find(x => x.killTeam === currentKillTeam);
     if (savedKillTeam && savedKillTeam.tacOps.length > 0) {
+        const selectedTarget = document.getElementById("SelectedTacOps");
         savedKillTeam.tacOps.forEach(tacOp => {
-            const selectedTarget = document.getElementById("SelectedTacOps");
             selectedTarget.appendChild(TacOp.parse(tacOp).toHTML({ mode: "CARD" }));
         });
+        const actionBar = document.createElement("div");
+        const clearButton = document.createElement("div");
+        clearButton.id = "ClearButton";
+        clearButton.classList.add("button");
+        clearButton.innerText = "CLEAR";
+        clearButton.addEventListener('click', _ => {
+            const currentStorage = JSON.parse(localStorage.getItem("TacOpsManager") ?? null) ?? [];
+            const currentKillTeam = new URLSearchParams(location.search)?.get("kt");
+            const newStorage = currentStorage.filter(x => x.killTeam !== currentKillTeam);
+            localStorage.setItem("TacOpsManager", JSON.stringify(newStorage));
+            location.reload();
+        });
+        actionBar.appendChild(clearButton);
+        selectedTarget.appendChild(actionBar);
     } else init(currentKillTeam);
 }
