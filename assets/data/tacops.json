@@ -426,5 +426,132 @@ const TAC_OPS = [
 			"If your Grand Act tally is five, you score 1VP.",
 			"If you achieve the first condition before the fourth Turning Point, you score 1VP."
 		]
+	},
+	{
+		"name": "SEIZE OR INCAPACITATE",
+		"category": "Faction",
+		"killTeam": "exaction_squad",
+		"description": [
+			"Reveal this Tac Op in the Target Reveal step of the first Turning Point. Select one enemy operative to be the criminal. If that operative is incapacitated, before it is removed from the killzone, place one of your Criminal tokens underneath the operative as close as possible to the centre of its base. Friendly EXACTION SQUADS operatives (excluding R-VR CYBER-MASTIFF operatives) can perform the Pick Up action on that token while not within Engagement Range of an enemy operative. Subtract ((2)) from their Movement characteristic while they are carrying it.",
+		],
+		"resolves": [
+			"If that enemy operative is incapacitated, you score 1VP.",
+			"At the end of the battle, if friendly operatives control your Criminal token, you score 1VP."
+		]
+	},
+	{
+		"name": "CONTAIN THREAT",
+		"category": "Faction",
+		"killTeam": "exaction_squad",
+		"description": [
+			"Reveal this Tac Op in the Target Reveal step of any Turning Point.",
+		],
+		"resolves": [
+			"At the end of any Turning Point, if every enemy operative in the killzone is within ((6)) of your opponent's drop zone and/or within ((2)) of one of your operatives, you score 1VP.",
+			"If you achieve the first condition at the end of any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "VANTAGE",
+		"category": "Faction",
+		"killTeam": "exaction_squad",
+		"description": [
+			"You can reveal this Tac Op the first time a friendly operative performs the Gather Evidence action (below). At the end of the battle:"
+		],
+		"resolves": [
+			"If one or more friendly operatives that have performed the Gather Evidence action have not been incapacitated during the battle, you score 1VP.",
+			"If two or more friendly operatives that have performed the Gather Evidence action have not been incapacitated during the battle, you score 1VP."
+		],
+		"actions": [
+			{
+				"name": "GATHER EVIDENCE",
+				"cost": 1,
+				"description": [
+					"Friendly MALOCATOR, REVELATUM and R-VR CYBER-MASTIFF operatives can perform the following mission action:",
+					"An operative can perform this action while it controls an objective marker that has not been examined by your kill team. If it does so, until the end of the battle, that objective marker has been examined by your kill team. An operative cannot perform this action while within Engagement Range of an enemy operative."
+				]
+			}
+		]
+	},
+	{
+		"name": "NOWHERE UNREACHABLE",
+		"category": "Faction",
+		"killTeam": "wyrmblade",
+		"description": [
+			"Reveal this Tac Op in the Target Reveal step of the first Turning Point. Your opponent places one of your Location tokens anywhere in the killzone that is more than ((6)) from their drop zone.",
+		],
+		"resolves": [
+			"At the end of any Turning Point, if a friendly operative is within ((1)) of that location token, you score 1 VP.",
+			"If you achieve the first condition at the end of any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "PERFECT AMBUSH",
+		"category": "Faction",
+		"killTeam": "exaction_squad",
+		"description": [
+			"Reveal this Tac Op in the Target Reveal step of any Turning Point before the fourth. Keep a tally of wounds lost by each player's operatives during that Turning Point. At the end of that Turning Point:",
+		],
+		"resolves": [
+			"If the total wounds lost by enemy operatives during that Turning Point is greater than that lost by friendly operatives during that Turning Point, you score 1VP.",
+			"If the total wounds lost by enemy operatives during that Turning Point as a result of friendly CULT AGENT operatives (shooting attacks they make or combats they fight in) is greater than the total number of wounds lost by friendly operatives during that Turning Point, you score 1VP."
+		]
+	},
+	{
+		"name": "MARK OF ASSASSINATION",
+		"category": "Faction",
+		"killTeam": "exaction_squad",
+		"description": [
+			"Reveal this Tac Op in the Target Reveal step of any Turning Point."
+		],
+		"resolves": [
+			"If an enemy operative with a Marked token is incapacitated, you score 1 VP.",
+			"If another enemy operative with a Marked token is incapacitated, you score 1VP."
+		],
+		"actions": [
+			{
+				"name": "GATHER EVIDENCE",
+				"cost": 1,
+				"description": [
+					"Friendly NEOPHYTE operatives can perform the following mission action:",
+					"An operative can perform this action while an enemy operative with a Group Activation characteristic of 1 is Visible to and within ((3)) of it. That enemy operative gains a Marked token. An operative cannot perform this action while within Engagement Range of an enemy operative, or if another friendly operative has performed this action during this Turning Point."
+				]
+			}
+		]
+	},
+	{
+		"name": "BOOTS ON THE GROUND",
+		"category": "Faction",
+		"killTeam": "veteran_guardsman",
+		"description": [
+			"You can reveal this Tac Op at the end of any Turning Point."
+		],
+		"resolves": [
+			"At the end of that Turning Point, if there are more friendly operatives than enemy operatives within ((6)) of your drop zone, and there are more friendly operatives than enemy operatives within ((6)) of your opponent's drop zone, you score 1VP.",
+			"If you achieve the first condition at the end of any subsequent Turning Points, you score 1VP."
+		]
+	},
+	{
+		"name": "STAND FAST",
+		"category": "Faction",
+		"killTeam": "veteran_guardsman",
+		"description": [
+			"You can reveal this Tac Op in the Reveal Tac Ops step of any Turning Point."
+		],
+		"resolves": [
+			"At the end of any Turning Point, if friendly operatives control two or more objective markers, and friendly operatives control more objective markers than enemy operatives do, you score 1 VP.",
+			"If you achieve the first condition at the end of any subsequent Turning Points, you score an additional 1VP."
+		]
+	},
+	{
+		"name": "GLORY IN DEATH",
+		"category": "Faction",
+		"killTeam": "veteran_guardsman",
+		"description": [
+			"Reveal this Tac Op at the end of the battle."
+		],
+		"resolves": [
+			"If more friendly operatives were incapacitated than enemy operatives, but you scored more victory points from the mission objective, you score 2VPs."
+		]
 	}
 ];
