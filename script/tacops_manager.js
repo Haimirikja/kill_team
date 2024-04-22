@@ -74,6 +74,7 @@ async function pickTacOp() {
 async function drawTacOps(currentKillTeam, TacOpsDeck) {
     if (!(TacOpsDeck instanceof Deck)) return null;
     const shuffleBoard = document.getElementById("ShuffleBoard");
+    const selectedTarget = document.getElementById("SelectedTacOps");
 	//document.querySelectorAll(".board").forEach(board => { board.classList.toggle("hidden", false); });
 	choosen = false;
 	if (TacOpsDeck.length) {
@@ -85,7 +86,6 @@ async function drawTacOps(currentKillTeam, TacOpsDeck) {
 			const card = tacOp.toHTML({ mode: "CARD" });
 			batch.appendChild(card);
 			card.addEventListener('click', _ => {
-				const selectedTarget = document.getElementById("SelectedTacOps");
                 tacOp.save(currentKillTeam);
 				selectedTarget.appendChild(tacOp.toHTML({ mode: "CARD" }));
 				const batchTarget = card.closest(".batch");
@@ -97,6 +97,7 @@ async function drawTacOps(currentKillTeam, TacOpsDeck) {
 		await pickTacOp();
 		drawTacOps(currentKillTeam, TacOpsDeck);
 	} else {
+        addActions(selectedTarget);
         //if (TacOpsDeck.length === 0) console.log("COMPLETED");
 		//shuffleBoard.closest(".board")?.classList.toggle("hidden", true);
 		return false;
@@ -114,19 +115,23 @@ function load() {
         savedKillTeam.tacOps.forEach(tacOp => {
             selectedTarget.appendChild(TacOp.parse(tacOp).toHTML({ mode: "CARD" }));
         });
-        const actionBar = document.createElement("div");
-        const clearButton = document.createElement("div");
-        clearButton.id = "ClearButton";
-        clearButton.classList.add("button");
-        clearButton.innerText = "CLEAR";
-        clearButton.addEventListener('click', _ => {
-            const currentStorage = JSON.parse(localStorage.getItem("TacOpsManager") ?? null) ?? [];
-            const currentKillTeam = new URLSearchParams(location.search)?.get("kt");
-            const newStorage = currentStorage.filter(x => x.killTeam !== currentKillTeam);
-            localStorage.setItem("TacOpsManager", JSON.stringify(newStorage));
-            location.reload();
-        });
-        actionBar.appendChild(clearButton);
-        selectedTarget.appendChild(actionBar);
+        addActions(selectedTarget);
     } else init(currentKillTeam);
+}
+
+function addActions(target) {
+    const actionBar = document.createElement("div");
+    const clearButton = document.createElement("div");
+    clearButton.id = "ClearButton";
+    clearButton.classList.add("button");
+    clearButton.innerText = "CLEAR";
+    clearButton.addEventListener('click', _ => {
+        const currentStorage = JSON.parse(localStorage.getItem("TacOpsManager") ?? null) ?? [];
+        const currentKillTeam = new URLSearchParams(location.search)?.get("kt");
+        const newStorage = currentStorage.filter(x => x.killTeam !== currentKillTeam);
+        localStorage.setItem("TacOpsManager", JSON.stringify(newStorage));
+        location.reload();
+    });
+    actionBar.appendChild(clearButton);
+    target.appendChild(actionBar);
 }
