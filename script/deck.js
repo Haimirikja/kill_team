@@ -11,6 +11,8 @@ class Deck {
 		}
 	}
 
+	get length() { return this.elements.length; }
+
 	shuffle = function() {
 		if (!this.elements.length) return null;
 		const shuffleTimesTable = [11, 13, 17, 19, 23, 29, 31, 37, 41, 43];
