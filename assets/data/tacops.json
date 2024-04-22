@@ -432,7 +432,7 @@ const TAC_OPS = [
 		"category": "Faction",
 		"killTeam": "exaction_squad",
 		"description": [
-			"Reveal this Tac Op in the Target Reveal step of the first Turning Point. Select one enemy operative to be the criminal. If that operative is incapacitated, before it is removed from the killzone, place one of your Criminal tokens underneath the operative as close as possible to the centre of its base. Friendly EXACTION SQUADS operatives (excluding R-VR CYBER-MASTIFF operatives) can perform the Pick Up action on that token while not within Engagement Range of an enemy operative. Subtract ((2)) from their Movement characteristic while they are carrying it.",
+			"Reveal this Tac Op in the Target Reveal step of the first Turning Point. Select one enemy operative to be the criminal. If that operative is incapacitated, before it is removed from the killzone, place one of your Criminal tokens underneath the operative as close as possible to the centre of its base. Friendly EXACTION SQUADS operatives (excluding R-VR CYBER-MASTIFF operatives) can perform the Pick Up action on that token while not within Engagement Range of an enemy operative. Subtract ((2)) from their Movement characteristic while they are carrying it."
 		],
 		"resolves": [
 			"If that enemy operative is incapacitated, you score 1VP.",
@@ -444,7 +444,7 @@ const TAC_OPS = [
 		"category": "Faction",
 		"killTeam": "exaction_squad",
 		"description": [
-			"Reveal this Tac Op in the Target Reveal step of any Turning Point.",
+			"Reveal this Tac Op in the Target Reveal step of any Turning Point."
 		],
 		"resolves": [
 			"At the end of any Turning Point, if every enemy operative in the killzone is within ((6)) of your opponent's drop zone and/or within ((2)) of one of your operatives, you score 1VP.",
@@ -478,7 +478,7 @@ const TAC_OPS = [
 		"category": "Faction",
 		"killTeam": "wyrmblade",
 		"description": [
-			"Reveal this Tac Op in the Target Reveal step of the first Turning Point. Your opponent places one of your Location tokens anywhere in the killzone that is more than ((6)) from their drop zone.",
+			"Reveal this Tac Op in the Target Reveal step of the first Turning Point. Your opponent places one of your Location tokens anywhere in the killzone that is more than ((6)) from their drop zone."
 		],
 		"resolves": [
 			"At the end of any Turning Point, if a friendly operative is within ((1)) of that location token, you score 1 VP.",
@@ -490,7 +490,7 @@ const TAC_OPS = [
 		"category": "Faction",
 		"killTeam": "exaction_squad",
 		"description": [
-			"Reveal this Tac Op in the Target Reveal step of any Turning Point before the fourth. Keep a tally of wounds lost by each player's operatives during that Turning Point. At the end of that Turning Point:",
+			"Reveal this Tac Op in the Target Reveal step of any Turning Point before the fourth. Keep a tally of wounds lost by each player's operatives during that Turning Point. At the end of that Turning Point:"
 		],
 		"resolves": [
 			"If the total wounds lost by enemy operatives during that Turning Point is greater than that lost by friendly operatives during that Turning Point, you score 1VP.",
