@@ -11,7 +11,7 @@ const WYRMBLADE = {
                 "",
                 "Each time a shooting attack is made against this operative, in the Roll Defence Dice step of that shooting attack, before rolling your defence dice, if it is in Cover, you can do one of the following:",
                 "• Retain one additional dice as a successful normal save as a result of Cover.",
-                "• Retain one dice as a successful critical save instead of a normal save as a result of Cover.",
+                "• Retain one dice as a successful critical save instead of a normal save as a result of Cover."
             ]
         },
         {
@@ -265,7 +265,7 @@ const WYRMBLADE = {
                             "cost": 1,
                             "description": [
                                 "The next time this operative performs a Shoot action during this activation, for that shooting attack, the short range profile of its liberator autostubs gains the Indirect and No Cover special rules but loses the P1 and Rending critical hit rules."
-                            ],
+                            ]
                         }
                     ],
                     "weapons": [
@@ -616,7 +616,7 @@ const WYRMBLADE = {
                                 "Select one enemy operative. Until end of the Turning Point, each time this operative makes a shooting attack against that enemy operative:",
                                 "• The Sanctus sniper rifle this operative is equipped with gains the No Cover special rule for that shooting attack.",
                                 "• That enemy operative cannot be Obscured for that shooting attack.",
-                                "• Areas of smoke cannot prevent that enemy operative from being Visible for that shooting attack.",
+                                "• Areas of smoke cannot prevent that enemy operative from being Visible for that shooting attack."
                             ]
                         }
                     ],
@@ -724,7 +724,7 @@ const WYRMBLADE = {
                             "name": "Quicksilver Strike",
                             "cost": 1,
                             "description": [
-                                "Once this Turning Point, when an enemy operative is performing a Normal Move or Dash action and moves within ((3)) of this operative, you can interrupt that action to perform a free Charge action with this operative (it must finish that move within Engagement Range of that enemy operative, and if this operative has a Conceal order, change it to an Engage order to do so). If you do so, that enemy operative’s action ends without finishing their move, and you must then perform a free Fight action with this operative against that enemy operative. This action is treated as a Fight action for the purposes of action restrictions."
+                                "Once this Turning Point, when an enemy operative is performing a Normal Move or Dash action and moves within ((3)) of this operative, you can interrupt that action to perform a free Charge action with this operative (it must finish that move within Engagement Range of that enemy operative, and if this operative has a Conceal order, change it to an Engage order to do so). If you do so, that enemy operative's action ends without finishing their move, and you must then perform a free Fight action with this operative against that enemy operative. This action is treated as a Fight action for the purposes of action restrictions."
                             ]
                         }
                     ],

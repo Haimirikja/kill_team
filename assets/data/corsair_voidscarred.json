@@ -439,7 +439,7 @@ const CORSAIR_VOIDSCARRED = {
                                     "damageNorm": 4,
                                     "damageCrit": 5,
                                     "range": 6,
-                                    "specialEffects": ["AP1"],
+                                    "specialRules": ["AP1"],
                                     "criticalEffects": ["Stun"]
                                 }
                             ]

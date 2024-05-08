@@ -98,7 +98,7 @@ class BattleManager {
         else {
             const fileName = this.#RegisteredKillTeams.find(x => x.id === id)?.fileName;
             if (!fileName) return undefined;
-            fetch(`assets/data/${fileName}`)
+            fetch(`assets/data/${fileName}`, { headers: { "Accept": "application/json", "Content-Type": "application/json" }})
                 .then(response => {
                     if (!response.ok) throw response;
                     return response.json();
