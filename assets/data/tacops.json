@@ -488,7 +488,7 @@ const TAC_OPS = [
 	{
 		"name": "PERFECT AMBUSH",
 		"category": "Faction",
-		"killTeam": "exaction_squad",
+		"killTeam": "wyrmblade",
 		"description": [
 			"Reveal this Tac Op in the Target Reveal step of any Turning Point before the fourth. Keep a tally of wounds lost by each player's operatives during that Turning Point. At the end of that Turning Point:"
 		],
@@ -500,7 +500,7 @@ const TAC_OPS = [
 	{
 		"name": "MARK OF ASSASSINATION",
 		"category": "Faction",
-		"killTeam": "exaction_squad",
+		"killTeam": "wyrmblade",
 		"description": [
 			"Reveal this Tac Op in the Target Reveal step of any Turning Point."
 		],

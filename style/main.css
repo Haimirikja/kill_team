@@ -125,14 +125,15 @@ a.button{text-decoration:none;}
 }
 
 .toggle-show,.toggle-hide{position:relative;padding-right:2em !important;cursor:pointer;}
-.toggle-show::before{content:"▼";}
-.toggle-hide::before{content:"▲";}
+.toggle-show::before{color:inherit;}
+.toggle-hide::before{color:#00ff00;}
 .toggle-show::before,
-.toggle-hide::before {    
+.toggle-hide::before {
+    content:"●";
     display: block;
     position: absolute;
     top: 50%;
     right: 0;
     translate: -0.5em -50%;
-    color: inherit;
+    line-height: 1em;
 }
