@@ -3,6 +3,7 @@
     --white: #ffffff;
     --orange: #c54c21;
     --blue: #184a96;
+    --green: #00ff00;
     --gray: #b4bbb4;
     --light-gray: #dee2e1;
     --dark-gray: #515a5c;
@@ -137,7 +138,7 @@ a.button{text-decoration:none;}
     translate: -0.5em -50%;
     line-height: 1em;
 }
-.category-legend.toggle-hide::before{color:#00ff00;}
+.category-legend.toggle-hide::before{color:var(--green);}
 .category-legend.toggle-show::before,
 .category-legend.toggle-hide::before {
     content:"●";
