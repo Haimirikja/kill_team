@@ -147,6 +147,9 @@ class KillTeam {
                 ruleTitle.appendChild(document.createTextNode(rule.name));
                 const ruleDescription = document.createElement("div");
                 rule.description?.forEach(row => ruleDescription.appendChild(document.createTextNode(row)));
+                ruleElement.appendChild(ruleTitle);
+                ruleElement.appendChild(ruleDescription);
+                killTeamCompendium.appendChild(ruleElement);
             });
             killTeamElement.appendChild(killTeamCompendium);
         }
