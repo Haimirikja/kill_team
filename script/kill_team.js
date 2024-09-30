@@ -139,18 +139,30 @@ class KillTeam {
             const killTeamCompendium = document.createElement("div");
             killTeamCompendium.id = "Compendium";
             killTeamCompendium.classList.add("kill-team-compendium");
+            const button = document.createElement("div");
+            button.id = "OpenCompendium";
+            button.classList.add("menu-button");
+            button.appendChild(document.createTextNode("🕮"));//?
+            button.addEventListener('click', _ => {
+                document.getElementById("Compendium").classList.toggle("open");
+            })
+            killTeamCompendium.appendChild(button);
+            const compendiumRuleset = document.createElement("div");
             this.compendium.forEach(rule => {
                 const ruleElement = document.createElement("div");
-                ruleElement.id = new Id(rule.name);
+                ruleElement.classList.add("kill-team-compendium-rule");
+                ruleElement.id = new Id(rule.name).value;
                 const ruleTitle = document.createElement("div");
                 ruleTitle.classList.add("title");
                 ruleTitle.appendChild(document.createTextNode(rule.name));
                 const ruleDescription = document.createElement("div");
-                rule.description?.forEach(row => ruleDescription.appendChild(document.createTextNode(row)));
+                ruleDescription.classList.add("description");
+                rule.description?.forEach(row => ruleDescription.appendChild(replaceMarkup(row)));
                 ruleElement.appendChild(ruleTitle);
                 ruleElement.appendChild(ruleDescription);
-                killTeamCompendium.appendChild(ruleElement);
+                compendiumRuleset.appendChild(ruleElement);
             });
+            killTeamCompendium.appendChild(compendiumRuleset);
             killTeamElement.appendChild(killTeamCompendium);
         }
         return killTeamElement;

@@ -241,6 +241,45 @@
     justify-content: flex-end;
 }
 
+.kill-team-compendium {
+    position: fixed;
+    top: 0;
+    left: calc(100% - 3em);
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+.kill-team-compendium .menu-button {
+    font-size: 2em;
+    min-width: 1.5em;
+    min-height: 1.5em;
+    line-height: 1.5em;
+    text-align: center;
+    background-color: rgba(255,255,255,0.5);
+    border: 1px solid var(--black);
+    cursor: pointer;
+}
+.kill-team-compendium.open{
+    left: 50%;
+    background-color: var(--white);
+}
+.kill-team-compendium > div:not(.menu-button) {
+    height: 100%;
+    overflow-y: auto;
+}
+.kill-team-compendium-rule {
+    margin: 1em 0;
+    padding: 0 1em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.5em;
+}
+.kill-team-compendium-rule .description > * {display:block;}
+
 @media (max-width: 576px) {
     html{font-size:10px;}
     :root{--icon-size: var(--icon-size-small);}

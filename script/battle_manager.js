@@ -75,7 +75,7 @@ class BattleManager {
             this.dataslate = new Dataslate(this.killTeam);
         }
         if (this.dataslate) {
-            this.updateDataslate();
+            //this.updateDataslate();
         }
         this.loadKillTeamRules(this.killTeam, { mode: location.origin === 'file://' ? "debug" : "default" });
         this.updateCommandPoints(false);
