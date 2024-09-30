@@ -11,6 +11,7 @@ class BattleManager {
     
     #BattleManagerIdRef = {
         id: "BattleManagerArea",
+        clear: "Clear",
         changeKillTeam: "KillTeamSelect",
         CommandPoints: {
             id: "CommandPointsList",
@@ -37,6 +38,7 @@ class BattleManager {
     }
 
     constructor() {
+        document.getElementById(this.#BattleManagerIdRef.clear).addEventListener('click', _ => this.clear());
         document.getElementById(this.#BattleManagerIdRef.changeKillTeam).addEventListener('change', (e) => this.load(e.currentTarget.value));
         document.getElementById(this.#BattleManagerIdRef.CommandPoints.add).addEventListener('click', this.addCommandPoint);
         document.getElementById(this.#BattleManagerIdRef.CommandPoints.remove).addEventListener('click', this.removeCommandPoint);
@@ -225,6 +227,13 @@ class BattleManager {
             });
         }
         localStorage.setItem("BattleManager", JSON.stringify(storage));
+    }
+
+    clear = () => {
+        if (!localStorage) return;
+        localStorage.removeItem("BattleManager");
+        document.getElementById(this.#BattleManagerIdRef.changeKillTeam).value = null;
+        this.#reset();
     }
 
 }

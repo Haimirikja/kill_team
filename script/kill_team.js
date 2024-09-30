@@ -1,12 +1,13 @@
 
 class KillTeam {
-    constructor(name = "", faction = "", abilities = [], strategicPloys = [], tacticalPloys = [], psychicPowers = [], fireTeams = []) {
+    constructor(name = "", faction = "", compendium = [], abilities = [], strategicPloys = [], tacticalPloys = [], psychicPowers = [], fireTeams = []) {
         Object.defineProperty(this, "addOperative", { enumerable: false });
         Object.defineProperty(this, "removeOperative", { enumerable: false });
         Object.defineProperty(this, "toString", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
         this.faction = faction && typeof faction === 'string' ? faction : "";
+        this.compendium = Array.isArray(compendium) ? compendium.filter(x => typeof x.name === 'string' && Array.isArray(x.description)) : [];
         this.abilities = Array.isArray(abilities) ? abilities.filter(x => x instanceof Ability) : [];
         this.strategicPloys = Array.isArray(strategicPloys) ? strategicPloys.filter(x => x instanceof StrategicPloy) : [];
         this.tacticalPloys = Array.isArray(tacticalPloys) ? tacticalPloys.filter(x => x instanceof TacticalPloy) : [];
@@ -29,6 +30,7 @@ class KillTeam {
         return new KillTeam(
             object.name,
             object.faction,
+            object.compendium,
             object.abilities?.map(x => Ability.parse(x)),
             object.strategicPloys?.map(x => StrategicPloy.parse(x)),
             object.tacticalPloys?.map(x => TacticalPloy.parse(x)),
@@ -64,6 +66,7 @@ class KillTeam {
         fireTeamsList.classList.add("legend");
         const fireTeamsBlock = document.createElement("div");
         this.fireTeams.forEach(fireTeam => {
+            if (!fireTeam.show) return;
             const fireTeamLink = document.createElement("a");
             fireTeamLink.setAttribute("href", `#${new Id(fireTeam.name, "fire_team").value}`);
             fireTeamLink.innerText = `${fireTeam.name} Fire Team`;
@@ -132,6 +135,21 @@ class KillTeam {
         }
         killTeamContent.appendChild(fireTeamsBlock);
         killTeamElement.appendChild(killTeamContent);
+        if (this.compendium.length) {
+            const killTeamCompendium = document.createElement("div");
+            killTeamCompendium.id = "Compendium";
+            killTeamCompendium.classList.add("kill-team-compendium");
+            this.compendium.forEach(rule => {
+                const ruleElement = document.createElement("div");
+                ruleElement.id = new Id(rule.name);
+                const ruleTitle = document.createElement("div");
+                ruleTitle.classList.add("title");
+                ruleTitle.appendChild(document.createTextNode(rule.name));
+                const ruleDescription = document.createElement("div");
+                rule.description?.forEach(row => ruleDescription.appendChild(document.createTextNode(row)));
+            });
+            killTeamElement.appendChild(killTeamCompendium);
+        }
         return killTeamElement;
     }
 }

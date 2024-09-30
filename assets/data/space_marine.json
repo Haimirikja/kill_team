@@ -3,9 +3,48 @@ const SPACEMARINE = {
     "faction": "SPACEMARINES",
     "compendium": [
         {
+            "name": "Torrent",
+            "description": [
+                "Each time a friendly operative performs a Shoot action or Overwatch action and selects this weapon, after making the shooting attack against the target, it can make a shooting attack with this weapon against each other valid target within x of the original target and each other, x is the distance after the weapon's Torrent, e.g. Torrent ((2))."
+            ]
+        },
+        {
+            "name": "Hot",
+            "description": [
+                "Each time a friendly operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, for each attack dice result of 1 that is discarded, that operative suffers three mortal wounds."
+            ]
+        },
+        {
+            "name": "Brutal",
+            "description": [
+                "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, your opponent can only parry with critical hits."
+            ]
+        },
+        {
             "name": "Rending",
             "description": [
                 "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, if you retain any critical hits you can retain one normal hit as a critical hit."
+            ]
+        },
+        {
+            "name": "Relentless",
+            "description": [
+                "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, you can re-roll any or all of your attack dice."
+            ]
+        },
+        {
+            "name": "Stun",
+            "description": [
+                "Each time a friendly operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, if you retain any critical hits, subtract 1 from the target's APL.",
+                "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat:",
+                "((-)) The first time you strike with a critical hit, select one of your opponent's normal hits from that combat to be discarded",
+                "((-)) The second time you strike with a critical hit, subtract 1 from the target's APL."
+            ]
+        },
+        {
+            "name": "No Cover",
+            "description": [
+                "Each time a friendly operative makes a shooting attack with this weapon, for that shooting attack, defence dice cannot be automatically retained as a result of Cover (they must be rolled instead)."
             ]
         },
         {
@@ -17,15 +56,15 @@ const SPACEMARINE = {
         {
             "name": "Blast",
             "description": [
-                "Each time a friendly operative performs a Shoot action and selects this weapon (or, in the case of profiles, this weapon's profile), after making the shooting attack against the target, make a shooting attack with this weapon (using the same profile) against each other operative Visible to and within X of the original target – each of them is a valid target and cannot be in Cover.",
+                "Each time a friendly operative performs a Shoot action and selects this weapon (or, in the case of profiles, this weapon's profile), after making the shooting attack against the target, make a shooting attack with this weapon (using the same profile) against each other operative Visible to and within X of the original target - each of them is a valid target and cannot be in Cover.",
                 "X is the distance after the weapon's Blast, e.g.Blast ((2)).",
                 "An operative cannot make a shooting attack with this weapon by performing an Overwatch action."
             ]
         },
         {
-            "name": "Silent",
+            "name": "Fusillade",
             "description": [
-                "While an operative has a Conceal order, it can perform Shoot actions if this is the ranged weapon (or weapon profile) that is selected for the shooting attack(s)."
+                "Each time a friendly operative performs a Shoot action and selects this weapon, after selecting a valid target, you can select any number of other valid targets within ((2)) of the original target. Distribute your attack dice between the targets you have selected. Make a shooting attack with this weapon (using the same profile) against each of the targets you have selected using the attack dice you have distributed to each of them."
             ]
         }
     ],
@@ -99,8 +138,8 @@ const SPACEMARINE = {
             "cost": 1,
             "description": [
                 "Use this Tactical Ploy during a friendly REIVER operative's activation. Until the start of the next Turning Point:",
-                "* Each time an enemy operative would perform a mission action or the Pick Up action, if this friendly REIVER operative is within ((3)) of that enemy operative, one additional action point must be subtracted to perform that action.",
-                "* When determining control of an objective marker that friendly REIVER operative is within range of, treat enemy operatives' total APL as being 1 less. Note that this is not a modifier."
+                "((-)) Each time an enemy operative would perform a mission action or the Pick Up action, if this friendly REIVER operative is within ((3)) of that enemy operative, one additional action point must be subtracted to perform that action.",
+                "((-)) When determining control of an objective marker that friendly REIVER operative is within range of, treat enemy operatives' total APL as being 1 less. Note that this is not a modifier."
             ]
         }
     ],
@@ -108,6 +147,7 @@ const SPACEMARINE = {
         {
             "name": "Tactical Marine",
             "size": 6,
+            "show": false,
             "operatives": [
                 {
                     "name": "Tactical Marine Sergeant",
@@ -120,6 +160,20 @@ const SPACEMARINE = {
                         3,
                         3,
                         12
+                    ],
+                    "abilities": [
+                        {
+                            "name": "*Combi",
+                            "description": [
+                                "An operative equipped with this weapon is also equipped with a boltgun."
+                            ]
+                        },
+                        {
+                            "name": "*Grav",
+                            "description": [
+                                "Each time this operative makes a shooting attack with this weapon, if the target has an unmodified Save characteristic of 3+ or better, this weapon has the Lethal 4+ special rule for that attack."
+                            ]
+                        }
                     ],
                     "weapons": [
                         {
@@ -346,7 +400,6 @@ const SPACEMARINE = {
                         {
                             "type": "((R))",
                             "name": "Boltgun",
-                            "range": 6,
                             "profiles": [
                                 {
                                     "attacks": 4,
@@ -355,7 +408,7 @@ const SPACEMARINE = {
                                     "damageCrit": 4
                                 }
                             ]
-                        }
+                        },
                         {
                             "type": "((M))",
                             "name": "Fists",
@@ -381,6 +434,14 @@ const SPACEMARINE = {
                         3,
                         3,
                         11
+                    ],
+                    "abilities": [
+                        {
+                            "name": "*Grav",
+                            "description": [
+                                "Each time this operative makes a shooting attack with this weapon, if the target has an unmodified Save characteristic of 3+ or better, this weapon has the Lethal 4+ special rule for that attack."
+                            ]
+                        }
                     ],
                     "weapons": [
                         {
@@ -485,6 +546,1127 @@ const SPACEMARINE = {
                                     "damageCrit": 5,
                                     "specialRules": ["Heavy", "Fusillade"],
                                     "criticalEffects": ["P1"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Missile Launcher",
+                            "profiles": [
+                                {
+                                    "name": "Frag",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Heavy", "Blast ((2))"]
+                                },
+                                {
+                                    "name": "Krak",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 7,
+                                    "specialRules": ["Heavy", "AP1"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Deathwatch Veteran",
+            "size": 6,
+            "operatives": [
+                {
+                    "name": "Deathwatch Veteran Watch Sergeant",
+                    "mandatory": true,
+                    "limitNum": 1,
+                    "stats": [
+                        6,
+                        3,
+                        1,
+                        3,
+                        3,
+                        12
+                    ],
+                    "abilities": [
+                        {
+                            "name": "*Combi",
+                            "description": [
+                                "An operative equipped with this weapon is also equipped with a boltgun."
+                            ]
+                        },
+                        {
+                            "name": "*Grav",
+                            "description": [
+                                "Each time this operative makes a shooting attack with this weapon, if the target has an unmodified Save characteristic of 3+ or better, this weapon has the Lethal 4+ special rule for that attack."
+                            ]
+                        },
+                        {
+                            "name": "Storm Shield",
+                            "description": [
+                                "If this operative is equipped with a storm shield:",
+                                "((-)) It has a 4+ invulnerable save.",
+                                "((-)) Each time it fights in combat, in the Resolve Successful Hits step of that combat, each time it parries, two of your opponent's successful hits are discarded (instead of one)."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Bolt pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Combi-flamer",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 6,
+                                    "specialRules": ["Combi*", "Torrent ((2))", "Limited"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Combi-grav",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Combi*", "AP1", "Grav*", "Limited"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Combi-melta",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 6,
+                                    "damageCrit": 3,
+                                    "range": 6,
+                                    "specialRules": ["Combi*", "AP2", "Limited"],
+                                    "criticalEffects": ["MW4"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Combi-plasma",
+                            "profiles": [
+                                {
+                                    "name": "Standard",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["Combi*", "AP1", "Limited"]
+                                },
+                                {
+                                    "name": "Supercharge",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["Combi*", "AP2", "Hot", "Limited"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Deathwatch boltgun",
+                            "profiles": [
+                                {
+                                    "name": "Dragonfire",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": ["No Cover"]
+                                },
+                                {
+                                    "name": "Hellfire",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "criticalEffects": ["Rending"]
+                                },
+                                {
+                                    "name": "Kraken",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "criticalEffects": ["P1"]
+                                },
+                                {
+                                    "name": "Vengeance",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Deathwatch shotgun",
+                            "profiles": [
+                                {
+                                    "name": "Cryptclearer",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4
+                                },
+                                {
+                                    "name": "Wyrmsbreath",
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 3,
+                                    "specialRules": ["Torrent ((2))"]
+                                },
+                                {
+                                    "name": "Xenopurge",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 5,
+                                    "range": 6,
+                                    "criticalEffects": ["P1"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Flamer",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 6,
+                                    "specialRules": ["Torrent ((2))"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Grav-gun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["AP1", "Grav*"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Grav-pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "range": 6,
+                                    "specialRules": ["AP1", "Grav*"]
+                                }
+                            ]
+                        },
+
+                        {
+                            "type": "((R))",
+                            "name": "Meltagun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 6,
+                                    "damageCrit": 3,
+                                    "range": 6,
+                                    "specialRules": ["AP2"],
+                                    "criticalEffects": ["MW4"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Plasma gun",
+                            "profiles": [
+                                {
+                                    "name": "Standard",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["AP1"]
+                                },
+                                {
+                                    "name": "Supercharge",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["AP2", "Hot"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Plasma pistol",
+                            "profiles": [
+                                {
+                                    "name": "Standard",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "range": 6,
+                                    "specialRules": ["AP1"]
+                                },
+                                {
+                                    "name": "Supercharge",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "range": 6,
+                                    "specialRules": ["AP2", "Hot"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Stalker pattern boltgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": ["Heavy", "AP1"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Storm bolter",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": ["Relentless"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Chainsword",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Heavy thunder hammer",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 6,
+                                    "damageCrit": 8,
+                                    "criticalEffects": ["Stun"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Lightning claw",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Lethal 5+"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Lightning claws",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Lethal 5+", "Relentless"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power fist",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 7,
+                                    "specialRules": [ "Brutal" ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power maul",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "criticalEffects": ["Stun"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power weapon",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "specialRules": [ "Lethal 5+" ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Thunder hammer",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "criticalEffects": ["Stun"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Xenophase blade",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "criticalEffects": ["Brutal", "Lethal 5+"]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Deathwatch Veteran (Warrior)",
+                    "mandatory": true,
+                    "limitNum": 5,
+                    "stats": [
+                        6,
+                        3,
+                        1,
+                        3,
+                        3,
+                        11
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Deathwatch boltgun",
+                            "profiles": [
+                                {
+                                    "name": "Dragonfire",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": ["No Cover"]
+                                },
+                                {
+                                    "name": "Hellfire",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "criticalEffects": ["Rending"]
+                                },
+                                {
+                                    "name": "Kraken",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "criticalEffects": ["P1"]
+                                },
+                                {
+                                    "name": "Vengeance",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Deathwatch shotgun",
+                            "profiles": [
+                                {
+                                    "name": "Cryptclearer",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4
+                                },
+                                {
+                                    "name": "Wyrmsbreath",
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 3,
+                                    "specialRules": ["Torrent ((2))"]
+                                },
+                                {
+                                    "name": "Xenopurge",
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 3,
+                                    "damageCrit": 5,
+                                    "range": 6,
+                                    "criticalEffects": ["P1"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Stalker pattern boltgun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": ["Heavy", "AP1"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Storm bolter",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": ["Relentless"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power weapon",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "specialRules": ["Lethal 5+"]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Deathwatch Veteran (Fighter)",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [
+                        6,
+                        3,
+                        1,
+                        3,
+                        3,
+                        11
+                    ],
+                    "abilities": [
+                        {
+                            "name": "Storm Shield",
+                            "description": [
+                                "If this operative is equipped with a storm shield:",
+                                "((-)) It has a 4+ invulnerable save.",
+                                "((-)) Each time it fights in combat, in the Resolve Successful Hits step of that combat, each time it parries, two of your opponent's successful hits are discarded (instead of one)."
+                            ]
+                        },
+                        {
+                            "name": "*Grav",
+                            "description": [
+                                "Each time this operative makes a shooting attack with this weapon, if the target has an unmodified Save characteristic of 3+ or better, this weapon has the Lethal 4+ special rule for that attack."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Bolt pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "range": 6
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Grav-pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "range": 6,
+                                    "specialRules": ["AP1", "Grav*"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Hand flamer",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 6,
+                                    "specialRules": ["Torrent ((1))"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Inferno pistol",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 3,
+                                    "range": 3,
+                                    "specialRules": ["AP2"],
+                                    "criticalEffects": ["MW3"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Plasma pistol",
+                            "profiles": [
+                                {
+                                    "name": "Standard",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "range": 6,
+                                    "specialRules": ["AP1"]
+                                },
+                                {
+                                    "name": "Supercharge",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "range": 6,
+                                    "specialRules": ["AP2", "Hot"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Chainsword",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Heavy thunder hammer",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 4,
+                                    "damageNorm": 6,
+                                    "damageCrit": 8,
+                                    "criticalEffects": ["Stun"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Lightning claw",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Lethal 5+"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Lightning claws",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Lethal 5+", "Relentless"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power fist",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 4,
+                                    "damageNorm": 5,
+                                    "damageCrit": 7,
+                                    "specialRules": ["Brutal"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power maul",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "criticalEffects": ["Stun"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Power weapon",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "specialRules": ["Lethal 5+"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Thunder hammer",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "criticalEffects": ["Stun"]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Deathwatch Veteran (Gunner)",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [
+                        6,
+                        3,
+                        1,
+                        3,
+                        3,
+                        11
+                    ],
+                    "abilities": [
+                        {
+                            "name": "*Combi",
+                            "description": [
+                                "An operative equipped with this weapon is also equipped with a Deathwatch boltgun."
+                            ]
+                        },
+                        {
+                            "name": "*Grav",
+                            "description": [
+                                "Each time this operative makes a shooting attack with this weapon, if the target has an unmodified Save characteristic of 3+ or better, this weapon has the Lethal 4+ special rule for that attack."
+                            ]
+                        }
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Combi-flamer",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 6,
+                                    "specialRules": ["Combi*", "Torrent ((2))", "Limited"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Combi-grav",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Combi*", "AP1", "Grav*", "Limited"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Combi-melta",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 6,
+                                    "damageCrit": 3,
+                                    "range": 6,
+                                    "specialRules": ["Combi*", "AP2", "Limited"],
+                                    "criticalEffects": ["MW4"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Combi-plasma",
+                            "profiles": [
+                                {
+                                    "name": "Standard",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["Combi*", "AP1", "Limited"]
+                                },
+                                {
+                                    "name": "Supercharge",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["Combi*", "AP2", "Hot", "Limited"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Deathwatch boltgun",
+                            "profiles": [
+                                {
+                                    "name": "Dragonfire",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "specialRules": ["No Cover"]
+                                },
+                                {
+                                    "name": "Hellfire",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "criticalEffects": ["Rending"]
+                                },
+                                {
+                                    "name": "Kraken",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4,
+                                    "criticalEffects": ["P1"]
+                                },
+                                {
+                                    "name": "Vengeance",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Flamer",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 6,
+                                    "specialRules": ["Torrent ((2))"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Grav-gun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["AP1", "Grav*"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Meltagun",
+                            "profiles": [
+                                {
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 6,
+                                    "damageCrit": 3,
+                                    "range": 6,
+                                    "specialRules": ["AP2"],
+                                    "criticalEffects": ["MW4"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Plasma gun",
+                            "profiles": [
+                                {
+                                    "name": "Standard",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["AP1"]
+                                },
+                                {
+                                    "name": "Supercharge",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["AP2", "Hot"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((M))",
+                            "name": "Fists",
+                            "profiles": [
+                                {
+                                    "attacks": 3,
+                                    "skill": 3,
+                                    "damageNorm": 3,
+                                    "damageCrit": 4
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Deathwatch Veteran (Heavy Gunner)",
+                    "mandatory": false,
+                    "limitNum": 1,
+                    "stats": [
+                        6,
+                        3,
+                        1,
+                        3,
+                        3,
+                        11
+                    ],
+                    "weapons": [
+                        {
+                            "type": "((R))",
+                            "name": "Frag cannon",
+                            "profiles": [
+                                {
+                                    "name": "Frag",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 6,
+                                    "specialRules": ["Blast ((2))"]
+                                },
+                                {
+                                    "name": "Shell",
+                                    "attacks": 4,
+                                    "skill": 3,
+                                    "damageNorm": 5,
+                                    "damageCrit": 6,
+                                    "specialRules": ["AP1"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Heavy bolter",
+                            "profiles": [
+                                {
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Heavy", "Fusillade"],
+                                    "criticalEffects": ["P1"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Heavy flamer",
+                            "profiles": [
+                                {
+                                    "attacks": 6,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "range": 6,
+                                    "specialRules": ["Heavy", "Torrent ((2))"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "((R))",
+                            "name": "Inferno heavy bolter",
+                            "profiles": [
+                                {
+                                    "name": "Heavy bolter",
+                                    "attacks": 5,
+                                    "skill": 3,
+                                    "damageNorm": 4,
+                                    "damageCrit": 5,
+                                    "specialRules": ["Heavy", "Fusillade"],
+                                    "criticalEffects": ["P1"]
+                                },
+                                {
+                                    "name": "Heavy flamer",
+                                    "attacks": 6,
+                                    "skill": 2,
+                                    "damageNorm": 2,
+                                    "damageCrit": 2,
+                                    "specialRules": ["Heavy", "Torrent ((2))"]
                                 }
                             ]
                         },

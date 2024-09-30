@@ -1,6 +1,6 @@
 
 class FireTeam {
-    constructor(name = "", operatives = []) {
+    constructor(name = "", show = true, operatives = []) {
         Object.defineProperty(this, "addOperative", { enumerable: false });
         Object.defineProperty(this, "removeOperative", { enumerable: false });
         Object.defineProperty(this, "parse", { enumerable: false });
@@ -8,6 +8,7 @@ class FireTeam {
         Object.defineProperty(this, "equals", { enumerable: false });
         Object.defineProperty(this, "toHTML", { enumerable: false });
         this.name = name && typeof name === 'string' ? name : "";
+        this.show = typeof show === 'boolean' ? show : true;
         this.operatives = Array.isArray(operatives) ? operatives.filter(x => x instanceof Operative) : [];
     }
     
@@ -25,6 +26,7 @@ class FireTeam {
         if (!(object instanceof Object)) return undefined;
         return new FireTeam (
             object.name,
+            object.show ?? true,
             object.operatives?.map(x => Operative.parse(x)),
         )
     }

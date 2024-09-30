@@ -11,6 +11,14 @@
 .kill-team-phases{text-align:center;}
 .kill-team-phases h2{color:var(--orange);}
 
+.kill-team-selection {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
 .kill-team-dataslate {
     width: 100%;
     margin: 1em 0;
