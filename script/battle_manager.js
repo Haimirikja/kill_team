@@ -3,6 +3,7 @@ class BattleManager {
         { id: "corsair_voidscarred", debugRef: CORSAIR_VOIDSCARRED, fileName: "corsair_voidscarred.json" },
         { id: "craftworld", debugRef: CRAFTWORLD, fileName: "craftworld.json" },
         { id: "exaction_squad", debugRef: EXACTION_SQUAD, fileName: "exaction_squad.json" },
+        { id: "space_marine", debugRef: EXACTION_SQUAD, fileName: "space_marine.json" },
         { id: "veteran_guardsman", debugRef: VETERAN_GUARDSMAN, fileName: "veteran_guardsman.json" },
         { id: "void-dancer_troupe", debugRef: VOID_DANCER_TROUPE, fileName: "void-dancer_troupe.json" },
         { id: "wyrmblade", debugRef: WYRMBLADE, fileName: "wyrmblade.json" },

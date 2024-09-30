@@ -1,6 +1,6 @@
 const SPACEMARINE = {
     "name": "SPACE MARINE",
-    "faction": "SPACE MARINES",
+    "faction": "SPACEMARINES",
     "compendium": [
         {
             "name": "Rending",
